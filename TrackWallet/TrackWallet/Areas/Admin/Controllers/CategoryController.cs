@@ -7,7 +7,7 @@ using TrackWallet.DataAccess.Data;
 namespace TrackWallet.Areas.Admin.Controllers;
 
 [Area("Admin")]
-public class CategoryController
+public class CategoryController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
 
@@ -21,9 +21,5 @@ public class CategoryController
         List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
         return View(objCategoryList);
     }
-
-    public IActionResult Create()
-    {
-        return View();
-    }
+    
 }
