@@ -1,0 +1,16 @@
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\bin\Debug\net8.0\TrackWallet.DataAccess.deps.json
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\bin\Debug\net8.0\TrackWallet.DataAccess.dll
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\bin\Debug\net8.0\TrackWallet.DataAccess.pdb
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\bin\Debug\net8.0\TrackWallet.Models.dll
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\bin\Debug\net8.0\TrackWallet.Models.pdb
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\obj\Debug\net8.0\TrackWallet.DataAccess.csproj.AssemblyReference.cache
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\obj\Debug\net8.0\TrackWallet.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\obj\Debug\net8.0\TrackWallet.DataAccess.AssemblyInfoInputs.cache
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\obj\Debug\net8.0\TrackWallet.DataAccess.AssemblyInfo.cs
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\obj\Debug\net8.0\TrackWallet.DataAccess.csproj.CoreCompileInputs.cache
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\obj\Debug\net8.0\TrackWallet.DataAccess.sourcelink.json
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\obj\Debug\net8.0\TrackWallet.DataAccess.csproj.CopyComplete
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\obj\Debug\net8.0\TrackWallet.DataAccess.dll
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\obj\Debug\net8.0\refint\TrackWallet.DataAccess.dll
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\obj\Debug\net8.0\TrackWallet.DataAccess.pdb
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.DataAccess\obj\Debug\net8.0\ref\TrackWallet.DataAccess.dll

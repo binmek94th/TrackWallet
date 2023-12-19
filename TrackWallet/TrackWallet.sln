@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackWallet", "TrackWallet\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackWallet.Models", "TrackWallet.Models\TrackWallet.Models.csproj", "{375DC54B-2642-4CCB-AF22-E7C9ABCD12A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackWallet.Utility", "TrackWallet.Utility\TrackWallet.Utility.csproj", "{A23D8B0E-2B34-41FD-915D-C11252441C3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackWallet.DataAccess", "TrackWallet.DataAccess\TrackWallet.DataAccess.csproj", "{6D62401C-A54F-4E6B-9A5E-90EFD836C123}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{375DC54B-2642-4CCB-AF22-E7C9ABCD12A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{375DC54B-2642-4CCB-AF22-E7C9ABCD12A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{375DC54B-2642-4CCB-AF22-E7C9ABCD12A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A23D8B0E-2B34-41FD-915D-C11252441C3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A23D8B0E-2B34-41FD-915D-C11252441C3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A23D8B0E-2B34-41FD-915D-C11252441C3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A23D8B0E-2B34-41FD-915D-C11252441C3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D62401C-A54F-4E6B-9A5E-90EFD836C123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D62401C-A54F-4E6B-9A5E-90EFD836C123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D62401C-A54F-4E6B-9A5E-90EFD836C123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D62401C-A54F-4E6B-9A5E-90EFD836C123}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
