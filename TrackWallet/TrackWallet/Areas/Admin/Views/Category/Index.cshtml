@@ -1,2 +1,12 @@
-﻿
-<h2>title</h2>
+﻿@model List<Category>
+
+<h2> Category List</h2>
+@foreach( var obj in Model.OrderBy(u => u.Name))
+{
+    <div>
+        <div>
+            <img src="@obj.ImageUrl" width="100%"/>
+            <p>@obj.Name</p>
+        </div>
+    </div>
+}

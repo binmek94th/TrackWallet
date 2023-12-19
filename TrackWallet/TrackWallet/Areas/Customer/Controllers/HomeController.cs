@@ -4,6 +4,7 @@ using TrackWallet.Models;
 
 namespace TrackWallet.Controllers;
 
+[Area("Customer")]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -29,3 +30,4 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
+

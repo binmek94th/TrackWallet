@@ -21,8 +21,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Areas\Customer\Controllers\" />
-      <Folder Include="Areas\Customer\Views\" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\Customer\Views\Home\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Customer\Views\Home\Privacy.cshtml" />
     </ItemGroup>
 
 </Project>
