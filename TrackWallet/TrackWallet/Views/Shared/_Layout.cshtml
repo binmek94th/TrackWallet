@@ -14,9 +14,9 @@
         .top-bar {
             background-color: white;
             color: black;
-            padding: 10px;
+            padding: 5px;
             text-align: right;
-            height: 35px;
+            height: 50px;
             position: relative;
             margin-left: 100px;
         }
@@ -39,6 +39,7 @@
         }
         #collapse-hsidebar{
             float: right;
+            margin-top: 15px;
         }
         .sidebar {
             width: 300px;
@@ -54,33 +55,38 @@
         .sidebar ul {
             list-style: none;
             padding: 0;
+            width: 100%;
         }
 
         .sidebar li {
             margin-bottom: 25px;
-            
+            width: 100%;
         }
 
         .sidebar a {
             text-decoration: none;
             color: #333;
+            width: 100%;
         }
 
         .content {
             flex: 1;
-            padding: 20px;
+            margin-top: 30px;
+            width: 1000px;
         }
 
         #toggle-sidebar {
             display: none;
             position: absolute;
-            left: 10px;
         }
 
         /* Media Query for small screens */
         @@media (max-width: 908px) {
             #toggle-sidebar {
                 display: block;
+                position: absolute;
+                left: -80px;
+                margin-top: 20px;
             }
 
             .sidebar {
