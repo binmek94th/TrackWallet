@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\TrackWallet.bundle.scp.css"
     },
     {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\money_6811816.png",
+      "PackagePath": "staticwebassets\\Images\\money_6811816.png"
+    },
+    {
       "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

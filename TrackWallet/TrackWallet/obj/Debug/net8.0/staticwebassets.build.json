@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "x3L5x64/PZiAkX4Y4lOA6BAbah+25GYlpbKhGwYDESI=",
+  "Hash": "UQQpvrj43HC5CnWzMvpWELUllbPca2n/qo6tOJTyCuY=",
   "Source": "TrackWallet",
   "BasePath": "_content/TrackWallet",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\money_6811816.png",
+      "SourceId": "TrackWallet",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\",
+      "BasePath": "_content/TrackWallet",
+      "RelativePath": "Images/money_6811816.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\money_6811816.png"
     },
     {
       "Identity": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\js\\site.js",

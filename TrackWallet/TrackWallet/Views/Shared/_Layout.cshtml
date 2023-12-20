@@ -1,49 +1,220 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - TrackWallet</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/TrackWallet.styles.css" asp-append-version="true"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .top-bar {
+            background-color: white;
+            color: black;
+            padding: 10px;
+            text-align: right;
+            height: 35px;
+            position: relative;
+        }
+
+        .top-nav {
+            padding-top: 5px;
+            display: flex;
+            float: right;
+        }
+
+        .top-nav a {
+            color: black;
+            text-decoration: none;
+            padding: 0 15px;
+        }
+
+        .container {
+            display: flex;
+        }
+        #collapse-hsidebar{
+            float: right;
+        }
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            background-color: white;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .HSidebar{
+            display: none;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        #toggle-sidebar {
+            display: none;
+            position: absolute;
+            left: 10px;
+        }
+
+        /* Media Query for small screens */
+        @@media (max-width: 768px) {
+            #toggle-sidebar {
+                display: block;
+            }
+
+            .sidebar {
+                display: none;
+            }
+            .footer {
+                margin-bottom: -5px;
+            }
+        }
+        .HSidebar.HSidebar-visible {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            transition: left 0.3s ease-in-out;
+        }
+
+        .HSidebar ul {
+            margin-top: 130px;
+            margin-left: 35px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            list-style: none;
+            padding: 0;
+        }
+
+        .HSidebar li {
+            margin-bottom: 10px;
+        }
+
+        .HSidebar a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .HSidebar {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: -300px; /* Initially off-screen on the left */
+            width: 200px; /* Set the width to be the same as .sidebar */
+            height: 100%;
+            background-color: #333;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: left 0.5s ease-in-out;
+            z-index: 1000;
+        }
+
+        .HSidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .HSidebar li {
+            margin-bottom: 10px;
+        }
+
+        .HSidebar a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-top: 1px solid #ccc;
+        }
+
+    </style>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TrackWallet</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
+<div class="top-bar">
+    <button id="toggle-sidebar" onclick="toggleSidebar()">☰</button>
+    <div class="top-nav">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+    </div>
 </div>
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2023 - TrackWallet - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+<div class="container">
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
     </div>
-</footer>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-@await RenderSectionAsync("Scripts", required: false)
+    <div class="HSidebar">
+        <button id="collapse-hsidebar" onclick="collapseHSidebar()"> ☰</button>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="container bodyContainer">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+</div>
+        <!-- Footer -->
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2023 - TrackWallet - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+<!-- Scripts -->
+<script>
+    function toggleSidebar() {
+        var hiddenSidebar = document.querySelector(".HSidebar");
+
+
+        // Toggle the visibility of the hidden sidebar
+        hiddenSidebar.classList.toggle("HSidebar-visible");
+    }
+
+    function collapseHSidebar() {
+        var hiddenSidebar = document.querySelector(".HSidebar");
+
+        // Hide the hidden sidebar
+        hiddenSidebar.classList.remove("HSidebar-visible");
+    }
+
+</script>
 </body>
 </html>
