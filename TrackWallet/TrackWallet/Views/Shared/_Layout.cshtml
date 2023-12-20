@@ -18,10 +18,12 @@
             text-align: right;
             height: 35px;
             position: relative;
+            margin-left: 100px;
         }
 
         .top-nav {
-            padding-top: 5px;
+            padding-top: 20px;
+            padding-right: 150px; 
             display: flex;
             float: right;
         }
@@ -30,7 +32,7 @@
             color: black;
             text-decoration: none;
             padding: 0 15px;
-        }
+            }
 
         .container {
             display: flex;
@@ -42,11 +44,12 @@
             width: 300px;
             height: 100vh;
             background-color: white;
-            padding: 20px;
+            padding: 20px 20px 20px 60px;
             transition: transform 0.3s ease-in-out;
         }
         .HSidebar{
             display: none;
+            padding-top: 100px;
         }
         .sidebar ul {
             list-style: none;
@@ -54,13 +57,13 @@
         }
 
         .sidebar li {
-            margin-bottom: 10px;
+            margin-bottom: 25px;
+            
         }
 
         .sidebar a {
             text-decoration: none;
             color: #333;
-            font-weight: bold;
         }
 
         .content {
@@ -75,7 +78,7 @@
         }
 
         /* Media Query for small screens */
-        @@media (max-width: 768px) {
+        @@media (max-width: 908px) {
             #toggle-sidebar {
                 display: block;
             }
@@ -94,29 +97,20 @@
             left: 0;
             width: 300px;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             transition: left 0.3s ease-in-out;
         }
 
         .HSidebar ul {
-            margin-top: 130px;
-            margin-left: 35px;
-            position: absolute;
+            margin-top: 270px;
+            margin-left: 170px;
             transform: translate(-50%, -50%);
             list-style: none;
-            padding: 0;
+            width: 100%;
         }
 
-        .HSidebar li {
-            margin-bottom: 10px;
-        }
-
-        .HSidebar a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-        }
 
         .HSidebar {
             display: block;
@@ -138,13 +132,12 @@
         }
 
         .HSidebar li {
-            margin-bottom: 10px;
+            margin-bottom: 25px;
         }
 
         .HSidebar a {
             text-decoration: none;
-            color: #fff;
-            font-weight: bold;
+            color: black;
         }
         .footer {
             margin-top: auto;
@@ -152,35 +145,76 @@
             background-color: #f4f4f4;
             border-top: 1px solid #ccc;
         }
+        .profile{
+            width: 40px;
+            border-radius: 50px;
+            height: 40px;
+            background-color: #bebbbb;
+            margin-top: -25px;
+            margin-right: -10px;
+        }
+        .profile p{
+            font-size: 16px;
+            text-align: center;
+            padding-top: 10px;
+        }
+        a img{
+        margin-right: 15px;
+        margin-bottom: -5px;
+        }
+        .bell {
+            margin-top: -15px;
+            margin-right: -25px;
 
+        }
+        .user {
+            margin-right: -15px;
+        }
     </style>
 </head>
 <body>
 <div class="top-bar">
     <button id="toggle-sidebar" onclick="toggleSidebar()">☰</button>
     <div class="top-nav">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+            
+                <a href="#"><img class="bell" src="Images/Icons/Bell.png" width="50px" /></a>
+                
+                    <a href="#">
+                        <div class="profile">
+                            <p>BM</p>
+                        </div>
+                    </a>
+
+                <a class="user" href="#">Binyam Mekonnen</a>
+                <a href="#"><img src="Images/Icons/Arrow.png" width="20px"/></a>
+            
     </div>
 </div>
 
 <div class="container">
     <div class="sidebar" id="sidebar">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#"><img src="Images/Icons/Home.png" width="30px"/>Home</a></li>
+            <li><a href="#"><img src="Images/Icons/Insights.png" width="30px"/>Insights</a></li>
+            <li><a href="#"><img src="Images/Icons/Category.png" width="30px"/>Category</a></li>
+            <li><a href="#"><img src="Images/Icons/Budget.png"width="30px"/>Budget</a></li>
+            <li><a href="#"><img src="Images/Icons/Recurring Payments.png"width="30px"/>Recurring Payments</a></li>
+            <li><a href="#"><img src="Images/Icons/Loan and Debt.png"width="30px"/>Loan & Debt</a></li>
+            <li><a href="#"><img src="Images/Icons/Goal.png"width="30px"/>Goal</a></li>
+            <li><a href="#"><img src="Images/Icons/Occasion.png"width="30px"/>Occasion</a></li>
         </ul>
     </div>
     <div class="HSidebar">
         <button id="collapse-hsidebar" onclick="collapseHSidebar()"> ☰</button>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
+                <li><a href="#"><img src="Images/Icons/Home.png" width="30px" />Home</a></li>
+                <li><a href="#"><img src="Images/Icons/Insights.png" width="30px" />Insights</a></li>
+                <li><a href="#"><img src="Images/Icons/Category.png" width="30px" />Category</a></li>
+                <li><a href="#"><img src="Images/Icons/Budget.png" width="30px" />Budget</a></li>
+                <li><a href="#"><img src="Images/Icons/Recurring Payments.png" width="30px" />Recurring Payments</a></li>
+                <li><a href="#"><img src="Images/Icons/Loan and Debt.png" width="30px" />Loan & Debt</a></li>
+                <li><a href="#"><img src="Images/Icons/Goal.png" width="30px" />Goal</a></li>
+                <li><a href="#"><img src="Images/Icons/Occasion.png" width="30px" />Occasion</a></li>
         </ul>
     </div>
     <div class="overlay"></div>

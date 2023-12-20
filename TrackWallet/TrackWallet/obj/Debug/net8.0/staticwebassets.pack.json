@@ -5,6 +5,58 @@
       "PackagePath": "staticwebassets\\TrackWallet.bundle.scp.css"
     },
     {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Add.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Add.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Arrow.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Arrow.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Bell.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Bell.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Budget.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Budget.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Category.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Category.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Filter.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Filter.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Goal.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Goal.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Home.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Home.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Insights.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Insights.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Loan and Debt.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Loan and Debt.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Occasion.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Occasion.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Recurring Payments.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Recurring Payments.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\Icons\\Search.png",
+      "PackagePath": "staticwebassets\\Images\\Icons\\Search.png"
+    },
+    {
       "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Images\\money_6811816.png",
       "PackagePath": "staticwebassets\\Images\\money_6811816.png"
     },

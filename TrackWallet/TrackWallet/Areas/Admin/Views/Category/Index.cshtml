@@ -4,19 +4,20 @@
     <h3>Category</h3>
     <div class="displaySpace">
         <div class="Bcontainer">
-            <button id="incomeButton">Income</button>
-            <button id="expenseButton">Expense</button>
+            <button class="IE" id="incomeButton">Income</button>
+            <button class="IE" id="expenseButton">Expense</button>
         </div>
 
         @foreach (var obj in Model.OrderBy(u => u.Name))
         {
             <div class="category @obj.CategoryType.ToLower()">
                 <div class="elements">
-                    <img src="wwwroot/Images/money_6811816.png" width="50px" />
+                    <img src="wwwroot/Images/money_6811816.png" width="50px"/>
                     <p>@obj.Name</p>
                 </div>
             </div>
         }
+        <a class="add">Add</a>
     </div>
 </div>
 
@@ -37,7 +38,7 @@
     }
 
     .Bcontainer {
-        background-color: #6ce121;
+        background-color: #9FE870;
         width: 300px;
         height: 50px;
         border-radius: 15px;
@@ -57,13 +58,23 @@
         background-color: #c2d7be;
     }
 
-    button {
+    .IE {
         width: 100px;
         height: 40px;
-        background-color: #6ce121;
+        background-color: #9FE870;
         border: none;
         border-radius: 10px;
         font-size: 15px;
+    }
+    .add {
+        position: fixed;
+        bottom: 50px;
+        right: 150px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        background-color: #9fe870;
+        text-align: center;
     }
 
     .elements {
@@ -71,13 +82,13 @@
     }
 
     button:active {
-        background-color: #45a049;
+        background-color: #B9EE97;
     }
 
     /* Change color when the button is focused (tabbed into) */
     button:focus {
         outline: none;
-        background-color: #45a049;
+        background-color: #B9EE97;
     }
 </style>
 
@@ -86,18 +97,24 @@
     $(document).ready(function () {
         // Initially hide all categories
         $(".category.expense").hide();
+        var elementWithClass = document.querySelector('.IE');
+
+        // Change the color to red
+        elementWithClass.style.backgroundColor = '#B9EE97';
         $(".category.income").show();
 
         // Show income categories when the "Income" button is clicked
         $("#incomeButton").on("click", function () {
             $(".category.income").show();
             $(".category.expense").hide();
+            elementWithClass.style.backgroundColor = '#B9EE97';
         });
 
         // Show expense categories when the "Expense" button is clicked
         $("#expenseButton").on("click", function () {
             $(".category.income").hide();
             $(".category.expense").show();
+            elementWithClass.style.backgroundColor = '#9FE870';
         });
     });
 </script>
