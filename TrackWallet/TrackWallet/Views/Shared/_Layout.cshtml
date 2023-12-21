@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+       
     <style>
         body {
             margin: 0;
@@ -183,7 +183,7 @@
     <button id="toggle-sidebar" onclick="toggleSidebar()">☰</button>
     <div class="top-nav">
             
-                <a href="#"><img class="bell" src="Images/Icons/Bell.png" width="50px" /></a>
+                <a href="#"><img class="bell" src="@Url.Content("~/Images/Icons/Bell.png")" width="50px" /></a>
                 
                     <a href="#">
                         <div class="profile">
@@ -192,7 +192,7 @@
                     </a>
 
                 <a class="user" href="#">Binyam Mekonnen</a>
-                <a href="#"><img src="Images/Icons/Arrow.png" width="20px"/></a>
+                <a href="#"><img src="@Url.Content("~/Images/Icons/Arrow.png")" width="20px"/></a>
             
     </div>
 </div>
@@ -200,27 +200,27 @@
 <div class="container">
     <div class="sidebar" id="sidebar">
         <ul>
-            <li><a href="#"><img src="Images/Icons/Home.png" width="30px"/>Home</a></li>
-            <li><a href="#"><img src="Images/Icons/Insights.png" width="30px"/>Insights</a></li>
-            <li><a href="#"><img src="Images/Icons/Category.png" width="30px"/>Category</a></li>
-            <li><a href="#"><img src="Images/Icons/Budget.png"width="30px"/>Budget</a></li>
-            <li><a href="#"><img src="Images/Icons/Recurring Payments.png"width="30px"/>Recurring Payments</a></li>
-            <li><a href="#"><img src="Images/Icons/Loan and Debt.png"width="30px"/>Loan & Debt</a></li>
-            <li><a href="#"><img src="Images/Icons/Goal.png"width="30px"/>Goal</a></li>
-            <li><a href="#"><img src="Images/Icons/Occasion.png"width="30px"/>Occasion</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Home.png")" width="30px"/>Home</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Insights.png")" width="30px"/>Insights</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Category.png")" width="30px"/>Category</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Budget.png")" width="30px"/>Budget</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Recurring Payments.png")"width="30px"/>Recurring Payments</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Loan and Debt.png")" width="30px"/>Loan & Debt</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Goal.png")" width="30px"/>Goal</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Occasion.png")" width="30px"/>Occasion</a></li>
         </ul>
     </div>
     <div class="HSidebar">
         <button id="collapse-hsidebar" onclick="collapseHSidebar()"> ☰</button>
         <ul>
-                <li><a href="#"><img src="Images/Icons/Home.png" width="30px" />Home</a></li>
-                <li><a href="#"><img src="Images/Icons/Insights.png" width="30px" />Insights</a></li>
-                <li><a href="#"><img src="Images/Icons/Category.png" width="30px" />Category</a></li>
-                <li><a href="#"><img src="Images/Icons/Budget.png" width="30px" />Budget</a></li>
-                <li><a href="#"><img src="Images/Icons/Recurring Payments.png" width="30px" />Recurring Payments</a></li>
-                <li><a href="#"><img src="Images/Icons/Loan and Debt.png" width="30px" />Loan & Debt</a></li>
-                <li><a href="#"><img src="Images/Icons/Goal.png" width="30px" />Goal</a></li>
-                <li><a href="#"><img src="Images/Icons/Occasion.png" width="30px" />Occasion</a></li>
+                <li><a href="#"><img src="../../wwwroot/Image/Icons/Home.png" width="30px" />Home</a></li>
+                <li><a href="#"><img src="../../wwwroot/Image/Icons/Insights.png" width="30px" />Insights</a></li>
+                <li><a href="#"><img src="../../wwwroot/Image/Icons/Category.png" width="30px" />Category</a></li>
+                <li><a href="#"><img src="../../wwwroot/Image/Icons/Budget.png" width="30px" />Budget</a></li>
+                <li><a href="#"><img src="../../wwwroot/Image/Icons/Recurring Payments.png" width="30px" />Recurring Payments</a></li>
+                <li><a href="#"><img src="../../wwwroot/Image/Icons/Loan and Debt.png" width="30px" />Loan & Debt</a></li>
+                <li><a href="#"><img src="../../wwwroot/Image/Icons/Goal.png" width="30px" />Goal</a></li>
+                <li><a href="#"><img src="../../wwwroot/Image/Icons/Occasion.png" width="30px" />Occasion</a></li>
         </ul>
     </div>
     <div class="overlay"></div>
@@ -256,5 +256,10 @@
     }
 
 </script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="https://cdn.tiny.cloud/1/yqf8pl0fr00reb7419cy8a30rw2hop33mzhoqxk1kx1mcm2c/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

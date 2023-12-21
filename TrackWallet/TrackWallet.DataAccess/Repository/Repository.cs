@@ -43,4 +43,10 @@ public class Repository<T> : IRepository<T> where T : class
     {
         dbSet.RemoveRange(entity);
     }
+    public T Get(System.Linq.Expressions.Expression<Func<T, bool>> filter)
+    {
+        IQueryable<T> query = dbSet;
+        query = query.Where(filter);
+        return query.FirstOrDefault();
+    }
 }

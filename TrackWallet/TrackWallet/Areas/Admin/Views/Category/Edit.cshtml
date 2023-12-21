@@ -1,0 +1,183 @@
+﻿@model Category
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Edit Category</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            border: solid 2px black;
+        }
+
+        .main {
+            background-color: #fff; /* White background for the main content */
+            margin: 20px auto; /* Center the main content */
+            padding-top: 40px;
+            margin-top: 20px;
+            padding: 40px;
+            border-radius: 10px;
+            width: 140%; /* Adjusted width to make it wider */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+        }
+
+        .Back-arrow a {
+            text-decoration: none;
+            color: #007bff; /* Blue color for the link */
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h3 {
+            margin-bottom: 25px;
+            font-size: 22px;
+            font-weight: normal;
+            color: #343a40; /* Dark gray color for the heading */
+        }
+
+        .content {
+            width: 60%; /* Adjusted width to make it wider */
+            margin-left: 25px; /* Center the content */
+        }
+
+        .form {
+            margin-top: 10px;
+        }
+
+        .form-element {
+            margin-bottom: 15px;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 16px;
+            color: #495057; /* Dark gray color for the label */
+        }
+
+        .input-element, .dropdown-element, .input-image {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 5px;
+            border: 1px solid #ced4da; /* Light gray border for input elements */
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .input-validation {
+            color: #dc3545; /* Red color for validation messages */
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .button {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: -150px;
+            
+        }
+        .submit-button button {
+            background-color: #8cd35d; /* Green color for the submit button */
+            color: #fff; /* White text color for the button */
+            padding: 10px 20px;
+            margin-top: 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .input-element:hover,
+        .dropdown-element:hover,
+        .input-image:hover {
+            border-color: #8cd35d; /* Blue border color on hover */
+        }
+
+        .submit-button button:hover {
+            background-color: #a2d780; /* Gray background color on button hover */
+        }
+        .custom-file-input {
+            display: none;
+        }
+
+        .custom-file-label {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 15px;
+            display: inline-block;
+            cursor: pointer;
+            background-color: #f8f9fa; /* Light gray background color */
+        }
+
+        .custom-file-label:hover {
+            background-color: #e2e6ea; /* Light gray background color on hover */
+        }
+
+        .custom-file-input:focus + .custom-file-label {
+            border-color: #007bff; /* Blue border color on focus */
+        }
+
+        /* Styling the file input when a file is selected */
+        .custom-file-input:not(:placeholder-shown) + .custom-file-label {
+            border-color: #28a745; /* Green border color when a file is selected */
+        }
+        .Back-arrow {
+            width: 30px;
+            height: 40px;
+            border-radius: 50px;
+        }
+        .Back-arrow :hover {
+            background-color: #c6dcb4;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="Back-arrow">
+        <a asp-action="Index" asp-controller="Category"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
+    </div>
+    <h3>Edit Category</h3>
+    <div class="content">
+        <form method="post" enctype="multipart/form-data">
+            <input asp-for="Id" hidden/>
+            <input asp-for="ImageUrl" hidden/>
+            <div class="form">
+                <div class="form-element">
+                    <label class="input-label" asp-for="Name">Category Name</label>
+                    <input asp-for="Name" type="text" class="input-element"/>
+                    <span asp-validation-for="Name" class="input-validation"></span>
+                </div>
+                <div class="form-element">
+                    <label class="input-label" asp-for="Name">Category type</label>
+                    <select asp-for="CategoryType" class="dropdown-element">
+                        <option disabled selected>Select Category</option>
+                        <option>Income</option>
+                        <option>Expense</option>
+                    </select>
+                    <span asp-validation-for="CategoryType" class="input-validation"></span>
+                </div>
+                <div class="form-element">
+                    <label class="input-label" asp-for="ImageUrl">Image</label>
+                        <input type="file" name="file" class="input-image custom-file-label" />
+                </div>
+                <div class="button">
+                    <div class="submit-button">
+                        <button asp-action="Edit" asp-controller="Category" type="submit">Update</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
