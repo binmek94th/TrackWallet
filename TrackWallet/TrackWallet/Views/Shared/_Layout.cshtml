@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -88,12 +90,27 @@
                 left: -80px;
                 margin-top: 20px;
             }
+            .container {
+                height: 1000px;
+            }
 
             .sidebar {
                 display: none;
             }
             .footer {
                 margin-bottom: -5px;
+            }
+            .user {
+                display: none;
+            }
+            h3 {
+                padding-left: 50px;
+            }
+            .top-nav {
+                padding-right: 30px;
+            }
+            .dropdown:hover .dropdown-content {
+                margin-right: -100px;
             }
         }
         .HSidebar.HSidebar-visible {
@@ -176,53 +193,157 @@
         .user {
             margin-right: -15px;
         }
+        .dropbtn {
+            background-color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+        }
+        .dropbtn img{
+            margin-top: -50px;
+            width: 30px;
+        }
+                 /* Style the dropdown content (hidden by default) */
+        .dropdown-content {
+            border-radius: 15px;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        /* Style the dropdown links */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        /* Change color on hover */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content,
+        .dropdown-content:hover {
+            display: block;
+        }
+        .dropdown:hover .dropdown-content {
+            top: 100%; 
+            right: 100px;;
+        }
+        .logout-btn {
+            background-color: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            color: black;
+            text-decoration: none;
+            color: black;
+            text-align: right;
+            padding: 12px 16px;
+        }
+        
+        .logout-btn:hover {
+            color: #333;
+            background-color: #f1f1f1;
+        }
+        .NavNew {
+            list-style: none;
+            height: 70px; /* Adjust the height as needed */
+        }
+        
+        .NavNew a{
+            padding: 10px;
+            margin-right: 20px;
+        }
+        
+        .navLogin:hover {
+            background-color: #BBDCA7FF;
+            border-radius: 15px;
+            height: 70px; /* Adjust the height as needed */
+        }
+        
+        .navRegister:hover {
+            background-color: #bbdca7;
+            border-radius: 15px;
+            height: 70px; /* Adjust the height as needed */
+        }
     </style>
 </head>
 <body>
 <div class="top-bar">
     <button id="toggle-sidebar" onclick="toggleSidebar()">☰</button>
     <div class="top-nav">
-            
-                <a href="#"><img class="bell" src="@Url.Content("~/Images/Icons/Bell.png")" width="50px" /></a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="#"><img class="bell" src="@Url.Content("~/Image/Icons/Bell.png")" width="50px" /></a>
                 
-                    <a href="#">
-                        <div class="profile">
-                            <p>BM</p>
-                        </div>
-                    </a>
+                <a href="#">
+                    <div class="profile">
+                        <p>BM</p>
+                    </div>
+                </a>
 
                 <a class="user" href="#">Binyam Mekonnen</a>
-                <a href="#"><img src="@Url.Content("~/Images/Icons/Arrow.png")" width="20px"/></a>
-            
+                <div class="dropdown">
+                    <button class="dropbtn"><img src="@Url.Content("~/Image/Icons/Arrow.png")" alt="Arrow"></button>
+                    <div class="dropdown-content">
+                    <a id="manage" class="nav-link " asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
+                        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button id="logout" type="submit" class="logout-btn">Logout</button>
+                        </form>
+                        
+                    </div>
+                    </div>
+            }
+            else
+            {
+                <li class="NavNew">
+                    <a class="navRegister " id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                </li>
+                <li class="NavNew">
+                    <a class="navLogin " id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                </li>
+            }
+                
     </div>
 </div>
 
 <div class="container">
+@if (User.Identity.IsAuthenticated)
+            {
     <div class="sidebar" id="sidebar">
         <ul>
-            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Home.png")" width="30px"/>Home</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Insights.png")" width="30px"/>Insights</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Category.png")" width="30px"/>Category</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Budget.png")" width="30px"/>Budget</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Recurring Payments.png")"width="30px"/>Recurring Payments</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Loan and Debt.png")" width="30px"/>Loan & Debt</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Goal.png")" width="30px"/>Goal</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Images/Icons/Occasion.png")" width="30px"/>Occasion</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Home.png")" width="30px"/>Home</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Insights.png")" width="30px"/>Insights</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Category.png")" width="30px"/>Category</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Budget.png")" width="30px"/>Budget</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Recurring Payments.png")"width="30px"/>Recurring Payments</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Loan and Debt.png")" width="30px"/>Loan & Debt</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Goal.png")" width="30px"/>Goal</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Occasion.png")" width="30px"/>Occasion</a></li>
         </ul>
     </div>
     <div class="HSidebar">
         <button id="collapse-hsidebar" onclick="collapseHSidebar()"> ☰</button>
         <ul>
-                <li><a href="#"><img src="../../wwwroot/Image/Icons/Home.png" width="30px" />Home</a></li>
-                <li><a href="#"><img src="../../wwwroot/Image/Icons/Insights.png" width="30px" />Insights</a></li>
-                <li><a href="#"><img src="../../wwwroot/Image/Icons/Category.png" width="30px" />Category</a></li>
-                <li><a href="#"><img src="../../wwwroot/Image/Icons/Budget.png" width="30px" />Budget</a></li>
-                <li><a href="#"><img src="../../wwwroot/Image/Icons/Recurring Payments.png" width="30px" />Recurring Payments</a></li>
-                <li><a href="#"><img src="../../wwwroot/Image/Icons/Loan and Debt.png" width="30px" />Loan & Debt</a></li>
-                <li><a href="#"><img src="../../wwwroot/Image/Icons/Goal.png" width="30px" />Goal</a></li>
-                <li><a href="#"><img src="../../wwwroot/Image/Icons/Occasion.png" width="30px" />Occasion</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Home.png")" width="30px" />Home</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Insights.png")" width="30px" />Insights</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Category.png")" width="30px" />Category</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Budget.png")" width="30px" />Budget</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Recurring Payments.png")" width="30px" />Recurring Payments</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Loan and Debt.png")" width="30px" />Loan & Debt</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Goal.png")" width="30px" />Goal</a></li>
+            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Occasion.png")" width="30px" />Occasion</a></li>
         </ul>
     </div>
+}
     <div class="overlay"></div>
     <div class="content">
         <div class="container bodyContainer">

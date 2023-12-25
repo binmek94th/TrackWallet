@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using TrackWallet.DataAccess.Repository.IRepository;
 using TrackWallet.Models;
 using Microsoft.AspNetCore.Hosting;
 using TrackWallet.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using TrackWallet.Utility;
 
 namespace TrackWallet.Areas.Admin.Controllers;
 
 [Area("Admin")]
+[Authorize(Roles = SD.Role_Admin)]
 public class CategoryController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -93,7 +96,7 @@ public class CategoryController : Controller
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                 string productPath = Path.Combine(wwwRootPath, @"Image\Category");
 
-                if (string.IsNullOrEmpty(obj.ImageUrl))
+                if (!string.IsNullOrEmpty(obj.ImageUrl))
                 {
                     var oldImagePath = Path.Combine(wwwRootPath, obj.ImageUrl.TrimStart('\\'));
 

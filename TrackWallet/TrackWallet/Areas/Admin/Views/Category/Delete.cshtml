@@ -55,6 +55,7 @@
             display: block;
             font-size: 16px;
             color: #495057; /* Dark gray color for the label */
+            padding-bottom: 7px;
         }
 
         .input-element, .dropdown-element, .input-image {
@@ -70,7 +71,6 @@
         .input-validation {
             color: #dc3545; /* Red color for validation messages */
             font-size: 14px;
-            margin-top: 5px;
         }
 
         .button {
@@ -95,6 +95,9 @@
         .dropdown-element:hover,
         .input-image:hover {
             border-color: #8cd35d; /* Blue border color on hover */
+        }
+        .input-element::selection{
+        border-color: #5e8642;
         }
 
         .submit-button button:hover {
@@ -135,6 +138,7 @@
             background-color: #c6dcb4;
             border-radius: 50px;
         }
+
     </style>
 </head>
 <body>

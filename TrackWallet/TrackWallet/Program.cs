@@ -3,6 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using TrackWallet.DataAccess.Data;
 using TrackWallet.DataAccess.Repository;
 using TrackWallet.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Options;
+using TrackWallet.Models;
+using TrackWallet.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +16,17 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>
     (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(Options =>
+{
+    Options.LoginPath = $"/Identity/Account/Login";
+    Options.LogoutPath = $"/Identity/Account/Logout";
+    Options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
+builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,11 +41,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
-
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=iden}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

@@ -10,3 +10,4 @@ D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0
 D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\refint\TrackWallet.Utility.dll
 D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\TrackWallet.Utility.pdb
 D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\ref\TrackWallet.Utility.dll
+D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\TrackWallet.Utility.csproj.AssemblyReference.cache
