@@ -1,5 +1,19 @@
 ﻿@model List<Wallet>
-
+<style>
+    .add {
+            position: fixed;
+            bottom: 50px;
+            right: 150px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            background-color: #9fe870;
+            text-align: center;
+        }
+        .add img{
+            padding: 13px;
+        }
+</style>
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <div class="container">
@@ -9,9 +23,11 @@
                 <p>@element.Name</p>
                 <p>@element.Balance @element.Currency</p>
                 <p>@element.WalletType</p>
+                <a asp-controller="Home" asp-action="Edit" asp-route-id="@element.WalletId"><img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" /></a>
                 <br/>
                 <br/>
             }
+        <a asp-controller="Home" asp-action="Create" class="add"><img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Add.png")" /></a>
         </div>
     </div>
 </div>
