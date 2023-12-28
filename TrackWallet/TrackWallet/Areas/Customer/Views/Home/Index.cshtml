@@ -1,33 +1,103 @@
 ﻿@model List<Wallet>
 <style>
     .add {
-            position: fixed;
-            bottom: 50px;
-            right: 150px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50px;
-            background-color: #9fe870;
-            text-align: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        text-align: center;
+        margin-left: 10px; /* Add margin to separate from wallet contents */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .add img {
+
+            padding: 10px;
+            border-radius: 50%;
+            background-color: gray;
         }
-        .add img{
-            padding: 13px;
-        }
+
+    /* Style for the text inside the box */
+    .Content {
+        width: 200px;
+        height: 140px;
+        padding: 20px; /* Padding inside the box */
+        margin: 10px;
+        border-radius: 20px; /* Border radius for rounded corners */
+        background-color: #EFF5E9; /* Background color of the box */
+        overflow: hidden;
+        position: relative; /* Set position relative for absolute positioning */
+    }
+
+    .card-container {
+        display: flex;
+        white-space: nowrap; /* Prevent wrapping */
+        margin-right: -10px; /* Adjust the margin as needed */
+        overflow: no-display;
+    }
+
+    /* Style for the bottom text */
+    .bottom-text {
+        position: absolute;
+        bottom: 5px;
+        left: 20px;
+    }
+
+    .balance {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .modify-link {
+        position: absolute;
+        top: 15px;
+        right: 5px;
+        width: 50px; /* Adjust the width and height as needed */
+        height: 50px;
+    }
+    .container {
+        margin-right: -150px;
+        padding-right: -150px;
+    }
 </style>
+
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <div class="container">
-        <div class="Content">
+        <div class="card-container">
             @foreach (var element in Model)
             {
-                <p>@element.Name</p>
-                <p>@element.Balance @element.Currency</p>
-                <p>@element.WalletType</p>
-                <a asp-controller="Home" asp-action="Edit" asp-route-id="@element.WalletId"><img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" /></a>
-                <br/>
-                <br/>
+                <div class="Content">
+                    @if (element.WalletType == "Cash")
+                    {
+                        <img width="45px" src="@Url.Content("~/Image/Icons/Cash.png")" />
+                    }
+                    else if (element.WalletType == "Card")
+                    {
+                        <img width="45px" src="@Url.Content("~/Image/Icons/Card.png")" />
+                    }
+                    else if (element.WalletType == "Saving")
+                    {
+                        <img width="45px" src="@Url.Content("~/Image/Icons/Saving.png")" />
+                    }
+                    <div class="modify-link">
+                        <a asp-controller="Home" asp-action="Edit" asp-route-id="@element.WalletId" class="modify-link">
+                            <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" />
+                        </a>
+                    </div>
+                    <p class="balance">@element.Balance @element.Currency</p>
+                    <p class="bottom-text">@element.WalletType</p>
+                </div>
             }
-        <a asp-controller="Home" asp-action="Create" class="add"><img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Add.png")" /></a>
+            <div class="Content add">
+                <a asp-controller="Home" asp-action="Create" class="add">
+                    <img id="img_logo" alt="Logo" width="30px" src="@Url.Content("~/Image/Icons/Add.png")" />
+                </a>
+            </div>
         </div>
     </div>
 </div>

@@ -113,10 +113,22 @@
                 background-color: #c6dcb4;
                 border-radius: 50px;
             }
+            .Back-arrow {
+                width: 30px;
+                height: 40px;
+                border-radius: 50px;
+            }
+            .Back-arrow :hover {
+                background-color: #c6dcb4;
+                border-radius: 50px;
+            }      
         </style>
 </head>
 <body>
 <h3>Create Category</h3>
+    <div class="Back-arrow">
+        <a asp-action="Index" asp-controller="Home"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
+    </div>
 <div class="content">
     <form method="post" enctype="multipart/form-data">
         <div class="form">

@@ -102,8 +102,7 @@
                 background-color: #a2d780; /* Gray background color on button hover */
             }
   
-
-    
+   
             .Back-arrow {
                 width: 30px;
                 height: 40px;
@@ -113,10 +112,14 @@
                 background-color: #c6dcb4;
                 border-radius: 50px;
             }
+         
         </style>
 </head>
 <body>
 <h3>Edit Category</h3>
+    <div class="Back-arrow">
+        <a asp-action="Index" asp-controller="Home"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
+    </div>
 <div class="content">
     <form method="post" enctype="multipart/form-data">
         <div class="form">
@@ -126,7 +129,7 @@
                 <span asp-validation-for="Name" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="Balance">Starting Balance</label>
+                <label class="input-label" asp-for="Balance">Balance</label>
                 <input asp-for="Balance" type="text" class="input-element"/>
                 <span asp-validation-for="Balance" class="input-validation"></span>
             </div>
