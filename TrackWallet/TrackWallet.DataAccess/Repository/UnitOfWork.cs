@@ -6,11 +6,15 @@ namespace TrackWallet.DataAccess.Repository;
 public class UnitOfWork : IUnitOfWork
 {
     public ICategoryRepository Category { get; private set; }
+    public IUserSelectedCategoryRepository UserSelectedCategory { get; private set; }
+    public IWalletRepository Wallet { get; private set; }
     private ApplicationDbContext _db;
     public UnitOfWork(ApplicationDbContext db)
     {
         _db = db;
         Category = new CategoryRepository(_db);
+        UserSelectedCategory = new UserSelectedCategoryRepository(_db);
+        Wallet = new WalletRepository(_db);
     }
 
     public void Save()

@@ -1,0 +1,20 @@
+﻿@model UserSelectedCategory
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Create</title>
+</head>
+<body>
+<div>
+    <form method="post">
+        <input asp-for="@Model.Id" hidden/>
+        <input asp-for="@Model.IsActive" hidden/>
+        <select asp-for="@Model.CategoryId" asp-items="@ViewData["CategoryList"] as IEnumerable<SelectListItem>">Select list</select>
+        <button type="submit" asp-action="Create" asp-controller="UserSelectedCategory">Save</button>
+    </form>
+</div>
+</body>
+</html>

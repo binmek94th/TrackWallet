@@ -16,9 +16,17 @@ public class Repository<T> : IRepository<T> where T : class
         this.dbSet = _db.Set<T>();
     }
     
-    public IEnumerable<T> GetAll()
+    public IEnumerable<T> GetAll(string? includeProperties = null)
     {
         IQueryable<T> query = dbSet;
+        if (!string.IsNullOrEmpty(includeProperties))
+        {
+            foreach (var includeProp in includeProperties
+                         .Split(new char[]{','}, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include((includeProp));
+            }
+        }
         return query.ToList();
     }
 

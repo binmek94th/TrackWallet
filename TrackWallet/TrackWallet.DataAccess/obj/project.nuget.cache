@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UwDi7N3/IE2V9RKuHYYcgTapZbVJESOap02uO2mK9KYhmiZet0CDZmwHnpSbZmisaEbeVxR6wdsA566iDL7yHQ==",
+  "dgSpecHash": "aHphQvONosUfj6OrMuc4ZaMQ6CcBVLli3HtrNpbc42/TECTNgqEZbY8XQBurFe3stWvhLE7wKVncI0EwPJcn8A==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\TrackWallet.DataAccess.csproj",
+  "projectFilePath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\TrackWallet.DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\binme\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\binme\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

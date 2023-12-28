@@ -41,7 +41,7 @@ public class CategoryController : Controller
         {
             return View(obj);
         }
-
+        
         ModelState.Remove("Id");
 
         if (ModelState.IsValid)
