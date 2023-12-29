@@ -104,7 +104,7 @@ public class Budget : Controller
         _unitOfWork.Save();
         return RedirectToAction("Index");
     }
-    public IActionResult Delete(int? id)
+   /* public IActionResult Delete(int? id)
     {
         if (id == null || id == 0)
         {
@@ -139,6 +139,22 @@ public class Budget : Controller
         TempData["success"] = "Category deleted successfully";
         return RedirectToAction("Index");
     }
+*/
+    [HttpPost]
+    public void Delete(int? id)
+    {
+        var BudgetToDeleted = _unitOfWork.Budget.Get(u => u.Id == id);
+
+        if (BudgetToDeleted == null)
+        {
+            RedirectToAction("Index", "Budget");
+        }
+        _unitOfWork.Budget.Remove(BudgetToDeleted);
+        _unitOfWork.Save();
+
+        RedirectToAction("Index", "Budget");
+    }
+    
 }
 
 
