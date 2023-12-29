@@ -6,5 +6,6 @@ public interface IUnitOfWork
     IUserSelectedCategoryRepository UserSelectedCategory { get; }
     IWalletRepository Wallet { get; }
     IBudgetRepository Budget { get;  }
+    IEventRepository Event { get; }
     void Save();
 }

@@ -9,6 +9,7 @@ public class UnitOfWork : IUnitOfWork
     public IUserSelectedCategoryRepository UserSelectedCategory { get; private set; }
     public IWalletRepository Wallet { get; private set; }
     public IBudgetRepository Budget { get; set; }
+    public IEventRepository Event { get; set; }
     private ApplicationDbContext _db;
     public UnitOfWork(ApplicationDbContext db)
     {
@@ -17,6 +18,7 @@ public class UnitOfWork : IUnitOfWork
         UserSelectedCategory = new UserSelectedCategoryRepository(_db);
         Wallet = new WalletRepository(_db);
         Budget = new BudgetRepository(_db);
+        Event = new EventRepository(_db);
     }
 
     public void Save()
