@@ -151,7 +151,7 @@
             </div>
             <div class="form-element">
                 <label class="input-label" asp-for="BudgetType">Budget type</label>
-                <select asp-for="BudgetType" class="dropdown-element">
+                <select asp-for="BudgetType" class="dropdown-element" >
                     <option disabled selected>Select Budget Type</option>
                     <option>Daily</option>
                     <option>Weekly</option>
@@ -161,7 +161,7 @@
             </div>
             <div class="button">
                 <div class="submit-button">
-                    <button asp-action="Edit" asp-controller="Budget" type="submit">Update</button>
+                    <button asp-action="Delete" asp-controller="Budget" type="submit">Delete</button>
                 </div>
             </div>
         </div>

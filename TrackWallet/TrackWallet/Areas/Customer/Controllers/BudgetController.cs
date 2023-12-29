@@ -55,30 +55,20 @@ public class Budget : Controller
             Text = u.Name,
             Value = u.Id.ToString()
         });
-        ViewData["CategoryList"] = CategoryList;
+        ViewData["UserSelected"] = CategoryList;
         return View();
     }
 
 
     [HttpPost]
-    public IActionResult Create(Models.UserSelectedCategory obj )
+    public IActionResult Create(Models.Budget obj )
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var existingRecord = _unitOfWork.UserSelectedCategory.Get(
-            filter: u => u.UserId == userId && u.CategoryId == obj.CategoryId
-        );
-
-        if (existingRecord != null)
-        {
-            // A record with the same CategoryId and UserId already exists
-            // You can handle this situation, e.g., show an error message or redirect to another action
-            TempData["ErrorMessage"] = "A record with the same category already exists.";
-            return RedirectToAction("Create");
-        }
+        
         
         obj.UserId = userId;
-        obj.IsActive = true;
-        _unitOfWork.UserSelectedCategory.Add(obj);
+        
+        _unitOfWork.Budget.Add(obj);
         _unitOfWork.Save();
 
        return RedirectToAction("Index");
@@ -91,22 +81,62 @@ public class Budget : Controller
             return NotFound();
         }
 
-        Models.UserSelectedCategory categoryFromDb = _unitOfWork.UserSelectedCategory.Get(u => u.Id == id);
+        Models.Budget BudgetFromDb = _unitOfWork.Budget.Get(u=> u.Id == id);
+        if (BudgetFromDb == null)
+        {
+            return NotFound();
+        }
+        IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+        {
+            Text = u.Name,
+            Value = u.Id.ToString()
+        });
+        ViewData["UserSelected"] = CategoryList;
+        return View(BudgetFromDb);
+    }
+
+    [HttpPost]
+    public IActionResult Edit(Models.Budget obj)
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        obj.UserId = userId;
+        _unitOfWork.Budget.Update(obj);
+        _unitOfWork.Save();
+        return RedirectToAction("Index");
+    }
+    public IActionResult Delete(int? id)
+    {
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
+
+        Models.Budget categoryFromDb = _unitOfWork.Budget.Get(u => u.Id == id);
         if (categoryFromDb == null)
         {
             return NotFound();
         }
+        IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+        {
+            Text = u.Name,
+            Value = u.Id.ToString()
+        });
+        ViewData["UserSelected"] = CategoryList;
         return View(categoryFromDb);
-        return RedirectToAction("Index");
     }
-
-    [HttpPost]
-    public IActionResult Edit(Models.UserSelectedCategory obj)
+    [HttpPost, ActionName("Delete")]
+    public IActionResult DeletePOST(int? id)
     {
-        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        obj.UserId = userId;
-        _unitOfWork.UserSelectedCategory.Update(obj);
+        Models.Budget obj = _unitOfWork.Budget.Get(u => u.Id == id);
+        if (obj == null)
+        {
+            return NotFound();
+        }
+
+
+        _unitOfWork.Budget.Remove(obj);
         _unitOfWork.Save();
+        TempData["success"] = "Category deleted successfully";
         return RedirectToAction("Index");
     }
 }

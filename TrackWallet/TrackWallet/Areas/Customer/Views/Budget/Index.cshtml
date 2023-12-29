@@ -2,7 +2,7 @@
 
 
 <div class="MainBoard">
-    <h3>Category</h3>
+    <h3>Budget</h3>
 
     <div class="displaySpace">
         <hr/>
@@ -14,8 +14,16 @@
                     {
                         <h5>Monthly</h5>
                         <img src="@obj.Category.ImageUrl" width="35px"/>
+                        <p>@obj.Name</p>
                         <p>@obj.Category.Name</p>
                         <p>@obj.Amount</p>
+                        <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="modify-link">
+                            <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" />
+                        </a>
+                        <a class="delete" asp-controller="Budget" asp-action="Delete" asp-route-id="@obj.Id">
+                            <img width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
+                        </a>
+
                     }
                 </div>
             }
@@ -26,8 +34,14 @@
                     {
                         <h5>Monthly</h5>
                         <img src="@obj.Category.ImageUrl" width="35px"/>
+                        <p>@obj.Name</p>
                         <p>@obj.Category.Name</p>
                         <p>@obj.Amount</p>
+                        <div class="modify-link">
+                            <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="modify-link">
+                                <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" />
+                            </a>
+                        </div>
                     }
                 </div>
             }
@@ -38,8 +52,14 @@
                     {
                         <h5>Monthly</h5>
                         <img src="@obj.Category.ImageUrl" width="35px"/>
+                        <p>@obj.Name</p>
                         <p>@obj.Category.Name</p>
                         <p>@obj.Amount</p>
+                        <div class="modify-link">
+                            <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="modify-link">
+                                <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" />
+                            </a>
+                        </div>
                     }
                 </div>
             }
@@ -50,8 +70,14 @@
                         {
                             <h5>Monthly</h5>
                             <img src="@obj.Category.ImageUrl" width="35px"/>
+                            <p>@obj.Name</p>
                             <p>@obj.Category.Name</p>
                             <p>@obj.Amount</p>
+                            <div class="modify-link">
+                                <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="modify-link">
+                                    <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" />
+                                </a>
+                            </div>
                         }
                     </div>
                 }
