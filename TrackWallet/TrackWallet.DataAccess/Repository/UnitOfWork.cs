@@ -8,6 +8,7 @@ public class UnitOfWork : IUnitOfWork
     public ICategoryRepository Category { get; private set; }
     public IUserSelectedCategoryRepository UserSelectedCategory { get; private set; }
     public IWalletRepository Wallet { get; private set; }
+    public IBudgetRepository Budget { get; set; }
     private ApplicationDbContext _db;
     public UnitOfWork(ApplicationDbContext db)
     {

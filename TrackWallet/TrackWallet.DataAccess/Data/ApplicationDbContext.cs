@@ -15,6 +15,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Category> Categories { get; set; }
     public DbSet<UserSelectedCategory> UserSelectedCategories { get; set; }
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+    public DbSet<Budget> Budgets { get; set; }
     public DbSet<Wallet> Wallets { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
