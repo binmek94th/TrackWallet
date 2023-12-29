@@ -13,7 +13,7 @@ public class Budget
     public ApplicationUser ApplicationUser { get; set; }
     
     [ForeignKey("Category")] 
-    public int id { get; set; }
+    public int CategoryId { get; set; }
     public Category Category { get; set; }
     
     [Required]
