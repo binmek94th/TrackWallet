@@ -7,6 +7,8 @@ public class Budget
 {
     [Key]
     public int Id { get; set; }
+
+    public string Name { get; set; }
     
     [ForeignKey("ApplicationUser")]
     public string UserId { get; set; }

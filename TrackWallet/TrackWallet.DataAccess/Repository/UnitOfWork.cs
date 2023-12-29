@@ -16,6 +16,7 @@ public class UnitOfWork : IUnitOfWork
         Category = new CategoryRepository(_db);
         UserSelectedCategory = new UserSelectedCategoryRepository(_db);
         Wallet = new WalletRepository(_db);
+        Budget = new BudgetRepository(_db);
     }
 
     public void Save()

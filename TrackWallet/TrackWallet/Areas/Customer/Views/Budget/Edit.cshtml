@@ -1,0 +1,24 @@
+﻿@model UserSelectedCategory
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Edit</title>
+</head>
+<body>
+<div>
+      <form asp-action="Edit" method="post">
+          <!-- Other form fields -->
+      
+          <div>
+              <label>Is Active:</label>
+              <input type="radio" asp-for="IsActive" value="true" checked/> Enable
+              <input type="radio" asp-for="IsActive" value="false"/> Disable
+          </div>
+      
+          <button type="submit" asp-action="Edit">Save Changes</button>
+      </form>
+</div>
+</body>
+</html>

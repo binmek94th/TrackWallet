@@ -26,6 +26,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet\TrackWallet
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/Budget/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcQnVkZ2V0XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = 
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
@@ -72,6 +78,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Admin/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/Budget/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcQnVkZ2V0XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/Budget/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcQnVkZ2V0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/Home/Create.cshtml]

@@ -274,6 +274,11 @@
             border-radius: 15px;
             height: 70px; /* Adjust the height as needed */
         }
+
+        .Main-container {
+            display: flex;
+        }
+
     </style>
 </head>
 <body>
@@ -314,51 +319,55 @@
                 
     </div>
 </div>
-
-<div class="container">
-@if (User.Identity.IsAuthenticated)
+<div class="Main-container">
+        <div class="container">
+            @if (User.Identity.IsAuthenticated)
             {
-    <div class="sidebar" id="sidebar">
-        <ul>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Home.png")" width="30px"/>Home</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Insights.png")" width="30px"/>Insights</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Category.png")" width="30px"/>Category</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Budget.png")" width="30px"/>Budget</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Recurring Payments.png")"width="30px"/>Recurring Payments</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Loan and Debt.png")" width="30px"/>Loan & Debt</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Goal.png")" width="30px"/>Goal</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Occasion.png")" width="30px"/>Occasion</a></li>
-        </ul>
-    </div>
-    <div class="HSidebar">
-        <button id="collapse-hsidebar" onclick="collapseHSidebar()"> ☰</button>
-        <ul>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Home.png")" width="30px" />Home</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Insights.png")" width="30px" />Insights</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Category.png")" width="30px" />Category</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Budget.png")" width="30px" />Budget</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Recurring Payments.png")" width="30px" />Recurring Payments</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Loan and Debt.png")" width="30px" />Loan & Debt</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Goal.png")" width="30px" />Goal</a></li>
-            <li><a href="#"><img src="@Url.Content("~/Image/Icons/Occasion.png")" width="30px" />Occasion</a></li>
-        </ul>
-    </div>
-}
-    <div class="overlay"></div>
-    <div class="content">
-        <div class="container bodyContainer">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
+                <div class="sidebar" id="sidebar">
+                    <ul>
+                        <li><a a asp-action="Index" asp-controller="Home"><img src="@Url.Content("~/Image/Icons/Home.png")" width="30px" />Home</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/Image/Icons/Insights.png")" width="30px" />Insights</a></li>
+                        <li><a asp-action="Index" asp-controller="UserSelectedCategory"><img src="@Url.Content("~/Image/Icons/Category.png")" width="30px" />Category</a></li>
+                        <li><a asp-action="Index" asp-controller="Budget"><img src="@Url.Content("~/Image/Icons/Budget.png")" width="30px" />Budget</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/Image/Icons/Recurring Payments.png")" width="30px" />Recurring Payments</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/Image/Icons/Loan and Debt.png")" width="30px" />Loan & Debt</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/Image/Icons/Goal.png")" width="30px" />Goal</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/Image/Icons/Occasion.png")" width="30px" />Occasion</a></li>
+                    </ul>
+                </div>
+                <div class="HSidebar">
+                    <button id="collapse-hsidebar" onclick="collapseHSidebar()"> ☰</button>
+                    <ul>
+                        <li><a a asp-action="Index" asp-controller="Home"><img src="@Url.Content("~/Image/Icons/Home.png")" width="30px" />Home</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/Image/Icons/Insights.png")" width="30px" />Insights</a></li>
+                        <li><a asp-action="Index" asp-controller="UserSelectedCategory"><img src="@Url.Content("~/Image/Icons/Category.png")" width="30px" />Category</a></li>
+                        <li><a asp-action="Index" asp-controller="Budget"><img src="@Url.Content("~/Image/Icons/Budget.png")" width="30px" />Budget</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/Image/Icons/Recurring Payments.png")" width="30px" />Recurring Payments</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/Image/Icons/Loan and Debt.png")" width="30px" />Loan & Debt</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/Image/Icons/Goal.png")" width="30px" />Goal</a></li>
+                        <li><a href="#"><img src="@Url.Content("~/Image/Icons/Occasion.png")" width="30px" />Occasion</a></li>
+                    </ul>
+                </div>
+            }
         </div>
-    </div>
-</div>
-        <!-- Footer -->
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2023 - TrackWallet - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="Content-container">
+            <div class="overlay"></div>
+            <div class="content">
+                <div class="container bodyContainer">
+                    <main role="main">
+                        @RenderBody()
+                    </main>
+                </div>
             </div>
-        </footer>
+        </div>
+
+</div>
+<!-- Footer -->
+<footer class="border-top footer text-muted">
+
+    &copy; 2023 - TrackWallet - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+</footer>
 <!-- Scripts -->
 <script>
     function toggleSidebar() {
