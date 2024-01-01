@@ -1,5 +1,6 @@
 ﻿using TrackWallet.DataAccess.Data;
 using TrackWallet.DataAccess.Repository.IRepository;
+using TrackWallet.Models;
 
 namespace TrackWallet.DataAccess.Repository;
 
@@ -9,7 +10,8 @@ public class UnitOfWork : IUnitOfWork
     public IUserSelectedCategoryRepository UserSelectedCategory { get; private set; }
     public IWalletRepository Wallet { get; private set; }
     public IBudgetRepository Budget { get; set; }
-    public IEventRepository Event { get; set; }
+    public IEventRepository Event { get; set; } 
+    public IBillAndReminderRepository  BillAndReminder { get; set; }
     private ApplicationDbContext _db;
     public UnitOfWork(ApplicationDbContext db)
     {
@@ -19,6 +21,7 @@ public class UnitOfWork : IUnitOfWork
         Wallet = new WalletRepository(_db);
         Budget = new BudgetRepository(_db);
         Event = new EventRepository(_db);
+        BillAndReminder = new BillAndReminderRepository(_db);
     }
 
     public void Save()

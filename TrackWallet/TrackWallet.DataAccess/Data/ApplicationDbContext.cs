@@ -18,6 +18,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Budget> Budgets { get; set; }
     public DbSet<Wallet> Wallets { get; set; }
     public DbSet<Event> Events { get; set; }
+    public DbSet<BillAndReminder> BillAndReminders { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

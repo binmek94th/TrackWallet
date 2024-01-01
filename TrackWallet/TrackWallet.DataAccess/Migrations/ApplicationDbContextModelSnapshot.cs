@@ -313,6 +313,33 @@ namespace TrackWallet.DataAccess.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.Event", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("EventName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EventType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Events");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -464,6 +491,17 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("TrackWallet.Models.Event", b =>
+                {
+                    b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>

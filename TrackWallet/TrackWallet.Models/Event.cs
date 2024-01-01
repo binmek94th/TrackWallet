@@ -14,5 +14,6 @@ public class Event
 
     public string EventName { get; set; }
     public string EventType { get; set; }
+    public DateTime datetime { get; set; }
     
 }
