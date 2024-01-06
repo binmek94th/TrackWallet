@@ -16,10 +16,7 @@ public class BillAndReminder
     public ApplicationUser ApplicationUser { get; set; }
     
     [ForeignKey("UserSelectedCategory")] 
-    public int CategoryId { get; set; }
+    public int USCategoryId { get; set; }
     public UserSelectedCategory UserSelectedCategory { get; set; }
-    
-    [ForeignKey("Event")] 
-    public int EventId { get; set; }
-    public Event Event { get; set; }
+
 }

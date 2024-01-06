@@ -22,7 +22,32 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<BillAndReminder>()
+            .HasOne(bar => bar.UserSelectedCategory)
+            .WithMany(usc => usc.BillAndReminders)
+            .HasForeignKey(bar => bar.USCategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        // Configure the relationship between UserSelectedCategory and BillAndReminder
+        modelBuilder.Entity<UserSelectedCategory>()
+            .HasMany(usc => usc.BillAndReminders)
+            .WithOne(bar => bar.UserSelectedCategory)
+            .HasForeignKey(bar => bar.USCategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<Budget>()
+            .HasOne(bar => bar.UserSelectedCategory)
+            .WithMany(usc => usc.Budgets)
+            .HasForeignKey(bar => bar.USCategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        // Configure the relationship between UserSelectedCategory and BillAndReminder
+        modelBuilder.Entity<UserSelectedCategory>()
+            .HasMany(usc => usc.Budgets)
+            .WithOne(bar => bar.UserSelectedCategory)
+            .HasForeignKey(bar => bar.USCategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
         modelBuilder.Entity<Category>().HasData(
             new Category
             {

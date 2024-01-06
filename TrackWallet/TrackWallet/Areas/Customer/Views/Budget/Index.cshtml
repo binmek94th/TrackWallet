@@ -12,9 +12,9 @@
                 <div class="content">
                     
                         <h5>Monthly</h5>
-                        <img src="@obj.Category.ImageUrl" width="35px"/>
+                        <img src="@obj.UserSelectedCategory.Category.ImageUrl" width="35px"/>
                         <p>@obj.Name</p>
-                        <p>@obj.Category.Name</p>
+                        <p>@obj.UserSelectedCategory.Category.Name</p>
                         <p>@obj.Amount</p>
                         <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="modify-link">
                             <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" />
@@ -35,10 +35,10 @@
                          @if (obj.BudgetType == "Weekly")
                          {
                              <h5>Monthly</h5>
-                             <img src="@obj.Category.ImageUrl" width="35px"/>
-                             <p>@obj.Name</p>
-                             <p>@obj.Category.Name</p>
-                             <p>@obj.Amount</p>
+                        <img src="@obj.UserSelectedCategory.Category.ImageUrl" width="35px"/>
+                        <p>@obj.Name</p>
+                        <p>@obj.UserSelectedCategory.Category.Name</p>
+                        <p>@obj.Amount</p>
                              <div class="modify-link">
                                  <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="modify-link">
                                      <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" />
@@ -59,9 +59,9 @@
                     @if (obj.BudgetType == "Daily")
                     {
                         <h5>Monthly</h5>
-                        <img src="@obj.Category.ImageUrl" width="35px"/>
+                        <img src="@obj.UserSelectedCategory.Category.ImageUrl" width="35px"/>
                         <p>@obj.Name</p>
-                        <p>@obj.Category.Name</p>
+                        <p>@obj.UserSelectedCategory.Category.Name</p>
                         <p>@obj.Amount</p>
                         <div class="modify-link">
                             <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="modify-link">
@@ -83,9 +83,9 @@
                     @if (obj.BudgetType == "yearly")
                     {
                         <h5>Monthly</h5>
-                        <img src="@obj.Category.ImageUrl" width="35px"/>
+                        <img src="@obj.UserSelectedCategory.Category.ImageUrl" width="35px"/>
                         <p>@obj.Name</p>
-                        <p>@obj.Category.Name</p>
+                        <p>@obj.UserSelectedCategory.Category.Name</p>
                         <p>@obj.Amount</p>
                         <div class="modify-link">
                             <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="modify-link">

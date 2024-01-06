@@ -105,6 +105,10 @@ public class UserSelectedCategory : Controller
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         obj.UserId = userId;
+        // Models.UserSelectedCategory categoryFromDb = _unitOfWork.UserSelectedCategory.Get(u => u.Id == obj.Id);
+        // obj.CategoryId = categoryFromDb.CategoryId;
+        // obj.Category = categoryFromDb.Category;
+        // categoryFromDb = null;
         _unitOfWork.UserSelectedCategory.Update(obj);
         _unitOfWork.Save();
         return RedirectToAction("Index");

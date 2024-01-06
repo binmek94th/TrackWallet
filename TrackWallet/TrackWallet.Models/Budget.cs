@@ -14,9 +14,9 @@ public class Budget
     public string UserId { get; set; }
     public ApplicationUser ApplicationUser { get; set; }
     
-    [ForeignKey("Category")] 
-    public int CategoryId { get; set; }
-    public Category Category { get; set; }
+    [ForeignKey("UserSelectedCategory")] 
+    public int USCategoryId { get; set; }
+    public UserSelectedCategory UserSelectedCategory { get; set; }
     
     [Required]
     public string BudgetType { get; set; }

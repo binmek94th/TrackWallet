@@ -229,6 +229,37 @@ namespace TrackWallet.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.BillAndReminder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("USCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<double>("amount")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("USCategoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BillAndReminders");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.Budget", b =>
                 {
                     b.Property<int>("Id")
@@ -244,12 +275,12 @@ namespace TrackWallet.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("USCategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -257,7 +288,7 @@ namespace TrackWallet.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("USCategoryId");
 
                     b.HasIndex("UserId");
 
@@ -332,6 +363,9 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("datetime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -474,12 +508,12 @@ namespace TrackWallet.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TrackWallet.Models.Budget", b =>
+            modelBuilder.Entity("TrackWallet.Models.BillAndReminder", b =>
                 {
-                    b.HasOne("TrackWallet.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("TrackWallet.Models.UserSelectedCategory", "UserSelectedCategory")
+                        .WithMany("BillAndReminders")
+                        .HasForeignKey("USCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
@@ -490,7 +524,26 @@ namespace TrackWallet.DataAccess.Migrations
 
                     b.Navigation("ApplicationUser");
 
-                    b.Navigation("Category");
+                    b.Navigation("UserSelectedCategory");
+                });
+
+            modelBuilder.Entity("TrackWallet.Models.Budget", b =>
+                {
+                    b.HasOne("TrackWallet.Models.UserSelectedCategory", "UserSelectedCategory")
+                        .WithMany("Budgets")
+                        .HasForeignKey("USCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("UserSelectedCategory");
                 });
 
             modelBuilder.Entity("TrackWallet.Models.Event", b =>
@@ -532,6 +585,13 @@ namespace TrackWallet.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>
+                {
+                    b.Navigation("BillAndReminders");
+
+                    b.Navigation("Budgets");
                 });
 #pragma warning restore 612, 618
         }

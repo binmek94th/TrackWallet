@@ -143,11 +143,11 @@
                 <span asp-validation-for="Amount" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="CategoryId">Category</label>
-                <select asp-for="CategoryId" class="dropdown-element" asp-items="@ViewData["UserSelected"] as IEnumerable<SelectListItem>">
+                <label class="input-label" asp-for="UserSelectedCategory.Category">Category</label>
+                <select asp-for="UserSelectedCategory.Category" class="dropdown-element" asp-items="@ViewData["UserSelected"] as IEnumerable<SelectListItem>">
                      <option disabled selected>Select Category</option>
                 </select>
-                <span asp-validation-for="CategoryId" class="input-validation"></span>
+                <span asp-validation-for="UserSelectedCategory.Category" class="input-validation"></span>
             </div>
             <div class="form-element">
                 <label class="input-label" asp-for="BudgetType">Budget type</label>

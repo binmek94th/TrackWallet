@@ -5,20 +5,73 @@
 <html>
 <head>
     <title>Edit</title>
+    <style>
+        .button {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: -150px;
+            margin-top: 50px;
+        }
+        h3 {
+            margin-bottom: 25px;
+            font-size: 22px;
+            font-weight: normal;
+            color: #343a40; /* Dark gray color for the heading */
+        }
+        
+        .submit-button button {
+            background-color: #8cd35d; /* Green color for the submit button */
+            color: #fff; /* White text color for the button */
+            padding: 10px 20px;
+            margin-top: 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+            
+            .Back-arrow {
+                width: 30px;
+                height: 40px;
+            }
+            .Back-arrow :hover {
+                background-color: #c6dcb4;
+                border-radius: 50%;
+            }
+            .Back-arrow a {
+                text-decoration: none;
+                color: #007bff; /* Blue color for the link */
+                font-size: 18px;
+                margin-bottom: 20px;
+                display: block;
+            }
+            .submit-button button:hover {
+                background-color: #a2d780; /* Gray background color on button hover */
+            } 
+    </style>
 </head>
 <body>
 <div>
-      <form asp-action="Edit" method="post">
-          <!-- Other form fields -->
-      
-          <div>
-              <label>Is Active:</label>
-              <input type="radio" asp-for="IsActive" value="true" checked/> Enable
-              <input type="radio" asp-for="IsActive" value="false"/> Disable
-          </div>
-      
-          <button type="submit" asp-action="Edit">Save Changes</button>
-      </form>
+    
+    <h3>Edit Category</h3>
+        <div class="Back-arrow">
+            <a asp-action="Index" asp-controller="UserSelectedCategory"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
+        </div>
+    <form asp-action="Edit" method="post">
+        <!-- Other form fields -->
+    <input hidden asp-for="CategoryId" />
+        <div>
+            <label>Is Active:</label>
+            <input type="radio" asp-for="IsActive" value="true" checked/> Enable
+            <input type="radio" asp-for="IsActive" value="false"/> Disable
+        </div>
+
+        <div class="button">
+            <div class="submit-button">
+                <button type="submit" asp-action="Edit">Save Changes</button>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>

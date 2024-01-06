@@ -26,7 +26,7 @@
                     </div>
                 }
             }
-                <h4>Active Categories</h4>
+                <h4 class="inactive">Inactive Categories</h4>
             @foreach (var obj in Model)
             {
                 if (!obj.IsActive)
@@ -48,6 +48,11 @@
 </div>
 
 <style>
+    .inactive{
+        margin-left: -180px;
+        margin-top: 50px;
+    }
+
     .elements img{
         padding: 10px;
         border-radius: 50px;;

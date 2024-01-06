@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.csproj": {}
+    "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\TrackWallet.DataAccess.csproj": {
+    "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\TrackWallet.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\TrackWallet.DataAccess.csproj",
+        "projectUniqueName": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\TrackWallet.DataAccess.csproj",
         "projectName": "TrackWallet.DataAccess",
-        "projectPath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\TrackWallet.DataAccess.csproj",
+        "projectPath": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\TrackWallet.DataAccess.csproj",
         "packagesPath": "C:\\Users\\binme\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\obj\\",
+        "outputPath": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\binme\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.Models\\TrackWallet.Models.csproj": {
-                "projectPath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.Models\\TrackWallet.Models.csproj"
+              "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.Models\\TrackWallet.Models.csproj": {
+                "projectPath": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.Models\\TrackWallet.Models.csproj"
               }
             }
           }
@@ -77,14 +77,14 @@
         }
       }
     },
-    "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.Models\\TrackWallet.Models.csproj": {
+    "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.Models\\TrackWallet.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.Models\\TrackWallet.Models.csproj",
+        "projectUniqueName": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.Models\\TrackWallet.Models.csproj",
         "projectName": "TrackWallet.Models",
-        "projectPath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.Models\\TrackWallet.Models.csproj",
+        "projectPath": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.Models\\TrackWallet.Models.csproj",
         "packagesPath": "C:\\Users\\binme\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.Models\\obj\\",
+        "outputPath": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\binme\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -160,14 +160,14 @@
         }
       }
     },
-    "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.Utility\\TrackWallet.Utility.csproj": {
+    "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.Utility\\TrackWallet.Utility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.Utility\\TrackWallet.Utility.csproj",
+        "projectUniqueName": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.Utility\\TrackWallet.Utility.csproj",
         "projectName": "TrackWallet.Utility",
-        "projectPath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.Utility\\TrackWallet.Utility.csproj",
+        "projectPath": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.Utility\\TrackWallet.Utility.csproj",
         "packagesPath": "C:\\Users\\binme\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.Utility\\obj\\",
+        "outputPath": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.Utility\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\binme\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -221,14 +221,14 @@
         }
       }
     },
-    "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.csproj": {
+    "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.csproj",
+        "projectUniqueName": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.csproj",
         "projectName": "TrackWallet",
-        "projectPath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.csproj",
+        "projectPath": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.csproj",
         "packagesPath": "C:\\Users\\binme\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\obj\\",
+        "outputPath": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\binme\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -245,11 +245,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\TrackWallet.DataAccess.csproj": {
-                "projectPath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\TrackWallet.DataAccess.csproj"
+              "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\TrackWallet.DataAccess.csproj": {
+                "projectPath": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.DataAccess\\TrackWallet.DataAccess.csproj"
               },
-              "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.Utility\\TrackWallet.Utility.csproj": {
-                "projectPath": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet.Utility\\TrackWallet.Utility.csproj"
+              "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.Utility\\TrackWallet.Utility.csproj": {
+                "projectPath": "D:\\Projects\\ASP.Net\\TrackWalletCl\\TrackWallet\\TrackWallet\\TrackWallet.Utility\\TrackWallet.Utility.csproj"
               }
             }
           }
