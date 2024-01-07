@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Net.Mime;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -53,11 +54,18 @@ public class UserSelectedCategory : Controller
         IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
         {
             Text = u.Name,
-            Value = u.Id.ToString()
+            Value = u.Id.ToString(),
         });
+
         ViewData["CategoryList"] = CategoryList;
-        return View();
+        UserSelectedCategoriesVM userSelectedCategoriesVm = new()
+        {
+            CategoryList = CategoryList,
+            UserSelectedCategory = new Models.UserSelectedCategory()
+        };
+        return View(userSelectedCategoriesVm);
     }
+    
 
 
     [HttpPost]

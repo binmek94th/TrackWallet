@@ -12,6 +12,8 @@ public class UnitOfWork : IUnitOfWork
     public IBudgetRepository Budget { get; set; }
     public IEventRepository Event { get; set; } 
     public IBillAndReminderRepository  BillAndReminder { get; set; }
+
+    public IGoalRepository Goal { get; set; }
     private ApplicationDbContext _db;
     public UnitOfWork(ApplicationDbContext db)
     {
@@ -22,6 +24,7 @@ public class UnitOfWork : IUnitOfWork
         Budget = new BudgetRepository(_db);
         Event = new EventRepository(_db);
         BillAndReminder = new BillAndReminderRepository(_db);
+        Goal = new GoalRepository(_db);
     }
 
     public void Save()

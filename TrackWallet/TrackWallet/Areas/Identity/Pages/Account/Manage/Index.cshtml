@@ -1,31 +1,129 @@
 ﻿@page
+@using System.Security.Claims
 @model IndexModel
 @{
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
 
-<h3>@ViewData["Title"]</h3>
+    .row {
+        display: flex;
+        flex-direction: column;
+    }
+    a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    .nav-item {
+        display: flex;
+        justify-content: center;
+        padding-left: 50px;
+    }
+
+    .nav-item {
+        display: inline-block;
+        margin-right: 10px; /* Adjust as needed */
+    }
+    a:hover{
+        color: #79a95a;
+        }
+
+    form-floating{
+        padding-bottom: 20px;
+        }
+         h3 {
+            margin-bottom: 25px;
+            font-size: 22px;
+            font-weight: normal;
+            color: #343a40; /* Dark gray color for the heading */
+        }
+        
+        .submit-button button {
+            background-color: #8cd35d; /* Green color for the submit button */
+            color: #fff; /* White text color for the button */
+            padding: 10px 20px;
+            margin-top: 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+         .submit-button button:hover {
+                background-color: #a2d780; /* Gray background color on button hover */
+            } 
+            .form{
+                margin-left: 50px;
+            }
+            .form {
+                margin-top: 10px;
+            }
+    
+            .form-element {
+                margin-bottom: 15px;
+            }
+    
+            .input-label {
+                display: block;
+                font-size: 16px;
+                color: #495057; /* Dark gray color for the label */
+                padding-bottom: 7px;
+            }
+    
+            .input-element, .dropdown-element, .input-image {
+                width: 40%;
+                padding: 10px;
+                box-sizing: border-box;
+                margin-top: 5px;
+                border: 1px solid #ced4da; /* Light gray border for input elements */
+                border-radius: 5px;
+                font-size: 16px;
+            }
+    
+            .input-validation {
+                color: #dc3545; /* Red color for validation messages */
+                font-size: 14px;
+                margin-top: 5px;
+            }
+            .input-element:hover,
+            .dropdown-element:hover,
+            .input-image:hover {
+                border-color: #8cd35d; /* Blue border color on hover */
+            }
+</style>
+
+
 <partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
     <div class="side">
-            <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
-            <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
-            <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+        <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
+        <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
+        <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+        <hr/>
     </div>
+    <h3>@ViewData["Title"]</h3>
     <div class="col-md-6">
-        <form id="profile-form" method="post">
+        <form id="profile-form" method="post" class="form">
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled/>
-                <label asp-for="Username" class="form-label"></label>
+            <div class="form-floating mb-3 form-element">
+                <label asp-for="Username" class="form-label input-label"></label>
+                <input asp-for="Username" class="form-control input-element" placeholder="Please choose your username." disabled/>
             </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number."/>
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
+            <div class="form-floating mb-3 form-element">
+                <label asp-for="Input.PhoneNumber" class="form-label input-label"></label>
+                <input asp-for="Input.PhoneNumber"  class="form-control input-element" placeholder="Please enter your phone number."/>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+            <div class="button">
+                <div class="submit-button">
+                     <button id="update-profile-button" type="submit">Save</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>

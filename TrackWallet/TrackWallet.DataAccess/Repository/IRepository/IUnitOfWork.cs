@@ -8,5 +8,6 @@ public interface IUnitOfWork
     IBudgetRepository Budget { get;  }
     IEventRepository Event { get; }
     IBillAndReminderRepository BillAndReminder { get; }
+    IGoalRepository Goal { get; }
     void Save();
 }
