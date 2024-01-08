@@ -108,12 +108,11 @@ public class Budget : Controller
     }
 
     [HttpPost]
-    public IActionResult Edit(Models.Budget obj)
+    public IActionResult Edit(BudgetVM obj)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        obj.UserId = userId;
-        obj.BudgetType = "Monthly";
-        _unitOfWork.Budget.Update(obj);
+        obj.Budget.UserId = userId;
+        _unitOfWork.Budget.Update(obj.Budget);
         _unitOfWork.Save();
         return RedirectToAction("Index");
     }
@@ -152,7 +151,6 @@ public class Budget : Controller
             RedirectToAction("Index", "Budget");
         }
 
-        BudgetToDeleted.BudgetType = "Monthly";
         _unitOfWork.Budget.Remove(BudgetToDeleted);
         _unitOfWork.Save();
 
