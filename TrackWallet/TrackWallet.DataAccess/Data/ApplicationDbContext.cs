@@ -49,6 +49,19 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(bar => bar.USCategoryId)
             .OnDelete(DeleteBehavior.Restrict);
         
+        modelBuilder.Entity<Goal>()
+            .HasOne(g => g.Wallet)
+            .WithMany(w => w.Goals)
+            .HasForeignKey(g => g.WalletId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
+        modelBuilder.Entity<Wallet>()
+            .HasMany(w => w.Goals)
+            .WithOne(bar => bar.Wallet)
+            .HasForeignKey(bar => bar.WalletId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        
         modelBuilder.Entity<Category>().HasData(
             new Category
             {

@@ -23,5 +23,9 @@ public class Wallet
     public string Currency { get; set; }
     [Required]
     public double Balance { get; set; }
+    
+    public ICollection<Goal> Goals { get; set; }
+
+    
 
 }
