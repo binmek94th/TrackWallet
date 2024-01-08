@@ -69,11 +69,11 @@ public class UserSelectedCategory : Controller
 
 
     [HttpPost]
-    public IActionResult Create(Models.UserSelectedCategory obj )
+    public IActionResult Create(UserSelectedCategoriesVM obj )
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var existingRecord = _unitOfWork.UserSelectedCategory.Get(
-            filter: u => u.UserId == userId && u.CategoryId == obj.CategoryId
+            filter: u => u.UserId == userId && u.CategoryId == obj.UserSelectedCategory.CategoryId
         );
 
         if (existingRecord != null)
@@ -84,9 +84,10 @@ public class UserSelectedCategory : Controller
             return RedirectToAction("Create");
         }
         
-        obj.UserId = userId;
-        obj.IsActive = true;
-        _unitOfWork.UserSelectedCategory.Add(obj);
+        obj.UserSelectedCategory.Amount = 0;
+        obj.UserSelectedCategory.UserId = userId;
+        obj.UserSelectedCategory.IsActive = true;
+        _unitOfWork.UserSelectedCategory.Add(obj.UserSelectedCategory);
         _unitOfWork.Save();
 
        return RedirectToAction("Index");
@@ -113,10 +114,6 @@ public class UserSelectedCategory : Controller
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         obj.UserId = userId;
-        // Models.UserSelectedCategory categoryFromDb = _unitOfWork.UserSelectedCategory.Get(u => u.Id == obj.Id);
-        // obj.CategoryId = categoryFromDb.CategoryId;
-        // obj.Category = categoryFromDb.Category;
-        // categoryFromDb = null;
         _unitOfWork.UserSelectedCategory.Update(obj);
         _unitOfWork.Save();
         return RedirectToAction("Index");

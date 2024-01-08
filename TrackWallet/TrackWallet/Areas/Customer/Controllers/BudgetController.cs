@@ -43,43 +43,40 @@ public class Budget : Controller
                 selectedBudget.Add(elements);
             }
         }
-
-        return View(objbudgetList);
+        BudgetIndexVM budgetIndexVm = new()
+        {
+            Budgets =  selectedBudget,
+            Category = _unitOfWork.Category.GetAll().ToList()
+        };
+        
+        return View(budgetIndexVm);
     }
 
 
     public IActionResult Create()
     {
-        IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+        IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll(includeProperties: "Category").Select(u => new SelectListItem
         {
-            Text = u.Name,
-            Value = u.Id.ToString()
+            Text = u.Category.Name,
+            Value = u.Id .ToString()
         });
         ViewData["UserSelected"] = CategoryList;
-        return View();
+        BudgetVM budget = new()
+        {
+            CategoryList = CategoryList,
+            Budget = new Models.Budget()
+        };
+        return View(budget);
     }
 
 
     [HttpPost]
-    public IActionResult Create(Models.Budget obj)
+    public IActionResult CreatePost(BudgetVM obj)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    
-        // Retrieve the selected category by its ID
-        var selectedCategory = _unitOfWork.UserSelectedCategory.Get(u => u.Id == obj.UserSelectedCategory.Id);
-    
-        //Make sure the selected category belongs to the current user
-        if (selectedCategory == null || selectedCategory.ApplicationUser.Id != userId)
-        {
-            // Handle the case where the selected category is invalid
-            // You might want to redirect to an error page or display an error message
-            return RedirectToAction("Index");
-        }
-
-        obj.UserId = userId;
-        obj.UserSelectedCategory.CategoryId = obj.UserSelectedCategory.Category.Id;
-
-        _unitOfWork.Budget.Add(obj);
+        
+        obj.Budget.UserId = userId;
+        _unitOfWork.Budget.Add(obj.Budget);
         _unitOfWork.Save();
 
         return RedirectToAction("Index");
@@ -97,13 +94,17 @@ public class Budget : Controller
         {
             return NotFound();
         }
-        IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll().Select(u => new SelectListItem
+        IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll(includeProperties: "Category").Select(u => new SelectListItem
         {
             Text = u.Category.Name,
-            Value = u.Id.ToString()
+            Value = u.Id .ToString()
         });
-        ViewData["UserSelected"] = CategoryList;
-        return View(BudgetFromDb);
+        BudgetVM budget = new()
+        {
+            CategoryList = CategoryList,
+            Budget = BudgetFromDb
+        };
+        return View(budget);
     }
 
     [HttpPost]
@@ -111,48 +112,38 @@ public class Budget : Controller
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         obj.UserId = userId;
+        obj.BudgetType = "Monthly";
         _unitOfWork.Budget.Update(obj);
         _unitOfWork.Save();
         return RedirectToAction("Index");
     }
-   /* public IActionResult Delete(int? id)
+    public IActionResult Delete(int? id)
     {
         if (id == null || id == 0)
         {
             return NotFound();
         }
 
-        Models.Budget categoryFromDb = _unitOfWork.Budget.Get(u => u.Id == id);
-        if (categoryFromDb == null)
+        Models.Budget BudgetFromDb = _unitOfWork.Budget.Get(u=> u.Id == id);
+        if (BudgetFromDb == null)
         {
             return NotFound();
         }
-        IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+        IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll(includeProperties: "Category").Select(u => new SelectListItem
         {
-            Text = u.Name,
-            Value = u.Id.ToString()
+            Text = u.Category.Name,
+            Value = u.Id .ToString()
         });
-        ViewData["UserSelected"] = CategoryList;
-        return View(categoryFromDb);
-    }
-    [HttpPost, ActionName("Delete")]
-    public IActionResult DeletePOST(int? id)
-    {
-        Models.Budget obj = _unitOfWork.Budget.Get(u => u.Id == id);
-        if (obj == null)
+        BudgetVM budget = new()
         {
-            return NotFound();
-        }
-
-
-        _unitOfWork.Budget.Remove(obj);
-        _unitOfWork.Save();
-        TempData["success"] = "Category deleted successfully";
-        return RedirectToAction("Index");
+            CategoryList = CategoryList,
+            Budget = BudgetFromDb
+        };
+        return View(budget);
     }
-*/
+
     [HttpPost]
-    public void Delete(int? id)
+    public IActionResult DeletePost(int? id)
     {
         var BudgetToDeleted = _unitOfWork.Budget.Get(u => u.Id == id);
 
@@ -160,11 +151,14 @@ public class Budget : Controller
         {
             RedirectToAction("Index", "Budget");
         }
+
+        BudgetToDeleted.BudgetType = "Monthly";
         _unitOfWork.Budget.Remove(BudgetToDeleted);
         _unitOfWork.Save();
 
-        RedirectToAction("Index", "Budget");
+        return RedirectToAction("Index");
     }
+    
     
 }
 

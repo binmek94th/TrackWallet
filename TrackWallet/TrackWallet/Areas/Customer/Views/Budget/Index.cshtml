@@ -1,4 +1,4 @@
-﻿@model List<Budget>
+﻿@model BudgetIndexVM
 
 
 <div class="MainBoard">
@@ -7,104 +7,36 @@
     <div class="displaySpace">
         <hr/>
         <div class="MainCat">
-            @foreach (var obj in Model)
+            @foreach (var obj in Model.Budgets)
             {
-                <div class="content">
-                    
-                        <h5>Monthly</h5>
-                        <img src="@obj.UserSelectedCategory.Category.ImageUrl" width="35px"/>
-                        <p>@obj.Name</p>
-                        <p>@obj.UserSelectedCategory.Category.Name</p>
-                        <p>@obj.Amount</p>
-                        <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="modify-link">
-                            <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" />
-                        </a>
-                        <form method="post">
-                            <button class="delete" asp-action="Delete" asp-controller="Budget" asp-route-id="@obj.Id">
-                                <img width="25px" src="@Url.Content("~/Image/Icons/Delete.png")" />
-                            </button>
-                        </form>
+                        <div class="elements">
+                            @foreach (var ele in Model.Category)
+                            {
+                                if (obj.UserSelectedCategory.CategoryId == ele.Id)
+                                {
+                                    <img src="@ele.ImageUrl" width="35px"/>
+                                    <p>@obj.Name</p>
+                                    <p>@ele.Name</p>
+                                }
+                            }
 
-
-                    
-                </div>
-            }
-            <!-- @foreach (var obj in Model)
-                 {
-                     <div class="content">
-                         @if (obj.BudgetType == "Weekly")
-                         {
-                             <h5>Monthly</h5>
-                        <img src="@obj.UserSelectedCategory.Category.ImageUrl" width="35px"/>
-                        <p>@obj.Name</p>
-                        <p>@obj.UserSelectedCategory.Category.Name</p>
-                        <p>@obj.Amount</p>
-                             <div class="modify-link">
-                                 <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="modify-link">
-                                     <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" />
-                                 </a>
-                                 <form method="post" asp-controller="Budget" asp-action="Delete" asp-route-id="@obj.Id">>
-                                     <button class="delete" onclick="showConfirmationModal('@obj.Id')">
-                                         <img width="25px" src="@Url.Content("~/Image/Icons/Delete.png")" />
-                                     </button>
-                                 </form>
-                            
-                             </div>
-                         }
-                     </div>
-                 }
-            @foreach (var obj in Model)
-            {
-                <div class="content">
-                    @if (obj.BudgetType == "Daily")
-                    {
-                        <h5>Monthly</h5>
-                        <img src="@obj.UserSelectedCategory.Category.ImageUrl" width="35px"/>
-                        <p>@obj.Name</p>
-                        <p>@obj.UserSelectedCategory.Category.Name</p>
-                        <p>@obj.Amount</p>
-                        <div class="modify-link">
-                            <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="modify-link">
-                                <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" />
-                            </a>
-                        </div>
-                        <form method="post" asp-controller="Budget" asp-action="Delete" asp-route-id="@obj.Id">>
-                            <button class="delete" onclick="showConfirmationModal('@obj.Id')">
-                                <img width="25px" src="@Url.Content("~/Image/Icons/Delete.png")" />
-                            </button>
-                        </form>
-                        
-                    }
-                </div>
-            }
-            @foreach (var obj in Model)
-            {
-                <div class="content">
-                    @if (obj.BudgetType == "yearly")
-                    {
-                        <h5>Monthly</h5>
-                        <img src="@obj.UserSelectedCategory.Category.ImageUrl" width="35px"/>
-                        <p>@obj.Name</p>
-                        <p>@obj.UserSelectedCategory.Category.Name</p>
-                        <p>@obj.Amount</p>
-                        <div class="modify-link">
-                            <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="modify-link">
-                                <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")" />
-                            </a>
-                            <form method="post" asp-controller="Budget" asp-action="Delete" asp-route-id="@obj.Id">>
-                                <button class="delete" onclick="showConfirmationModal('@obj.Id')">
-                                    <img width="25px" src="@Url.Content("~/Image/Icons/Delete.png")" />
-                                </button>
-                            </form>
+                            <p>@obj.Amount ETB</p>
+                            <div class="modify-link">
+                                <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id">
+                                    <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
+                                    <a asp-controller="Budget" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
+                                        <img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
+                                    </a>
+                                </a>
+                            </div>
                         </div>
                     }
-                </div>
-            }
-            -->
-
+            
         </div>
-        <a asp-controller="Budget" asp-action="Create" class="add"><img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Add.png")"/></a>
+
+                <a asp-controller="Budget" asp-action="Create" class="add"><img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Add.png")"/></a>
     </div>
+    
 </div>
 
 <style>

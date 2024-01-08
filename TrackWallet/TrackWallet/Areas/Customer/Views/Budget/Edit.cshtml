@@ -1,11 +1,11 @@
-﻿@model Budget
+﻿@model BudgetVM
 
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>Create Wallet</title>
+    <title>Edit Budget</title>
     <style>
             body {
                 font-family: 'Arial', sans-serif;
@@ -125,39 +125,40 @@
         </style>
 </head>
 <body>
-<h3>Create Budget</h3>
+<h3>Edit Budget</h3>
     <div class="Back-arrow">
         <a asp-action="Index" asp-controller="Budget"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
     </div>
 <div class="content">
     <form method="post" enctype="multipart/form-data">
+        <input asp-for="@Model.Budget.Id" hidden/>
         <div class="form">
             <div class="form-element">
-                <label class="input-label" asp-for="Name">Budget Name</label>
-                <input asp-for="Name" type="text" class="input-element"/>
-                <span asp-validation-for="Name" class="input-validation"></span>
+                <label class="input-label" asp-for="@Model.Budget.Name">Budget Name</label>
+                <input asp-for="@Model.Budget.Name" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.Budget.Name" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="Amount">Amount</label>
-                <input asp-for="Amount" type="text" class="input-element"/>
-                <span asp-validation-for="Amount" class="input-validation"></span>
+                <label class="input-label" asp-for="@Model.Budget.Amount">Amount</label>
+                <input asp-for="@Model.Budget.Amount" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.Budget.Amount" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="UserSelectedCategory.Category">Category</label>
-                <select asp-for="UserSelectedCategory.Category" class="dropdown-element" asp-items="@ViewData["UserSelected"] as IEnumerable<SelectListItem>">
-                     <option disabled selected>Select Category</option>
+                <label class="input-label" asp-for="@Model.Budget.USCategoryId">Category</label>
+                <select asp-for="@Model.Budget.USCategoryId" class="dropdown-element" asp-items="@Model.CategoryList">
+                    <option disabled selected>Select Category</option>
                 </select>
-                <span asp-validation-for="UserSelectedCategory.Category" class="input-validation"></span>
+                <span asp-validation-for="@Model.Budget.USCategoryId" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="BudgetType">Budget type</label>
-                <select asp-for="BudgetType" class="dropdown-element">
+                <label class="input-label" asp-for="@Model.Budget.BudgetType">Budget type</label>
+                <select asp-for="@Model.Budget.BudgetType" class="dropdown-element">
                     <option disabled selected>Select Budget Type</option>
                     <option>Daily</option>
                     <option>Weekly</option>
                     <option>Monthly</option>
                 </select>
-                <span asp-validation-for="BudgetType" class="input-validation"></span>
+                <span asp-validation-for="@Model.Budget.BudgetType" class="input-validation"></span>
             </div>
             <div class="button">
                 <div class="submit-button">

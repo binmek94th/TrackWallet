@@ -1,11 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System.Collections;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace TrackWallet.Models;
 
-public class Category
+public class Category 
 {
     [ValidateNever]
     [Key]
@@ -21,4 +22,5 @@ public class Category
     [DisplayName ("Image")]
     [ValidateNever]
     public string? ImageUrl { get; set; }
+    
 }

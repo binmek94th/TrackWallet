@@ -374,6 +374,55 @@ namespace TrackWallet.DataAccess.Migrations
                     b.ToTable("Events");
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.Goal", b =>
+                {
+                    b.Property<int>("GoalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GoalId"));
+
+                    b.Property<string>("ContributionSchecdule")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("CurrentAmount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("Deadline")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GoalName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("TargetAmount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("WalletId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GoalId");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("WalletId");
+
+                    b.ToTable("Goals");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -381,6 +430,9 @@ namespace TrackWallet.DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -557,6 +609,31 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("ApplicationUser");
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.Goal", b =>
+                {
+                    b.HasOne("TrackWallet.Models.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId");
+
+                    b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TrackWallet.Models.Wallet", "Wallet")
+                        .WithMany("Goals")
+                        .HasForeignKey("WalletId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Wallet");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>
                 {
                     b.HasOne("TrackWallet.Models.Category", "Category")
@@ -592,6 +669,11 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("BillAndReminders");
 
                     b.Navigation("Budgets");
+                });
+
+            modelBuilder.Entity("TrackWallet.Models.Wallet", b =>
+                {
+                    b.Navigation("Goals");
                 });
 #pragma warning restore 612, 618
         }

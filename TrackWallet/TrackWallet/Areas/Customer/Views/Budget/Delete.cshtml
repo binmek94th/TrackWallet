@@ -1,11 +1,11 @@
-﻿@model Budget
+﻿@model BudgetVM
 
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>Create Wallet</title>
+    <title>Delete Budget</title>
     <style>
             body {
                 font-family: 'Arial', sans-serif;
@@ -82,7 +82,7 @@
                 
             }
             .submit-button button {
-                background-color: #8cd35d; /* Green color for the submit button */
+                background-color: #dc3545; /* Green color for the submit button */
                 color: #fff; /* White text color for the button */
                 padding: 10px 20px;
                 margin-top: 40px;
@@ -99,7 +99,7 @@
             }
     
             .submit-button button:hover {
-                background-color: #a2d780; /* Gray background color on button hover */
+                background-color: #b61d2b; /* Gray background color on button hover */
             }
   
 
@@ -125,7 +125,7 @@
         </style>
 </head>
 <body>
-<h3>Create Budget</h3>
+<h3>Delete Budget</h3>
     <div class="Back-arrow">
         <a asp-action="Index" asp-controller="Budget"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
     </div>
@@ -133,35 +133,35 @@
     <form method="post" enctype="multipart/form-data">
         <div class="form">
             <div class="form-element">
-                <label class="input-label" asp-for="Name">Budget Name</label>
-                <input asp-for="Name" type="text" class="input-element"/>
-                <span asp-validation-for="Name" class="input-validation"></span>
+                <label class="input-label" asp-for="@Model.Budget.Name">Budget Name</label>
+                <input disabled asp-for="@Model.Budget.Name" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.Budget.Name" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="Amount">Amount</label>
-                <input asp-for="Amount" type="text" class="input-element"/>
-                <span asp-validation-for="Amount" class="input-validation"></span>
+                <label class="input-label" asp-for="@Model.Budget.Amount">Amount</label>
+                <input disabled asp-for="@Model.Budget.Amount" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.Budget.Amount" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="UserSelectedCategory.Category">Category</label>
-                <select asp-for="UserSelectedCategory.Category" class="dropdown-element" asp-items="@ViewData["UserSelected"] as IEnumerable<SelectListItem>">
+                <label class="input-label" asp-for="@Model.Budget.USCategoryId">Category</label>
+                <select disabled asp-for="@Model.Budget.USCategoryId" class="dropdown-element" asp-items="@Model.CategoryList">
                      <option disabled selected>Select Category</option>
                 </select>
-                <span asp-validation-for="UserSelectedCategory.Category" class="input-validation"></span>
+                <span asp-validation-for="@Model.Budget.USCategoryId" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="BudgetType">Budget type</label>
-                <select asp-for="BudgetType" class="dropdown-element" >
+                <label class="input-label" asp-for="@Model.Budget.BudgetType">Budget type</label>
+                <select disabled asp-for="@Model.Budget.BudgetType" class="dropdown-element">
                     <option disabled selected>Select Budget Type</option>
                     <option>Daily</option>
                     <option>Weekly</option>
                     <option>Monthly</option>
                 </select>
-                <span asp-validation-for="BudgetType" class="input-validation"></span>
+                <span asp-validation-for="@Model.Budget.BudgetType" class="input-validation"></span>
             </div>
             <div class="button">
                 <div class="submit-button">
-                    <button asp-action="Delete" asp-controller="Budget" type="submit">Delete</button>
+                    <button asp-action="DeletePost" asp-route-id="@Model.Budget.Id" asp-controller="Budget" type="submit">Delete</button>
                 </div>
             </div>
         </div>
