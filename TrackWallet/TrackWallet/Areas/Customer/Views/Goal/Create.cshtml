@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Create Budget</title>
+    <title>Create Goal</title>
     <style>
             body {
                 font-family: 'Arial', sans-serif;
@@ -159,11 +159,16 @@
                 <span asp-validation-for="@Model.Goal.TargetAmount" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.Goal.Wallet">Wallet</label>
-                <select asp-for="@Model.Goal.Wallet" class="dropdown-element" asp-items="@Model.Wallet">
+                <label class="input-label" asp-for="@Model.Goal.CurrentAmount">Starting Amount</label>
+                <input asp-for="@Model.Goal.CurrentAmount" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.Goal.CurrentAmount" class="input-validation"></span>
+            </div>
+            <div class="form-element">
+                <label class="input-label" asp-for="@Model.Goal.WalletId">Wallet</label>
+                <select asp-for="@Model.Goal.WalletId" class="dropdown-element" asp-items="@Model.Wallet">
                     <option disabled selected>Select Wallet</option>
                 </select>
-                <span asp-validation-for="@Model.Goal.Wallet" class="input-validation"></span>
+                <span asp-validation-for="@Model.Goal.WalletId" class="input-validation"></span>
             </div>
             <div class="form-element">
                 <label class="input-label" asp-for="@Model.Goal.Deadline">Deadline</label>
@@ -172,7 +177,7 @@
             </div>
             <div class="form-element">
                 <label class="input-label" asp-for="@Model.Goal.ContributionSchecdule">Wallet</label>
-                <select asp-for="@Model.Goal.Wallet" class="dropdown-element" >
+                <select asp-for="@Model.Goal.ContributionSchecdule" class="dropdown-element" >
                     <option disabled selected>Select Contribution Schedule </option>
                     <option>Yearly</option>
                     <option>Monthly</option>

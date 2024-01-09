@@ -65,17 +65,17 @@ public class Goal : Controller
 
 
     [HttpPost]
-    public IActionResult CreatePost(BudgetVM obj)
+    public IActionResult CreatePost(GoalVM obj)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         
-        obj.Budget.UserId = userId;
-        _unitOfWork.Budget.Add(obj.Budget);
+        obj.Goal.UserId = userId;
+        _unitOfWork.Goal.Add(obj.Goal);
         _unitOfWork.Save();
 
         return RedirectToAction("Index");
     }
-    /*
+    
     public IActionResult Edit(int? id)
     {
         if (id == null || id == 0)
@@ -83,30 +83,30 @@ public class Goal : Controller
             return NotFound();
         }
 
-        Models.Budget BudgetFromDb = _unitOfWork.Budget.Get(u=> u.Id == id);
-        if (BudgetFromDb == null)
+        Models.Goal goalFromDb = _unitOfWork.Goal.Get(u=> u.GoalId == id);
+        if (goalFromDb == null)
         {
             return NotFound();
         }
-        IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll(includeProperties: "Category").Select(u => new SelectListItem
+        IEnumerable<SelectListItem> WalletList = _unitOfWork.Wallet.GetAll().Select(u => new SelectListItem
         {
-            Text = u.Category.Name,
-            Value = u.Id .ToString()
+            Text = u.Name,
+            Value = u.WalletId.ToString()
         });
-        BudgetVM budget = new()
+        GoalVM goal = new()
         {
-            CategoryList = CategoryList,
-            Budget = BudgetFromDb
+            Goal = goalFromDb,
+            Wallet = WalletList
         };
-        return View(budget);
+        return View(goal);
     }
 
     [HttpPost]
-    public IActionResult Edit(BudgetVM obj)
+    public IActionResult Edit(GoalVM obj)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        obj.Budget.UserId = userId;
-        _unitOfWork.Budget.Update(obj.Budget);
+        obj.Goal.UserId = userId;
+        _unitOfWork.Goal.Update(obj.Goal);
         _unitOfWork.Save();
         return RedirectToAction("Index");
     }
@@ -117,40 +117,40 @@ public class Goal : Controller
             return NotFound();
         }
 
-        Models.Budget BudgetFromDb = _unitOfWork.Budget.Get(u=> u.Id == id);
-        if (BudgetFromDb == null)
+        Models.Goal goalFromDb = _unitOfWork.Goal.Get(u=> u.GoalId == id);
+        if (goalFromDb == null)
         {
             return NotFound();
         }
-        IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll(includeProperties: "Category").Select(u => new SelectListItem
+        IEnumerable<SelectListItem> walletList = _unitOfWork.Wallet.GetAll().Select(u => new SelectListItem
         {
-            Text = u.Category.Name,
-            Value = u.Id .ToString()
+            Text = u.Name,
+            Value = u.WalletId.ToString()
         });
-        BudgetVM budget = new()
+        GoalVM goal = new()
         {
-            CategoryList = CategoryList,
-            Budget = BudgetFromDb
+            Wallet = walletList,
+            Goal = goalFromDb
         };
-        return View(budget);
+        return View(goal);
     }
 
     [HttpPost]
     public IActionResult DeletePost(int? id)
     {
-        var BudgetToDeleted = _unitOfWork.Budget.Get(u => u.Id == id);
+        Models.Goal goalFromDb = _unitOfWork.Goal.Get(u=> u.GoalId == id);
 
-        if (BudgetToDeleted == null)
+        if (goalFromDb == null)
         {
-            RedirectToAction("Index", "Budget");
+            RedirectToAction("Index", "Goal");
         }
 
-        _unitOfWork.Budget.Remove(BudgetToDeleted);
+        _unitOfWork.Goal.Remove(goalFromDb);
         _unitOfWork.Save();
 
         return RedirectToAction("Index");
     }
-    */
+    
     
 }
 

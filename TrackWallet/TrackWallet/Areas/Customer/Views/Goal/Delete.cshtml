@@ -1,11 +1,11 @@
-﻿@model BudgetVM
+﻿@model GoalVM
 
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>Delete Budget</title>
+    <title>Edit Goal</title>
     <style>
             body {
                 font-family: 'Arial', sans-serif;
@@ -82,7 +82,7 @@
                 
             }
             .submit-button button {
-                background-color: #dc3545; /* Green color for the submit button */
+                background-color: #8cd35d; /* Green color for the submit button */
                 color: #fff; /* White text color for the button */
                 padding: 10px 20px;
                 margin-top: 40px;
@@ -99,7 +99,7 @@
             }
     
             .submit-button button:hover {
-                background-color: #b61d2b; /* Gray background color on button hover */
+                background-color: #a2d780; /* Gray background color on button hover */
             }
   
 
@@ -121,47 +121,69 @@
             .Back-arrow :hover {
                 background-color: #c6dcb4;
                 border-radius: 50px;
-            }      
+            }   
+            input[type="date"] {
+                width: 200px;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+            
+            /* Apply styles when the date input is in focus */
+            input[type="date"]:focus {
+                outline: none;
+                border-color: #8CD35DFF; /* Change to your preferred focus color */
+                /*box-shadow: 0 0 5px #8CD35DFF; /* Change to your preferred focus shadow */
+            }   
         </style>
 </head>
 <body>
-<h3>Delete Budget</h3>
+<h3>Edit Goal</h3>
     <div class="Back-arrow">
-        <a asp-action="Index" asp-controller="Budget"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
+        <a asp-action="Index" asp-controller="Goal"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
     </div>
 <div class="content">
     <form method="post" enctype="multipart/form-data">
+        <input asp-for="@Model.Goal.GoalId" hidden/>
         <div class="form">
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.Budget.Name">Budget Name</label>
-                <input disabled asp-for="@Model.Budget.Name" type="text" class="input-element"/>
-                <span asp-validation-for="@Model.Budget.Name" class="input-validation"></span>
+                <label class="input-label" asp-for="@Model.Goal.GoalName">Goal Name</label>
+                <input disabled asp-for="@Model.Goal.GoalName" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.Goal.GoalName" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.Budget.Amount">Amount</label>
-                <input disabled asp-for="@Model.Budget.Amount" type="text" class="input-element"/>
-                <span asp-validation-for="@Model.Budget.Amount" class="input-validation"></span>
+                <label class="input-label" asp-for="@Model.Goal.TargetAmount">Target Amount</label>
+                <input disabled asp-for="@Model.Goal.TargetAmount" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.Goal.TargetAmount" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.Budget.USCategoryId">Category</label>
-                <select disabled asp-for="@Model.Budget.USCategoryId" class="dropdown-element" asp-items="@Model.CategoryList">
-                     <option disabled selected>Select Category</option>
+                <label class="input-label" asp-for="@Model.Goal.WalletId">Wallet</label>
+                <select disabled asp-for="@Model.Goal.WalletId" class="dropdown-element" asp-items="@Model.Wallet">
+                    <option disabled selected>Select Wallet</option>
                 </select>
-                <span asp-validation-for="@Model.Budget.USCategoryId" class="input-validation"></span>
+                <span asp-validation-for="@Model.Goal.WalletId" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.Budget.BudgetType">Budget type</label>
-                <select disabled asp-for="@Model.Budget.BudgetType" class="dropdown-element">
-                    <option disabled selected>Select Budget Type</option>
-                    <option>Daily</option>
-                    <option>Weekly</option>
+                <label class="input-label" asp-for="@Model.Goal.Deadline">Deadline</label>
+                <input disabled class="date" type="date"/>
+                <span asp-validation-for="@Model.Goal.Deadline" class="input-validation"></span>
+            </div>
+            <div class="form-element">
+                <label class="input-label" asp-for="@Model.Goal.ContributionSchecdule">Wallet</label>
+                <select disabled asp-for="@Model.Goal.ContributionSchecdule" class="dropdown-element" >
+                    <option disabled selected>Select Contribution Schedule </option>
+                    <option>Yearly</option>
                     <option>Monthly</option>
+                    <option>Weekly</option>
+                    <option>Daily</option>
                 </select>
-                <span asp-validation-for="@Model.Budget.BudgetType" class="input-validation"></span>
+                <span asp-validation-for="@Model.Goal.Wallet" class="input-validation"></span>
             </div>
             <div class="button">
                 <div class="submit-button">
-                    <button asp-action="DeletePost" asp-route-id="@Model.Budget.Id" asp-controller="Budget" type="submit">Delete</button>
+                    <button asp-action="DeletePost" asp-route-id="@Model.Goal.GoalId" class="text-danger" asp-controller="Goal" type="submit">Delete</button>
                 </div>
             </div>
         </div>

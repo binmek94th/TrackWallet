@@ -11,12 +11,12 @@
                 <div class="elements">
                     <div class="info">
                         <p class="goalName">@obj.GoalName</p>
-                        <p class="deadline"> <b> Deadline: @obj.Deadline.ToShortDateString() </b> </p>
+                        <p class="deadline"> Deadline: @obj.Deadline.ToShortDateString() </p>
                     <div class="modify-link">
-                        <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.GoalId">
+                        <a asp-controller="Goal" asp-action="Edit" asp-route-id="@obj.GoalId">
                             <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
                         </a>
-                        <a asp-controller="Budget" asp-route-id="@obj.GoalId" asp-action="Delete" class="delete">
+                        <a asp-controller="Goal" asp-route-id="@obj.GoalId" asp-action="Delete" class="delete">
                             <img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
                         </a>
                     </div>
@@ -46,7 +46,7 @@
         height: 100px;
         background-color: #EFF5E9;
         justify-content: space-between; /* Add space between child elements */
-        padding: 10px; /* Add padding to the container */
+        padding: 20px; /* Add padding to the container */
         border-radius: 15px;
     }
     .MainCat {
@@ -72,8 +72,11 @@
         font-size: 19px;
     }
     .deadline {
-        left: 70px;
-        position: relative;
+        position: absolute;
+        right: 750px;
+    }
+    .deadline p{
+        font-weight: 200;
     }
     .progress-bar-container {
         width: 100%;
@@ -95,9 +98,9 @@
         display: flex;
         align-items: center; /* Align items vertically in the modify-link div */
         justify-content: flex-end; 
-        position: relative;
+        position: absolute;
         margin-top: 10px; 
-        right: -140px;
+        right: 550px;
     }
      .modify-link a :hover {
             background-color: #c6dcb4;
