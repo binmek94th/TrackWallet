@@ -1,0 +1,196 @@
+﻿@model GoalVM
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Create Budget</title>
+    <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                border: solid 2px black;
+            }
+    
+            .main {
+                background-color: #fff; /* White background for the main content */
+                /* Center the main content */
+                margin: 20px auto;
+                padding: 40px;
+                border-radius: 10px;
+                width: 140%; /* Adjusted width to make it wider */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+            }
+    
+            .Back-arrow a {
+                text-decoration: none;
+                color: #007bff; /* Blue color for the link */
+                font-size: 18px;
+                margin-bottom: 20px;
+                display: block;
+            }
+    
+            h3 {
+                margin-bottom: 25px;
+                font-size: 22px;
+                font-weight: normal;
+                color: #343a40; /* Dark gray color for the heading */
+            }
+    
+            .content {
+                width: 120%; /* Adjusted width to make it wider */
+                margin-left: 25px; /* Center the content */
+            }
+    
+            .form {
+                margin-top: 10px;
+            }
+    
+            .form-element {
+                margin-bottom: 15px;
+            }
+    
+            .input-label {
+                display: block;
+                font-size: 16px;
+                color: #495057; /* Dark gray color for the label */
+                padding-bottom: 7px;
+            }
+    
+            .input-element, .dropdown-element, .input-image {
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+                margin-top: 5px;
+                border: 1px solid #ced4da; /* Light gray border for input elements */
+                border-radius: 5px;
+                font-size: 16px;
+            }
+    
+            .input-validation {
+                color: #dc3545; /* Red color for validation messages */
+                font-size: 14px;
+                margin-top: 5px;
+            }
+      
+            .button {
+                display: flex;
+                justify-content: flex-end;
+                margin-right: -150px;
+                
+            }
+            .submit-button button {
+                background-color: #8cd35d; /* Green color for the submit button */
+                color: #fff; /* White text color for the button */
+                padding: 10px 20px;
+                margin-top: 40px;
+                font-size: 18px;
+                border: none;
+                border-radius: 25px;
+                cursor: pointer;
+            }
+    
+            .input-element:hover,
+            .dropdown-element:hover,
+            .input-image:hover {
+                border-color: #8cd35d; /* Blue border color on hover */
+            }
+    
+            .submit-button button:hover {
+                background-color: #a2d780; /* Gray background color on button hover */
+            }
+  
+
+    
+            .Back-arrow {
+                width: 30px;
+                height: 40px;
+                border-radius: 50px;
+            }
+            .Back-arrow :hover {
+                background-color: #c6dcb4;
+                border-radius: 50px;
+            }
+            .Back-arrow {
+                width: 30px;
+                height: 40px;
+                border-radius: 50px;
+            }
+            .Back-arrow :hover {
+                background-color: #c6dcb4;
+                border-radius: 50px;
+            }   
+            input[type="date"] {
+                width: 200px;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+            
+            /* Apply styles when the date input is in focus */
+            input[type="date"]:focus {
+                outline: none;
+                border-color: #8CD35DFF; /* Change to your preferred focus color */
+                /*box-shadow: 0 0 5px #8CD35DFF; /* Change to your preferred focus shadow */
+            }   
+        </style>
+</head>
+<body>
+<h3>Create Goal</h3>
+    <div class="Back-arrow">
+        <a asp-action="Index" asp-controller="Goal"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
+    </div>
+<div class="content">
+    <form method="post" enctype="multipart/form-data">
+        <input asp-for="@Model.Goal.GoalId" hidden/>
+        <div class="form">
+            <div class="form-element">
+                <label class="input-label" asp-for="@Model.Goal.GoalName">Goal Name</label>
+                <input asp-for="@Model.Goal.GoalName" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.Goal.GoalName" class="input-validation"></span>
+            </div>
+            <div class="form-element">
+                <label class="input-label" asp-for="@Model.Goal.TargetAmount">Target Amount</label>
+                <input asp-for="@Model.Goal.TargetAmount" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.Goal.TargetAmount" class="input-validation"></span>
+            </div>
+            <div class="form-element">
+                <label class="input-label" asp-for="@Model.Goal.Wallet">Wallet</label>
+                <select asp-for="@Model.Goal.Wallet" class="dropdown-element" asp-items="@Model.Wallet">
+                    <option disabled selected>Select Wallet</option>
+                </select>
+                <span asp-validation-for="@Model.Goal.Wallet" class="input-validation"></span>
+            </div>
+            <div class="form-element">
+                <label class="input-label" asp-for="@Model.Goal.Deadline">Deadline</label>
+                <input class="date" type="date"/>
+                <span asp-validation-for="@Model.Goal.Deadline" class="input-validation"></span>
+            </div>
+            <div class="form-element">
+                <label class="input-label" asp-for="@Model.Goal.ContributionSchecdule">Wallet</label>
+                <select asp-for="@Model.Goal.Wallet" class="dropdown-element" >
+                    <option disabled selected>Select Contribution Schedule </option>
+                    <option>Yearly</option>
+                    <option>Monthly</option>
+                    <option>Weekly</option>
+                    <option>Daily</option>
+                </select>
+                <span asp-validation-for="@Model.Goal.Wallet" class="input-validation"></span>
+            </div>
+            <div class="button">
+                <div class="submit-button">
+                    <button asp-action="CreatePost" asp-controller="Goal" type="submit">Create</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
