@@ -423,6 +423,49 @@ namespace TrackWallet.DataAccess.Migrations
                     b.ToTable("Goals");
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.RecurringTransaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("USCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("WalletId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("USCategoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("WalletId");
+
+                    b.ToTable("RecurringTransactions");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -634,6 +677,33 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("Wallet");
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.RecurringTransaction", b =>
+                {
+                    b.HasOne("TrackWallet.Models.UserSelectedCategory", "UserSelectedCategory")
+                        .WithMany("RecurringTransactions")
+                        .HasForeignKey("USCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TrackWallet.Models.Wallet", "Wallet")
+                        .WithMany("RecurringTransactions")
+                        .HasForeignKey("WalletId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("UserSelectedCategory");
+
+                    b.Navigation("Wallet");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>
                 {
                     b.HasOne("TrackWallet.Models.Category", "Category")
@@ -669,11 +739,15 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("BillAndReminders");
 
                     b.Navigation("Budgets");
+
+                    b.Navigation("RecurringTransactions");
                 });
 
             modelBuilder.Entity("TrackWallet.Models.Wallet", b =>
                 {
                     b.Navigation("Goals");
+
+                    b.Navigation("RecurringTransactions");
                 });
 #pragma warning restore 612, 618
         }
