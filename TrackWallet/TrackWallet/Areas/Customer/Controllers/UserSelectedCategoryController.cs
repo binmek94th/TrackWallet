@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using TrackWallet.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.IdentityModel.Tokens;
 using TrackWallet.Models.ViewModel;
 using TrackWallet.Utility;
 
@@ -72,11 +73,10 @@ public class UserSelectedCategory : Controller
     public IActionResult Create(UserSelectedCategoriesVM obj )
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var existingRecord = _unitOfWork.UserSelectedCategory.Get(
-            filter: u => u.UserId == userId && u.CategoryId == obj.UserSelectedCategory.CategoryId
+        var existingRecord = _unitOfWork.UserSelectedCategory.GetAll().Where( u => u.UserId == userId && u.CategoryId == obj.UserSelectedCategory.CategoryId
         );
 
-        if (existingRecord != null)
+        if (!existingRecord.IsNullOrEmpty())
         {
             // A record with the same CategoryId and UserId already exists
             // You can handle this situation, e.g., show an error message or redirect to another action

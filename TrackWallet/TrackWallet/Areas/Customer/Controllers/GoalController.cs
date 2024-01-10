@@ -50,11 +50,14 @@ public class Goal : Controller
 
     public IActionResult Create()
     {
-        IEnumerable<SelectListItem> WalletList = _unitOfWork.Wallet.GetAll().Select(u => new SelectListItem
+        IEnumerable<Wallet> filteredItems = _unitOfWork.Wallet.GetAll().Where(item => item.WalletType == "Saving");
+        
+        IEnumerable<SelectListItem> WalletList = filteredItems.Select(u => new SelectListItem
         {
-            Text = u.Name,
+            Text =u.Name,
             Value = u.WalletId.ToString()
         });
+        
         GoalVM goal = new()
         {
             Goal = new Models.Goal(),
@@ -88,14 +91,17 @@ public class Goal : Controller
         {
             return NotFound();
         }
-        IEnumerable<SelectListItem> WalletList = _unitOfWork.Wallet.GetAll().Select(u => new SelectListItem
+        IEnumerable<Wallet> filteredItems = _unitOfWork.Wallet.GetAll().Where(item => item.WalletType == "Saving");
+        
+        IEnumerable<SelectListItem> WalletList = filteredItems.Select(u => new SelectListItem
         {
-            Text = u.Name,
+            Text =u.Name,
             Value = u.WalletId.ToString()
         });
+        
         GoalVM goal = new()
         {
-            Goal = goalFromDb,
+            Goal = new Models.Goal(),
             Wallet = WalletList
         };
         return View(goal);
@@ -122,15 +128,18 @@ public class Goal : Controller
         {
             return NotFound();
         }
-        IEnumerable<SelectListItem> walletList = _unitOfWork.Wallet.GetAll().Select(u => new SelectListItem
+        IEnumerable<Wallet> filteredItems = _unitOfWork.Wallet.GetAll().Where(item => item.WalletType == "Saving");
+        
+        IEnumerable<SelectListItem> WalletList = filteredItems.Select(u => new SelectListItem
         {
-            Text = u.Name,
+            Text =u.Name,
             Value = u.WalletId.ToString()
         });
+        
         GoalVM goal = new()
         {
-            Wallet = walletList,
-            Goal = goalFromDb
+            Goal = new Models.Goal(),
+            Wallet = WalletList
         };
         return View(goal);
     }

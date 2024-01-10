@@ -55,15 +55,36 @@ public class Budget : Controller
 
     public IActionResult Create()
     {
+        IEnumerable<Models.Category> categoriesFiltered = _unitOfWork.Category.GetAll().Where(item => item.CategoryType == "Expense");
+        List<Models.UserSelectedCategory> userSelectedCategories = new List<Models.UserSelectedCategory>();;
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+
+        foreach (var ele in categoriesFiltered)
+        {
+            var b = _unitOfWork.UserSelectedCategory.Get(item => item.CategoryId == ele.Id && item.IsActive);
+            if (b != null)
+            {
+                if (b.UserId == userId)
+                {
+                    userSelectedCategories.Add(b);
+                }
+            }
+
+        }
+        IEnumerable<SelectListItem> Categor = userSelectedCategories.Select(u => new SelectListItem
+        {
+            Text =u.Category.Name,
+            Value = u.Id.ToString()
+        });
         IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll(includeProperties: "Category").Select(u => new SelectListItem
         {
             Text = u.Category.Name,
-            Value = u.Id .ToString()
+            Value = u.Id.ToString()
         });
-        ViewData["UserSelected"] = CategoryList;
         BudgetVM budget = new()
         {
-            CategoryList = CategoryList,
+            CategoryList = Categor,
             Budget = new Models.Budget()
         };
         return View(budget);
@@ -94,15 +115,37 @@ public class Budget : Controller
         {
             return NotFound();
         }
+        IEnumerable<Models.Category> categoriesFiltered = _unitOfWork.Category.GetAll().Where(item => item.CategoryType == "Expense");
+        List<Models.UserSelectedCategory> userSelectedCategories = new List<Models.UserSelectedCategory>();;
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+
+        foreach (var ele in categoriesFiltered)
+        {
+            var b = _unitOfWork.UserSelectedCategory.Get(item => item.CategoryId == ele.Id && item.IsActive);
+            if (b != null)
+            {
+                if (b.UserId == userId)
+                {
+                    userSelectedCategories.Add(b);
+                }
+            }
+
+        }
+        IEnumerable<SelectListItem> Categor = userSelectedCategories.Select(u => new SelectListItem
+        {
+            Text =u.Category.Name,
+            Value = u.Id.ToString()
+        });
         IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll(includeProperties: "Category").Select(u => new SelectListItem
         {
             Text = u.Category.Name,
-            Value = u.Id .ToString()
+            Value = u.Id.ToString()
         });
         BudgetVM budget = new()
         {
-            CategoryList = CategoryList,
-            Budget = BudgetFromDb
+            CategoryList = Categor,
+            Budget = new Models.Budget()
         };
         return View(budget);
     }
