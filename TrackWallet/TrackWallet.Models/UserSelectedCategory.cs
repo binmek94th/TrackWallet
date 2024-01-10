@@ -22,6 +22,7 @@ public class UserSelectedCategory
     public ICollection<BillAndReminder> BillAndReminders { get; set; }
     
     public ICollection<Budget> Budgets { get; set; }
+    public ICollection<RecurringTransaction> RecurringTransactions { get; set; }
 
 
     

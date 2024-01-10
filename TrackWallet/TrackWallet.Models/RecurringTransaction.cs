@@ -10,6 +10,7 @@ public class RecurringTransaction
     public string Name { get; set; }
     public DateTime Date { get; set; }
     public double Amount { get; set; }
+    public string Type { get; set; }
     
     [ForeignKey("ApplicationUser")]
     public string UserId { get; set; }
@@ -19,7 +20,7 @@ public class RecurringTransaction
     public int WalletId { get; set; }
     public Wallet Wallet { get; set; }
     
-    [ForeignKey("Category")]
-    public int CategoryId { get; set; }
-    public Category Category { get; set; }
+    [ForeignKey("UserSelectedCategory")]
+    public int USCategoryId { get; set; }
+    public UserSelectedCategory UserSelectedCategory { get; set; }
 }

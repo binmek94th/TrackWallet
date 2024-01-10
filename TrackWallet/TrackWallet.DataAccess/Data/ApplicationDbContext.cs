@@ -61,7 +61,31 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .WithOne(bar => bar.Wallet)
             .HasForeignKey(bar => bar.WalletId)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<RecurringTransaction>()
+            .HasOne(g => g.Wallet)
+            .WithMany(w => w.RecurringTransactions)
+            .HasForeignKey(g => g.WalletId)
+            .OnDelete(DeleteBehavior.Restrict); 
 
+        modelBuilder.Entity<Wallet>()
+            .HasMany(w => w.RecurringTransactions)
+            .WithOne(bar => bar.Wallet)
+            .HasForeignKey(bar => bar.WalletId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<RecurringTransaction>()
+            .HasOne(bar => bar.UserSelectedCategory)
+            .WithMany(usc => usc.RecurringTransactions)
+            .HasForeignKey(bar => bar.USCategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        // Configure the relationship between UserSelectedCategory and BillAndReminder
+        modelBuilder.Entity<UserSelectedCategory>()
+            .HasMany(usc => usc.RecurringTransactions)
+            .WithOne(bar => bar.UserSelectedCategory)
+            .HasForeignKey(bar => bar.USCategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<Category>().HasData(
             new Category

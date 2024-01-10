@@ -25,6 +25,7 @@ public class Wallet
     public double Balance { get; set; }
     
     public ICollection<Goal> Goals { get; set; }
+    public ICollection<RecurringTransaction> RecurringTransactions { get; set; }
 
     
 
