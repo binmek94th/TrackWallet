@@ -35,6 +35,9 @@
       <AdditionalFiles Include="Areas\Customer\Views\Budget\Edit.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\Home\Index.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\Home\Privacy.cshtml" />
+      <AdditionalFiles Include="Areas\Customer\Views\RecurringTransaction\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Customer\Views\RecurringTransaction\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Customer\Views\RecurringTransaction\Index.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\UserSelectedCategory\Create.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\UserSelectedCategory\Index.cshtml" />
     </ItemGroup>

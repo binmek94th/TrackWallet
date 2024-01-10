@@ -72,19 +72,15 @@ public class Budget : Controller
             }
 
         }
-        IEnumerable<SelectListItem> Categor = userSelectedCategories.Select(u => new SelectListItem
+        IEnumerable<SelectListItem> Category = userSelectedCategories.Select(u => new SelectListItem
         {
             Text =u.Category.Name,
             Value = u.Id.ToString()
         });
-        IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll(includeProperties: "Category").Select(u => new SelectListItem
-        {
-            Text = u.Category.Name,
-            Value = u.Id.ToString()
-        });
+
         BudgetVM budget = new()
         {
-            CategoryList = Categor,
+            CategoryList = Category,
             Budget = new Models.Budget()
         };
         return View(budget);
@@ -132,19 +128,14 @@ public class Budget : Controller
             }
 
         }
-        IEnumerable<SelectListItem> Categor = userSelectedCategories.Select(u => new SelectListItem
+        IEnumerable<SelectListItem> Category = userSelectedCategories.Select(u => new SelectListItem
         {
             Text =u.Category.Name,
             Value = u.Id.ToString()
         });
-        IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll(includeProperties: "Category").Select(u => new SelectListItem
-        {
-            Text = u.Category.Name,
-            Value = u.Id.ToString()
-        });
         BudgetVM budget = new()
         {
-            CategoryList = Categor,
+            CategoryList = Category,
             Budget = new Models.Budget()
         };
         return View(budget);

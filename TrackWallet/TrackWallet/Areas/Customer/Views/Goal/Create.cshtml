@@ -172,7 +172,7 @@
             </div>
             <div class="form-element">
                 <label class="input-label" asp-for="@Model.Goal.Deadline">Deadline</label>
-                <input class="date" type="date"/>
+                <input class="date" asp-for="@Model.Goal.Deadline" type="date"/>
                 <span asp-validation-for="@Model.Goal.Deadline" class="input-validation"></span>
             </div>
             <div class="form-element">

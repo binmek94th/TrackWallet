@@ -44,6 +44,24 @@ build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcSG9tZVxQ
 build_metadata.AdditionalFiles.CssScope = 
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/RecurringTransaction/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcUmVjdXJyaW5nVHJhbnNhY3Rpb25cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/RecurringTransaction/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcUmVjdXJyaW5nVHJhbnNhY3Rpb25cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/RecurringTransaction/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcUmVjdXJyaW5nVHJhbnNhY3Rpb25cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/UserSelectedCategory/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = 
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcVXNlclNlbGVjdGVkQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
@@ -114,6 +132,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/Home/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcSG9tZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/RecurringTransaction/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcUmVjdXJyaW5nVHJhbnNhY3Rpb25cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/UserSelectedCategory/Edit.cshtml]

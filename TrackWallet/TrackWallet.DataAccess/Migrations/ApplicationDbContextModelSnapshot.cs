@@ -403,10 +403,11 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RecurringType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -423,6 +424,9 @@ namespace TrackWallet.DataAccess.Migrations
 
                     b.Property<int>("WalletId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("nextDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

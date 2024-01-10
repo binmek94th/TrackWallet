@@ -7,7 +7,7 @@ public class Budget
 {
     [Key]
     public int Id { get; set; }
-
+    [Required (ErrorMessage = "Name can't be empty")]
     public string Name { get; set; }
     
     [ForeignKey("ApplicationUser")]

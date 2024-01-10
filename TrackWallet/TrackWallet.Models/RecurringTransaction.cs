@@ -7,9 +7,15 @@ public class RecurringTransaction
 {
     [Key]
     public int Id { get; set; }
+    [Required(ErrorMessage = "Name can't be empty")]
     public string Name { get; set; }
-    public DateTime Date { get; set; }
+    [Required (ErrorMessage = "Select a date")]
+    public DateTime nextDate { get; set; }
+
+    public string RecurringType { get; set; }
+    [Required]
     public double Amount { get; set; }
+    [Required]
     public string Type { get; set; }
     
     [ForeignKey("ApplicationUser")]
