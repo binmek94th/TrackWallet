@@ -20,6 +20,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Event> Events { get; set; }
     public DbSet<BillAndReminder> BillAndReminders { get; set; }
     public DbSet<Goal> Goals { get; set; }
+    public DbSet<RecurringTransaction> RecurringTransactions { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

@@ -14,6 +14,8 @@ public class UnitOfWork : IUnitOfWork
     public IBillAndReminderRepository  BillAndReminder { get; set; }
 
     public IGoalRepository Goal { get; set; }
+    public IRecurringTransactionRepository RecurringTransaction { get; }
+
     private ApplicationDbContext _db;
     public UnitOfWork(ApplicationDbContext db)
     {
@@ -25,6 +27,7 @@ public class UnitOfWork : IUnitOfWork
         Event = new EventRepository(_db);
         BillAndReminder = new BillAndReminderRepository(_db);
         Goal = new GoalRepository(_db);
+        RecurringTransaction = new RecurringTransactionRepository(_db);
     }
 
     public void Save()
