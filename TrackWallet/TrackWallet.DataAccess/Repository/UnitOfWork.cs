@@ -11,7 +11,6 @@ public class UnitOfWork : IUnitOfWork
     public IWalletRepository Wallet { get; private set; }
     public IBudgetRepository Budget { get; set; }
     public IEventRepository Event { get; set; } 
-    public IBillAndReminderRepository  BillAndReminder { get; set; }
 
     public IGoalRepository Goal { get; set; }
     public IRecurringTransactionRepository RecurringTransaction { get; }
@@ -25,7 +24,6 @@ public class UnitOfWork : IUnitOfWork
         Wallet = new WalletRepository(_db);
         Budget = new BudgetRepository(_db);
         Event = new EventRepository(_db);
-        BillAndReminder = new BillAndReminderRepository(_db);
         Goal = new GoalRepository(_db);
         RecurringTransaction = new RecurringTransactionRepository(_db);
     }

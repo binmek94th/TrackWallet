@@ -7,7 +7,6 @@ public interface IUnitOfWork
     IWalletRepository Wallet { get; }
     IBudgetRepository Budget { get;  }
     IEventRepository Event { get; }
-    IBillAndReminderRepository BillAndReminder { get; }
     IGoalRepository Goal { get; }
     IRecurringTransactionRepository RecurringTransaction { get; }
     void Save();

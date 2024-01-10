@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrackWallet.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using TrackWallet.DataAccess.Data;
 namespace TrackWallet.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240110180310_recurringTransaction")]
+    partial class recurringTransaction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -227,6 +230,37 @@ namespace TrackWallet.DataAccess.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("TrackWallet.Models.BillAndReminder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("USCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<double>("amount")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("USCategoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BillAndReminders");
                 });
 
             modelBuilder.Entity("TrackWallet.Models.Budget", b =>
@@ -572,6 +606,25 @@ namespace TrackWallet.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.BillAndReminder", b =>
+                {
+                    b.HasOne("TrackWallet.Models.UserSelectedCategory", "UserSelectedCategory")
+                        .WithMany("BillAndReminders")
+                        .HasForeignKey("USCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("UserSelectedCategory");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.Budget", b =>
                 {
                     b.HasOne("TrackWallet.Models.UserSelectedCategory", "UserSelectedCategory")
@@ -686,6 +739,8 @@ namespace TrackWallet.DataAccess.Migrations
 
             modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>
                 {
+                    b.Navigation("BillAndReminders");
+
                     b.Navigation("Budgets");
 
                     b.Navigation("RecurringTransactions");
