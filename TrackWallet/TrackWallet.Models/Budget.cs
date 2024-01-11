@@ -22,4 +22,6 @@ public class Budget
     public string BudgetType { get; set; }
     [Required]
     public double Amount { get; set; }
+
+    public ICollection<Occasion> Occasions { get; set; }
 }

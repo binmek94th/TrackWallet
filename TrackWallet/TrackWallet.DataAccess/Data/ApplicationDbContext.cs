@@ -75,6 +75,19 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(bar => bar.USCategoryId)
             .OnDelete(DeleteBehavior.Restrict);
         
+        modelBuilder.Entity<Occasion>()
+            .HasOne(bar => bar.Budget)
+            .WithMany(usc => usc.Occasions)
+            .HasForeignKey(bar => bar.BudgetId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        // Configure the relationship between UserSelectedCategory and RecurringTransaction
+        modelBuilder.Entity<Budget>()
+            .HasMany(usc => usc.Occasions)
+            .WithOne(bar => bar.Budget)
+            .HasForeignKey(bar => bar.BudgetId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
         modelBuilder.Entity<Category>().HasData(
             new Category
             {
