@@ -22,9 +22,9 @@
                     <p>Next transaction date: @obj.nextDate.ToShortDateString()</p>
                     <p>@obj.Amount ETB</p>
                     <div class="modify-link">
-                        <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id">
+                        <a asp-controller="RecurringTransaction" asp-action="Edit" asp-route-id="@obj.Id">
                             <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
-                            <a asp-controller="Budget" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
+                            <a asp-controller="RecurringTransaction" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
                                 <img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
                             </a>
                         </a>

@@ -114,10 +114,10 @@ public class RecurringTransaction : Controller
         obj.RecurringTransaction.UserId = userId;
         _unitOfWork.RecurringTransaction.Add(obj.RecurringTransaction);
         _unitOfWork.Save();
-
+ 
         return RedirectToAction("Index");
     }
-    /*
+    
     public IActionResult Edit(int? id)
     {
         if (id == null || id == 0)
@@ -125,15 +125,18 @@ public class RecurringTransaction : Controller
             return NotFound();
         }
 
-        Models.Budget BudgetFromDb = _unitOfWork.Budget.Get(u=> u.Id == id);
-        if (BudgetFromDb == null)
+        Models.RecurringTransaction recurringTransactionFromDb = _unitOfWork.RecurringTransaction.Get(u=> u.Id == id);
+        if (recurringTransactionFromDb == null)
         {
             return NotFound();
         }
         IEnumerable<Models.Category> categoriesFiltered = _unitOfWork.Category.GetAll().Where(item => item.CategoryType == "Expense");
         List<Models.UserSelectedCategory> userSelectedCategories = new List<Models.UserSelectedCategory>();;
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        List<Wallet> wallets = new List<Wallet>();
 
+        IEnumerable<Wallet> walletFiltered = _unitOfWork.Wallet.GetAll().Where(item => item.UserId == userId);
+        
 
         foreach (var ele in categoriesFiltered)
         {
@@ -147,33 +150,38 @@ public class RecurringTransaction : Controller
             }
 
         }
-        IEnumerable<SelectListItem> Categor = userSelectedCategories.Select(u => new SelectListItem
+        IEnumerable<SelectListItem> Category = userSelectedCategories.Select(u => new SelectListItem
         {
             Text =u.Category.Name,
             Value = u.Id.ToString()
         });
-        IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll(includeProperties: "Category").Select(u => new SelectListItem
+
+        IEnumerable<SelectListItem> Wallets = walletFiltered.Select(u => new SelectListItem
         {
-            Text = u.Category.Name,
-            Value = u.Id.ToString()
+            Text = u.Name,
+            Value = u.WalletId.ToString()
         });
-        BudgetVM budget = new()
+
+        RecurringTransactionVM recurringTransaction = new()
         {
-            CategoryList = Categor,
-            Budget = new Models.Budget()
+            Category = Category,
+            RecurringTransaction = recurringTransactionFromDb,
+            Wallet = Wallets
         };
-        return View(budget);
+        return View(recurringTransaction);
+
     }
 
     [HttpPost]
-    public IActionResult Edit(BudgetVM obj)
+    public IActionResult Edit(RecurringTransactionVM obj)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        obj.Budget.UserId = userId;
-        _unitOfWork.Budget.Update(obj.Budget);
+        obj.RecurringTransaction.UserId = userId;
+        _unitOfWork.RecurringTransaction.Update(obj.RecurringTransaction);
         _unitOfWork.Save();
         return RedirectToAction("Index");
     }
+    
     public IActionResult Delete(int? id)
     {
         if (id == null || id == 0)
@@ -181,8 +189,8 @@ public class RecurringTransaction : Controller
             return NotFound();
         }
 
-        Models.Budget BudgetFromDb = _unitOfWork.Budget.Get(u=> u.Id == id);
-        if (BudgetFromDb == null)
+        Models.RecurringTransaction recurringTransactionFromDb = _unitOfWork.RecurringTransaction.Get(u=> u.Id == id);
+        if (recurringTransactionFromDb == null)
         {
             return NotFound();
         }
@@ -191,31 +199,31 @@ public class RecurringTransaction : Controller
             Text = u.Category.Name,
             Value = u.Id .ToString()
         });
-        BudgetVM budget = new()
+        RecurringTransactionVM recurringTransaction = new()
         {
-            CategoryList = CategoryList,
-            Budget = BudgetFromDb
+            Category = CategoryList,
+            RecurringTransaction = recurringTransactionFromDb
         };
-        return View(budget);
+        return View(recurringTransaction);
     }
 
     [HttpPost]
     public IActionResult DeletePost(int? id)
     {
-        var BudgetToDeleted = _unitOfWork.Budget.Get(u => u.Id == id);
+        var recurringTransactionFromDb = _unitOfWork.RecurringTransaction.Get(u => u.Id == id);
 
-        if (BudgetToDeleted == null)
+        if (recurringTransactionFromDb == null)
         {
             RedirectToAction("Index", "Budget");
         }
 
-        _unitOfWork.Budget.Remove(BudgetToDeleted);
+        _unitOfWork.RecurringTransaction.Remove(recurringTransactionFromDb);
         _unitOfWork.Save();
 
         return RedirectToAction("Index");
     }
     
-    */
+    
 }
 
 
