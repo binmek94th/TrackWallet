@@ -9,5 +9,6 @@ public interface IUnitOfWork
     IEventRepository Event { get; }
     IGoalRepository Goal { get; }
     IRecurringTransactionRepository RecurringTransaction { get; }
+    IOccasionRepository Occasion { get; }
     void Save();
 }
