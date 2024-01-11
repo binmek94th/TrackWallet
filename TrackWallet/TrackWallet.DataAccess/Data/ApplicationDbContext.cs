@@ -38,6 +38,19 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(bar => bar.USCategoryId)
             .OnDelete(DeleteBehavior.Restrict);
         
+        modelBuilder.Entity<Budget>()
+            .HasOne(bar => bar.Occasion)
+            .WithMany(usc => usc.Budgets)
+            .HasForeignKey(bar => bar.OccasionId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        // Configure the relationship between UserSelectedCategory and BillAndReminder
+        modelBuilder.Entity<Occasion>()
+            .HasMany(usc => usc.Budgets)
+            .WithOne(bar => bar.Occasion)
+            .HasForeignKey(bar => bar.OccasionId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
         modelBuilder.Entity<Goal>()
             .HasOne(g => g.Wallet)
             .WithMany(w => w.Goals)

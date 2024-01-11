@@ -15,13 +15,18 @@ public class Budget
     public ApplicationUser ApplicationUser { get; set; }
     
     [ForeignKey("UserSelectedCategory")] 
-    public int USCategoryId { get; set; }
+    public int? USCategoryId { get; set; }
     public UserSelectedCategory UserSelectedCategory { get; set; }
+    
+    [ForeignKey("Occasion")] 
+    public int? OccasionId { get; set; }
+    public Occasion Occasion { get; set; }
     
     [Required]
     public string BudgetType { get; set; }
     [Required]
     public double Amount { get; set; }
+    public Boolean IsActive { get; set; }
 
     public ICollection<Occasion> Occasions { get; set; }
 }

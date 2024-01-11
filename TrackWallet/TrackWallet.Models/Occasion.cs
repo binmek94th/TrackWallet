@@ -20,4 +20,6 @@ public class Occasion
     [ForeignKey("Budget")]
     public int? BudgetId { get; set; }
     public Budget Budget { get; set; }
+    
+    public ICollection<Budget> Budgets { get; set; }
 }
