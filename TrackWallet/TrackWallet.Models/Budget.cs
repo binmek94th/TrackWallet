@@ -18,9 +18,6 @@ public class Budget
     public int? USCategoryId { get; set; }
     public UserSelectedCategory UserSelectedCategory { get; set; }
     
-    [ForeignKey("Occasion")] 
-    public int? OccasionId { get; set; }
-    public Occasion Occasion { get; set; }
     
     [Required]
     public string? BudgetType { get; set; }
