@@ -26,33 +26,26 @@ public class Occasion : Controller
     {
         _unitOfWork = unitOfWork;
     }
-/*
+
     public IActionResult Index()
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        List<Models.Budget> objbudgetList =
-            _unitOfWork.Budget.GetAll(includeProperties:"UserSelectedCategory").ToList();
+        List<Models.Occasion> objOccasionList =
+            _unitOfWork.Occasion.GetAll().Where(item=> item.UserId == userId).ToList();
 
-        List<Models.Budget> selectedBudget = new List<Models.Budget>();
+        List<Models.Budget> objBudgetList = _unitOfWork.Budget.GetAll().ToList();
 
-        foreach (var elements in objbudgetList)
+        OcassionIndexVM obj = new OcassionIndexVM
         {
-            if (userId == elements.UserId)
-            {
-                selectedBudget.Add(elements);
-            }
-        }
-        BudgetIndexVM budgetIndexVm = new()
-        {
-            Budgets =  selectedBudget,
-            Category = _unitOfWork.Category.GetAll().ToList()
+            Occasions = objOccasionList,
+            Budgets = objBudgetList
         };
         
-        return View(budgetIndexVm);
+        return View(obj);
     }
 
-*/
+
     public IActionResult Create()
     {
         var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -92,57 +85,55 @@ public class Occasion : Controller
         _unitOfWork.Occasion.Add(obj.Occasion);
         _unitOfWork.Save();
 
-        return RedirectToAction("");
+        return RedirectToAction("Index");
     }
-    /*
+    
     public IActionResult Edit(int? id)
     {
+        
         if (id == null || id == 0)
         {
             return NotFound();
         }
 
-        Models.Budget BudgetFromDb = _unitOfWork.Budget.Get(u=> u.Id == id);
-        if (BudgetFromDb == null)
+        Models.Occasion occasionFromDb = _unitOfWork.Occasion.Get(u=> u.Id == id);
+        if (occasionFromDb == null)
         {
             return NotFound();
         }
-        IEnumerable<Models.Category> categoriesFiltered = _unitOfWork.Category.GetAll().Where(item => item.CategoryType == "Expense");
-        List<Models.UserSelectedCategory> userSelectedCategories = new List<Models.UserSelectedCategory>();;
-        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-
-        foreach (var ele in categoriesFiltered)
+        var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        IEnumerable<Models.Budget> budgets = _unitOfWork.Budget.GetAll().Where( u => u.UserId == userID);
+        IEnumerable<SelectListItem> budget = budgets.Select(u => new SelectListItem
         {
-            var b = _unitOfWork.UserSelectedCategory.Get(item => item.CategoryId == ele.Id && item.IsActive);
-            if (b != null)
-            {
-                if (b.UserId == userId)
-                {
-                    userSelectedCategories.Add(b);
-                }
-            }
-
-        }
-        IEnumerable<SelectListItem> Category = userSelectedCategories.Select(u => new SelectListItem
-        {
-            Text =u.Category.Name,
+            Text =u.Name,
             Value = u.Id.ToString()
         });
-        BudgetVM budget = new()
+
+        OccasionVM occasion = new()
         {
-            CategoryList = Category,
-            Budget = new Models.Budget()
+            BudgetList = budget,
+            Occasion = occasionFromDb
         };
-        return View(budget);
+        return View(occasion);
     }
 
     [HttpPost]
-    public IActionResult Edit(BudgetVM obj)
+    public IActionResult Edit(OccasionVM obj)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        obj.Budget.UserId = userId;
-        _unitOfWork.Budget.Update(obj.Budget);
+        obj.Occasion.UserId = userId;
+        if (obj.Occasion.BudgetId == null)
+        {
+            obj.Budget.UserId = userId;
+            obj.Budget.Name = obj.Occasion.Name;
+            obj.Budget.IsActive = true;
+            obj.Budget.BudgetType = "Occasional";
+            _unitOfWork.Budget.Update(obj.Budget);
+            _unitOfWork.Save();
+            obj.Occasion.BudgetId = obj.Budget.Id;
+        }
+        obj.Occasion.UserId = userId;
+        _unitOfWork.Occasion.Update(obj.Occasion);
         _unitOfWork.Save();
         return RedirectToAction("Index");
     }
@@ -153,40 +144,43 @@ public class Occasion : Controller
             return NotFound();
         }
 
-        Models.Budget BudgetFromDb = _unitOfWork.Budget.Get(u=> u.Id == id);
-        if (BudgetFromDb == null)
+        Models.Occasion occasionFromDb = _unitOfWork.Occasion.Get(u=> u.Id == id);
+        if (occasionFromDb == null)
         {
             return NotFound();
         }
-        IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll(includeProperties: "Category").Select(u => new SelectListItem
+        var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        IEnumerable<Models.Budget> budgets = _unitOfWork.Budget.GetAll().Where( u => u.UserId == userID);
+        IEnumerable<SelectListItem> budget = budgets.Select(u => new SelectListItem
         {
-            Text = u.Category.Name,
-            Value = u.Id .ToString()
+            Text =u.Name,
+            Value = u.Id.ToString()
         });
-        BudgetVM budget = new()
+
+        OccasionVM occasion = new()
         {
-            CategoryList = CategoryList,
-            Budget = BudgetFromDb
+            BudgetList = budget,
+            Occasion = occasionFromDb
         };
-        return View(budget);
+        return View(occasion);
     }
 
     [HttpPost]
     public IActionResult DeletePost(int? id)
     {
-        var BudgetToDeleted = _unitOfWork.Budget.Get(u => u.Id == id);
+        var occasionToBeDeleted = _unitOfWork.Occasion.Get(u => u.Id == id);
 
-        if (BudgetToDeleted == null)
+        if (occasionToBeDeleted == null)
         {
-            RedirectToAction("Index", "Budget");
+            RedirectToAction("Index", "Occasion");
         }
 
-        _unitOfWork.Budget.Remove(BudgetToDeleted);
+        _unitOfWork.Occasion.Remove(occasionToBeDeleted);
         _unitOfWork.Save();
 
         return RedirectToAction("Index");
     }
-    */
+    
 }
 
 

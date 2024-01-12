@@ -1,11 +1,11 @@
-﻿@model BudgetVM
+﻿@model OccasionVM
 
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>Edit Budget</title>
+    <title>Edit Occasion</title>
     <style>
             body {
                 font-family: 'Arial', sans-serif;
@@ -37,6 +37,14 @@
                 font-size: 22px;
                 font-weight: normal;
                 color: #343a40; /* Dark gray color for the heading */
+            }
+            h4{
+                font-size: 22px;
+                font-weight: normal;
+                color: #343a40;
+            }
+            p{
+                color: #343a40;
             }
     
             .content {
@@ -78,7 +86,7 @@
             .button {
                 display: flex;
                 justify-content: flex-end;
-                margin-right: -150px;
+          
                 
             }
             .submit-button button {
@@ -90,8 +98,9 @@
                 border: none;
                 border-radius: 25px;
                 cursor: pointer;
+                margin-right: -150px;
             }
-    
+
             .input-element:hover,
             .dropdown-element:hover,
             .input-image:hover {
@@ -101,8 +110,6 @@
             .submit-button button:hover {
                 background-color: #a2d780; /* Gray background color on button hover */
             }
-  
-
     
             .Back-arrow {
                 width: 30px;
@@ -121,48 +128,154 @@
             .Back-arrow :hover {
                 background-color: #c6dcb4;
                 border-radius: 50px;
-            }      
+            }   
+            input[type="date"] {
+                width: 200px;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+            
+            /* Apply styles when the date input is in focus */
+            input[type="date"]:focus {
+                outline: none;
+                border-color: #8CD35DFF; /* Change to your preferred focus color */
+                /*box-shadow: 0 0 5px #8CD35DFF; /* Change to your preferred focus shadow */
+            }   
+            input[type="date"]:hover {
+                outline: none;
+                border-color: #8CD35DFF; /* Change to your preferred focus color */
+                /*box-shadow: 0 0 5px #8CD35DFF; /* Change to your preferred focus shadow */
+            }     
+            .hidden{
+                display: none;
+                }
+                
+             .toggle-container {
+                display: inline-block;
+            }
+    
+            .toggle-switch {
+                position: relative;
+                display: inline-block;
+                width: 45px;
+                height: 22px;
+            }
+    
+            .toggle-switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+    
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                border-radius: 20px;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+    
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 18px;
+                width: 18px;
+                left: 4px;
+                top: 2px;
+                border-radius: 20px;
+                bottom: 4px;
+                background-color: #f8f4f4;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+    
+            input:checked + .slider {
+                background-color: #a2d780;
+            }
+    
+            input:checked + .slider:before {
+                -webkit-transform: translateX(20px);
+                -ms-transform: translateX(20px);
+                transform: translateX(20px);
+            }
+            .error-message {
+                color: red;
+            }
         </style>
 </head>
 <body>
-<h3>Edit Budget</h3>
+<h3>Edit Occasion</h3>
     <div class="Back-arrow">
-        <a asp-action="Index" asp-controller="Budget"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
+        <a asp-action="Index" asp-controller="Occasion"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
     </div>
 <div class="content">
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" onsubmit="return validateInputs()">
+        <input asp-for="@Model.Occasion.Id" hidden/>
         <input asp-for="@Model.Budget.Id" hidden/>
         <div class="form">
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.Budget.Name">Budget Name</label>
-                <input asp-for="@Model.Budget.Name" type="text" class="input-element"/>
-                <span asp-validation-for="@Model.Budget.Name" class="input-validation"></span>
+                <label class="input-label" asp-for="@Model.Occasion.Name">Occasion Name</label>
+                <input asp-for="@Model.Occasion.Name" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.Occasion.Name" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.Budget.Amount">Amount</label>
-                <input asp-for="@Model.Budget.Amount" type="text" class="input-element"/>
-                <span asp-validation-for="@Model.Budget.Amount" class="input-validation"></span>
+                <label class="input-label" asp-for="@Model.Occasion.Description">Description</label>
+                <input asp-for="@Model.Occasion.Description" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.Occasion.Description" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.Budget.USCategoryId">Category</label>
-                <select asp-for="@Model.Budget.USCategoryId" class="dropdown-element" asp-items="@Model.CategoryList">
-                    <option disabled selected>Select Category</option>
+                <label class="input-label" asp-for="@Model.Occasion.StartDate">Start Date</label>
+                <input class="date" asp-for="@Model.Occasion.StartDate" type="date"/>
+                <span asp-validation-for="@Model.Occasion.StartDate" class="input-validation"></span>
+            </div>
+            <div class="form-element">
+                <label class="input-label" asp-for="@Model.Occasion.EndDate">End Date</label>
+                <input class="date" asp-for="@Model.Occasion.EndDate" type="date"/>
+                <span asp-validation-for="@Model.Occasion.EndDate" class="input-validation"></span>
+            </div>
+            <div class="form-element">
+                <label class="input-label" asp-for="@Model.Occasion.BudgetId" id="budget-select">Budget</label>
+                <select asp-for="@Model.Occasion.BudgetId" class="dropdown-element" id="select-budget" asp-items="@Model.BudgetList">
+                    <option disabled selected>Select Budget</option>
                 </select>
-                <span asp-validation-for="@Model.Budget.USCategoryId" class="input-validation"></span>
-            </div>
-            <div class="form-element">
-                <label class="input-label" asp-for="@Model.Budget.BudgetType">Budget type</label>
-                <select asp-for="@Model.Budget.BudgetType" class="dropdown-element">
-                    <option disabled selected>Select Budget Type</option>
-                    <option>Daily</option>
-                    <option>Weekly</option>
-                    <option>Monthly</option>
-                </select>
-                <span asp-validation-for="@Model.Budget.BudgetType" class="input-validation"></span>
+                <span asp-validation-for="@Model.Occasion.BudgetId" class="input-validation"></span>
             </div>
             <div class="button">
                 <div class="submit-button">
-                    <button asp-action="Edit" asp-controller="Budget" type="submit">Update</button>
+                    <button type="button" class="clear-button" onclick="clearInputs()">Clear Budget input</button>
+                </div>
+            </div>
+
+            <p>*Toggle the button below to create new budget</p>
+
+            <div class="toggle-container">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggleButton">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <p id="validationMessage" class="error-message"></p>
+            <div class="hidden" id="content">
+                <h4>Adding Budget</h4>
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.Budget.Amount">Budget Amount</label>
+                    <input class="input-element" asp-for="@Model.Budget.Amount" id="budget-add" type="text"/>
+                    <span asp-validation-for="@Model.Budget.Amount" class="input-validation"></span>
+                </div>
+            </div>
+
+
+            <div class="button">
+                <div class="submit-button">
+                    <button asp-action="Edit" asp-controller="Occasion" onclick="validateInputs()" type="submit">Update</button>
                 </div>
             </div>
         </div>
@@ -173,3 +286,29 @@
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
 }
+<script>
+        var toggleButton = document.getElementById('toggleButton');
+        var content = document.getElementById('content');
+    
+        toggleButton.addEventListener('change', function() {
+            content.classList.toggle('hidden', !toggleButton.checked);
+        });
+        
+        function validateInputs() {
+            var input1 = document.getElementById('budget-select').value;
+            var input2 = document.getElementById('budget-add').value;
+            var validationMessage = document.getElementById('validationMessage');
+    
+            if (( input1 == null) && ( input2 == null)) {
+                validationMessage.textContent = 'Please fill out at least one of the inputs.';
+                return false;
+            } else {
+                validationMessage.textContent = ''; // Clear any previous error message
+                return true;
+                // Process form data or perform other actions as needed
+            }
+        }
+        function clearInputs() {
+            document.getElementById('select-budget').value = null;
+        }
+</script>

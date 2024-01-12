@@ -1,40 +1,39 @@
-﻿@model BudgetIndexVM
+﻿@model OcassionIndexVM
 
 
 <div class="MainBoard">
-    <h3>Budget</h3>
+    <h3>Occasion</h3>
 
     <div class="displaySpace">
         <hr/>
         <div class="MainCat">
-            @foreach (var obj in Model.Budgets)
+            @foreach (var obj in Model.Occasions)
             {
                         <div class="elements">
-                            @foreach (var ele in Model.Category)
+                            <p>@obj.Name</p>
+                            @foreach (var ele in Model.Budgets)
                             {
-                                if (obj.UserSelectedCategory.CategoryId == ele.Id)
+                                if (ele.Id == obj.BudgetId)
                                 {
-                                    <img src="@ele.ImageUrl" width="35px"/>
-                                    <p>@obj.Name</p>
                                     <p>@ele.Name</p>
+                                    break;
                                 }
                             }
-
-                            <p>@obj.Amount ETB</p>
+                            <p>@obj.EndDate</p>
                             <div class="modify-link">
-                                <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id">
-                                    <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
-                                    <a asp-controller="Budget" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
-                                        <img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
-                                    </a>
+                            <a asp-controller="Occasion" asp-action="Edit" asp-route-id="@obj.Id">
+                                <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
+                                <a asp-controller="Occasion" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
+                                    <img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
                                 </a>
+                            </a>
                             </div>
                         </div>
                     }
             
         </div>
 
-                <a asp-controller="Budget" asp-action="Create" class="add"><img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Add.png")"/></a>
+                <a asp-controller="Occasion" asp-action="Create" class="add"><img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Add.png")"/></a>
     </div>
     
 </div>

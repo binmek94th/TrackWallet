@@ -12,14 +12,20 @@
                         <div class="elements">
                             @foreach (var ele in Model.Category)
                             {
-                                if (obj.UserSelectedCategory.CategoryId == ele.Id)
+                                try
                                 {
-                                    <img src="@ele.ImageUrl" width="35px"/>
-                                    <p>@obj.Name</p>
-                                    <p>@ele.Name</p>
+                                    if (obj.UserSelectedCategory.CategoryId == ele.Id)
+                                    {
+                                        <img src="@ele.ImageUrl" width="35px"/>
+                                        <p>@ele.Name</p>
+                                    }
+                                }
+                                catch(NullReferenceException e)
+                                {
+                                    
                                 }
                             }
-
+                            <p>@obj.Name</p>
                             <p>@obj.Amount ETB</p>
                             <div class="modify-link">
                                 <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id">
