@@ -23,7 +23,7 @@ public class Budget
     public Occasion Occasion { get; set; }
     
     [Required]
-    public string BudgetType { get; set; }
+    public string? BudgetType { get; set; }
     [Required]
     public double Amount { get; set; }
     public Boolean IsActive { get; set; }

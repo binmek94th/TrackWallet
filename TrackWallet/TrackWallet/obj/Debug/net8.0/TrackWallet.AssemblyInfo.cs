@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TrackWallet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ade17a4b569c126264877f097a2eed3eb727119")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eb8b709269800bc5224d323bb60f55b4cc3ca458")]
 [assembly: System.Reflection.AssemblyProductAttribute("TrackWallet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TrackWallet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

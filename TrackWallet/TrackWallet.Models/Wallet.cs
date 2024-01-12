@@ -23,6 +23,9 @@ public class Wallet
     public string Currency { get; set; }
     [Required]
     public double Balance { get; set; }
+
+    [Required] 
+    public Boolean IsActive { get; set; }
     
     public ICollection<Goal> Goals { get; set; }
     public ICollection<RecurringTransaction> RecurringTransactions { get; set; }
