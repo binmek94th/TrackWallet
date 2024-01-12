@@ -626,10 +626,9 @@ namespace TrackWallet.DataAccess.Migrations
 
             modelBuilder.Entity("TrackWallet.Models.Budget", b =>
                 {
-                    b.HasOne("TrackWallet.Models.Occasion", "Occasion")
+                    b.HasOne("TrackWallet.Models.Occasion", null)
                         .WithMany("Budgets")
-                        .HasForeignKey("OccasionId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("OccasionId");
 
                     b.HasOne("TrackWallet.Models.UserSelectedCategory", "UserSelectedCategory")
                         .WithMany("Budgets")
@@ -643,8 +642,6 @@ namespace TrackWallet.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
-
-                    b.Navigation("Occasion");
 
                     b.Navigation("UserSelectedCategory");
                 });
