@@ -86,7 +86,7 @@
             .button {
                 display: flex;
                 justify-content: flex-end;
-                margin-right: -150px;
+          
                 
             }
             .submit-button button {
@@ -98,8 +98,9 @@
                 border: none;
                 border-radius: 25px;
                 cursor: pointer;
+                margin-right: -150px;
             }
-    
+
             .input-element:hover,
             .dropdown-element:hover,
             .input-image:hover {
@@ -205,6 +206,9 @@
                 -ms-transform: translateX(20px);
                 transform: translateX(20px);
             }
+            .error-message {
+                color: red;
+            }
         </style>
 </head>
 <body>
@@ -213,8 +217,9 @@
         <a asp-action="Index" asp-controller="Budget"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
     </div>
 <div class="content">
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" onsubmit="return validateInputs()" >
         <input asp-for="@Model.Occasion.Id" hidden/>
+        <input asp-for="@Model.Budget.Id" hidden/>
         <div class="form">
             <div class="form-element">
                 <label class="input-label" asp-for="@Model.Occasion.Name">Occasion Name</label>
@@ -237,12 +242,18 @@
                 <span asp-validation-for="@Model.Occasion.EndDate" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.Occasion.BudgetId">Budget</label>
-                <select asp-for="@Model.Occasion.BudgetId" class="dropdown-element" asp-items="@Model.BudgetList">
+                <label class="input-label" asp-for="@Model.Occasion.BudgetId" id="budget-select">Budget</label>
+                <select asp-for="@Model.Occasion.BudgetId" class="dropdown-element" id="select-budget" asp-items="@Model.BudgetList">
                     <option disabled selected>Select Budget</option>
                 </select>
                 <span asp-validation-for="@Model.Occasion.BudgetId" class="input-validation"></span>
             </div>
+            <div class="button">
+                <div class="submit-button">
+                    <button type="button" class="clear-button" onclick="clearInputs()">Clear Budget input</button>
+                </div>
+            </div>
+
             <p>*Toggle the button below to create new budget</p>
             
             <div class="toggle-container">
@@ -251,12 +262,12 @@
                     <span class="slider"></span>
                 </label>
             </div>
-            
+            <p id="validationMessage" class="error-message"></p>
             <div class="hidden" id="content">
                 <h4>Adding Budget</h4>
                 <div class="form-element">
                     <label class="input-label" asp-for="@Model.Budget.Amount">Budget Amount</label>
-                    <input class="date" asp-for="@Model.Budget.Amount" type="text"/>
+                    <input class="input-element" asp-for="@Model.Budget.Amount" id="budget-add" type="text"/>
                     <span asp-validation-for="@Model.Budget.Amount" class="input-validation"></span>
                 </div>
             </div>
@@ -264,7 +275,7 @@
             
             <div class="button">
                 <div class="submit-button">
-                    <button asp-action="CreatePost" asp-controller="Occasion" type="submit">Create</button>
+                    <button asp-action="CreatePost" asp-controller="Occasion" onclick="validateInputs()" type="submit">Create</button>
                 </div>
             </div>
         </div>
@@ -282,4 +293,22 @@
         toggleButton.addEventListener('change', function() {
             content.classList.toggle('hidden', !toggleButton.checked);
         });
+        
+        function validateInputs() {
+            var input1 = document.getElementById('budget-select').value;
+            var input2 = document.getElementById('budget-add').value;
+            var validationMessage = document.getElementById('validationMessage');
+    
+            if (( input1 == null) && ( input2 == null)) {
+                validationMessage.textContent = 'Please fill out at least one of the inputs.';
+                return false;
+            } else {
+                validationMessage.textContent = ''; // Clear any previous error message
+                return true;
+                // Process form data or perform other actions as needed
+            }
+        }
+        function clearInputs() {
+            document.getElementById('select-budget').value = null;
+        }
 </script>

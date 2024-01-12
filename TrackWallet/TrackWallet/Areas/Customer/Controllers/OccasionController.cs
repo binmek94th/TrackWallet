@@ -78,7 +78,16 @@ public class Occasion : Controller
     public IActionResult CreatePost(OccasionVM obj)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        
+        if (obj.Occasion.BudgetId == null)
+        {
+            obj.Budget.UserId = userId;
+            obj.Budget.Name = obj.Occasion.Name;
+            obj.Budget.IsActive = true;
+            obj.Budget.BudgetType = "Occasional";
+            _unitOfWork.Budget.Add(obj.Budget);
+            _unitOfWork.Save();
+            obj.Occasion.BudgetId = obj.Budget.Id;
+        }
         obj.Occasion.UserId = userId;
         _unitOfWork.Occasion.Add(obj.Occasion);
         _unitOfWork.Save();
