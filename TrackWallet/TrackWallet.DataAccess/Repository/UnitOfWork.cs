@@ -16,6 +16,7 @@ public class UnitOfWork : IUnitOfWork
     public IRecurringTransactionRepository RecurringTransaction { get; }
     public IOccasionRepository Occasion { get; }
     public ILoanAndDebtRepository LoanAndDebt { get; set; }
+    public ISharedWalletRepository SharedWallet { get; set; }
 
     private ApplicationDbContext _db;
     public UnitOfWork(ApplicationDbContext db)
@@ -30,6 +31,7 @@ public class UnitOfWork : IUnitOfWork
         RecurringTransaction = new RecurringTransactionRepository(_db);
         Occasion = new OccasionRepository(_db);
         LoanAndDebt = new LoanAndDebtRepository(_db);
+        SharedWallet = new SharedWalletRepository(_db);
     }
 
     public void Save()

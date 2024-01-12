@@ -22,6 +22,8 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<RecurringTransaction> RecurringTransactions { get; set; }
     public DbSet<Occasion> Occasions { get; set; }
     public DbSet<LoanAndDebt> LoanAndDebts { get; set; }
+
+    public DbSet<SharedWallet> SharedWallets { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -100,6 +102,18 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasMany(usc => usc.Occasions)
             .WithOne(bar => bar.Budget)
             .HasForeignKey(bar => bar.BudgetId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<SharedWallet>()
+            .HasOne(g => g.Wallet)
+            .WithMany(w => w.SharedWallets)
+            .HasForeignKey(g => g.WalletId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
+        modelBuilder.Entity<Wallet>()
+            .HasMany(w => w.SharedWallets)
+            .WithOne(bar => bar.Wallet)
+            .HasForeignKey(bar => bar.WalletId)
             .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<Category>().HasData(

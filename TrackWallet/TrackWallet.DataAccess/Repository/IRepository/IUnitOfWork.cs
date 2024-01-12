@@ -11,5 +11,6 @@ public interface IUnitOfWork
     IRecurringTransactionRepository RecurringTransaction { get; }
     IOccasionRepository Occasion { get; }
     ILoanAndDebtRepository LoanAndDebt { get; }
+    ISharedWalletRepository SharedWallet { get; }
     void Save();
 }
