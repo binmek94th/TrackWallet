@@ -15,6 +15,7 @@ public class UnitOfWork : IUnitOfWork
     public IGoalRepository Goal { get; set; }
     public IRecurringTransactionRepository RecurringTransaction { get; }
     public IOccasionRepository Occasion { get; }
+    public ILoanAndDebtRepository LoanAndDebt { get; set; }
 
     private ApplicationDbContext _db;
     public UnitOfWork(ApplicationDbContext db)
@@ -28,6 +29,7 @@ public class UnitOfWork : IUnitOfWork
         Goal = new GoalRepository(_db);
         RecurringTransaction = new RecurringTransactionRepository(_db);
         Occasion = new OccasionRepository(_db);
+        LoanAndDebt = new LoanAndDebtRepository(_db);
     }
 
     public void Save()

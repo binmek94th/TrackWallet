@@ -10,5 +10,6 @@ public interface IUnitOfWork
     IGoalRepository Goal { get; }
     IRecurringTransactionRepository RecurringTransaction { get; }
     IOccasionRepository Occasion { get; }
+    ILoanAndDebtRepository LoanAndDebt { get; }
     void Save();
 }

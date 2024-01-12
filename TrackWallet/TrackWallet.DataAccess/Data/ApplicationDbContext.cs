@@ -21,6 +21,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Goal> Goals { get; set; }
     public DbSet<RecurringTransaction> RecurringTransactions { get; set; }
     public DbSet<Occasion> Occasions { get; set; }
+    public DbSet<LoanAndDebt> LoanAndDebts { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
