@@ -515,6 +515,30 @@ namespace TrackWallet.DataAccess.Migrations
                     b.ToTable("RecurringTransactions");
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.SharedWallet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("WalletId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("WalletId");
+
+                    b.ToTable("SharedWallets");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -769,6 +793,25 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("Wallet");
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.SharedWallet", b =>
+                {
+                    b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TrackWallet.Models.Wallet", "Wallet")
+                        .WithMany("SharedWallets")
+                        .HasForeignKey("WalletId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Wallet");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>
                 {
                     b.HasOne("TrackWallet.Models.Category", "Category")
@@ -821,6 +864,8 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("Goals");
 
                     b.Navigation("RecurringTransactions");
+
+                    b.Navigation("SharedWallets");
                 });
 #pragma warning restore 612, 618
         }
