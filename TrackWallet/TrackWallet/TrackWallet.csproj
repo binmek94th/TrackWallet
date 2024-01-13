@@ -35,6 +35,9 @@
       <AdditionalFiles Include="Areas\Customer\Views\Budget\Edit.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\Home\Index.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\Home\Privacy.cshtml" />
+      <AdditionalFiles Include="Areas\Customer\Views\LoanAndDebt\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Customer\Views\LoanAndDebt\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Customer\Views\LoanAndDebt\Index.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\Occasion\Create.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\Occasion\Delete.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\Occasion\Index.cshtml" />

@@ -133,6 +133,7 @@ public class Budget : Controller
             Text =u.Category.Name,
             Value = u.Id.ToString()
         });
+        
         BudgetVM budget = new()
         {
             CategoryList = Category,

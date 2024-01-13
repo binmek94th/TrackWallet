@@ -44,6 +44,24 @@ build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcSG9tZVxQ
 build_metadata.AdditionalFiles.CssScope = 
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/LoanAndDebt/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcTG9hbkFuZERlYnRcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/LoanAndDebt/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcTG9hbkFuZERlYnRcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/LoanAndDebt/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcTG9hbkFuZERlYnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/Occasion/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = 
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcT2NjYXNpb25cQ3JlYXRlLmNzaHRtbA==
@@ -150,6 +168,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/Home/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcSG9tZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/LoanAndDebt/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcTG9hbkFuZERlYnRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Projects/ASP.Net/TrackWallet/TrackWallet/TrackWallet/TrackWallet/Areas/Customer/Views/Occasion/Edit.cshtml]
