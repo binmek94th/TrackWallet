@@ -30,6 +30,8 @@ public class Wallet
     public ICollection<Goal> Goals { get; set; }
     public ICollection<RecurringTransaction> RecurringTransactions { get; set; }
     public ICollection<SharedWallet> SharedWallets { get; set; }
+    public ICollection<Transaction> Transactions { get; set; }
+
 
     
 

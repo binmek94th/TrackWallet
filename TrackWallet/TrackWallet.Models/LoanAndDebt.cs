@@ -24,4 +24,6 @@ public class LoanAndDebt
     [ForeignKey("Event")]
     public int? EventId { get; set; }
     public Event Event { get; set; }
+
+    public ICollection<Transaction> Transactions { get; set; }
 }

@@ -22,7 +22,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<RecurringTransaction> RecurringTransactions { get; set; }
     public DbSet<Occasion> Occasions { get; set; }
     public DbSet<LoanAndDebt> LoanAndDebts { get; set; }
-
+    public DbSet<Transaction> Transactions { get; set; }
     public DbSet<SharedWallet> SharedWallets { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -199,6 +199,42 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasMany(w => w.Notifications)
             .WithOne(bar => bar.Event)
             .HasForeignKey(bar => bar.EventId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<Transaction>()
+            .HasOne(g => g.Wallet)
+            .WithMany(w => w.Transactions)
+            .HasForeignKey(g => g.WalletId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
+        modelBuilder.Entity<Wallet>()
+            .HasMany(w => w.Transactions)
+            .WithOne(bar => bar.Wallet)
+            .HasForeignKey(bar => bar.WalletId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<Transaction>()
+            .HasOne(g => g.BillAndReminder)
+            .WithMany(w => w.Transactions)
+            .HasForeignKey(g => g.BillAndReminderId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
+        modelBuilder.Entity<BillAndReminder>()
+            .HasMany(w => w.Transactions)
+            .WithOne(bar => bar.BillAndReminder)
+            .HasForeignKey(bar => bar.BillAndReminderId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<Transaction>()
+            .HasOne(g => g.LoanAndDebt)
+            .WithMany(w => w.Transactions)
+            .HasForeignKey(g => g.LoanAndDebtId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
+        modelBuilder.Entity<LoanAndDebt>()
+            .HasMany(w => w.Transactions)
+            .WithOne(bar => bar.LoanAndDebt)
+            .HasForeignKey(bar => bar.LoanAndDebtId)
             .OnDelete(DeleteBehavior.Restrict);
 
         

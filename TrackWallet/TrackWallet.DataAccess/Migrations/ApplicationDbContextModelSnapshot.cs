@@ -483,6 +483,40 @@ namespace TrackWallet.DataAccess.Migrations
                     b.ToTable("LoanAndDebts");
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notification");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.Occasion", b =>
                 {
                     b.Property<int>("Id")
@@ -850,6 +884,24 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("Event");
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.Notification", b =>
+                {
+                    b.HasOne("TrackWallet.Models.Event", "Event")
+                        .WithMany("Notifications")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Event");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.Occasion", b =>
                 {
                     b.HasOne("TrackWallet.Models.Budget", "Budget")
@@ -970,6 +1022,8 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("Budgets");
 
                     b.Navigation("LoanAndDebts");
+
+                    b.Navigation("Notifications");
 
                     b.Navigation("RecurringTransactions");
 
