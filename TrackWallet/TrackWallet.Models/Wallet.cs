@@ -31,6 +31,7 @@ public class Wallet
     public ICollection<RecurringTransaction> RecurringTransactions { get; set; }
     public ICollection<SharedWallet> SharedWallets { get; set; }
     public ICollection<Transaction> Transactions { get; set; }
+    public ICollection<LoanAndDebt> LoanAndDebts { get; set; }
 
 
     

@@ -225,18 +225,29 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(bar => bar.BillAndReminderId)
             .OnDelete(DeleteBehavior.Restrict);
         
-        modelBuilder.Entity<Transaction>()
-            .HasOne(g => g.LoanAndDebt)
-            .WithMany(w => w.Transactions)
-            .HasForeignKey(g => g.LoanAndDebtId)
+        modelBuilder.Entity<LoanAndDebt>()
+            .HasOne(g => g.Transaction)
+            .WithMany(w => w.LoanAndDebts)
+            .HasForeignKey(g => g.TransactionId)
             .OnDelete(DeleteBehavior.Restrict); 
 
-        modelBuilder.Entity<LoanAndDebt>()
-            .HasMany(w => w.Transactions)
-            .WithOne(bar => bar.LoanAndDebt)
-            .HasForeignKey(bar => bar.LoanAndDebtId)
+        modelBuilder.Entity<Transaction>()
+            .HasMany(w => w.LoanAndDebts)
+            .WithOne(bar => bar.Transaction)
+            .HasForeignKey(bar => bar.TransactionId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<LoanAndDebt>()
+            .HasOne(g => g.Wallet)
+            .WithMany(w => w.LoanAndDebts)
+            .HasForeignKey(g => g.WalletId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
+        modelBuilder.Entity<Wallet>()
+            .HasMany(w => w.LoanAndDebts)
+            .WithOne(bar => bar.Wallet)
+            .HasForeignKey(bar => bar.WalletId)
+            .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<Category>().HasData(
             new Category
