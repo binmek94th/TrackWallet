@@ -521,6 +521,9 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
+                    b.Property<int?>("EventId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -547,6 +550,8 @@ namespace TrackWallet.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EventId");
 
                     b.HasIndex("USCategoryId");
 
@@ -841,6 +846,11 @@ namespace TrackWallet.DataAccess.Migrations
 
             modelBuilder.Entity("TrackWallet.Models.RecurringTransaction", b =>
                 {
+                    b.HasOne("TrackWallet.Models.Event", "Event")
+                        .WithMany("RecurringTransactions")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("TrackWallet.Models.UserSelectedCategory", "UserSelectedCategory")
                         .WithMany("RecurringTransactions")
                         .HasForeignKey("USCategoryId")
@@ -860,6 +870,8 @@ namespace TrackWallet.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
+
+                    b.Navigation("Event");
 
                     b.Navigation("UserSelectedCategory");
 
@@ -930,6 +942,8 @@ namespace TrackWallet.DataAccess.Migrations
             modelBuilder.Entity("TrackWallet.Models.Event", b =>
                 {
                     b.Navigation("BillAndReminders");
+
+                    b.Navigation("RecurringTransactions");
 
                     b.Navigation("SharedWallets");
                 });
