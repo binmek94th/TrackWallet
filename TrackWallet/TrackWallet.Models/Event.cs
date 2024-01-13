@@ -21,4 +21,5 @@ public class Event
     public ICollection<RecurringTransaction> RecurringTransactions { get; set; }
     public ICollection<Budget> Budgets { get; set; }
     public ICollection<LoanAndDebt> LoanAndDebts { get; set; }
+    public ICollection<Notification> Notifications { get; set; }
 }
