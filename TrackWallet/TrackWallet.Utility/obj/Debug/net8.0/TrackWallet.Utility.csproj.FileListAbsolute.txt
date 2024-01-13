@@ -37,3 +37,15 @@ D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet\TrackWallet.Utility\obj\
 D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\refint\TrackWallet.Utility.dll
 D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\TrackWallet.Utility.pdb
 D:\Projects\ASP.Net\TrackWallet\TrackWallet\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\ref\TrackWallet.Utility.dll
+D:\Projects\ASP.Net\TrackWalletCl\TrackWallet-master\TrackWallet\TrackWallet.Utility\bin\Debug\net8.0\TrackWallet.Utility.deps.json
+D:\Projects\ASP.Net\TrackWalletCl\TrackWallet-master\TrackWallet\TrackWallet.Utility\bin\Debug\net8.0\TrackWallet.Utility.dll
+D:\Projects\ASP.Net\TrackWalletCl\TrackWallet-master\TrackWallet\TrackWallet.Utility\bin\Debug\net8.0\TrackWallet.Utility.pdb
+D:\Projects\ASP.Net\TrackWalletCl\TrackWallet-master\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\TrackWallet.Utility.csproj.AssemblyReference.cache
+D:\Projects\ASP.Net\TrackWalletCl\TrackWallet-master\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\TrackWallet.Utility.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\ASP.Net\TrackWalletCl\TrackWallet-master\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\TrackWallet.Utility.AssemblyInfoInputs.cache
+D:\Projects\ASP.Net\TrackWalletCl\TrackWallet-master\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\TrackWallet.Utility.AssemblyInfo.cs
+D:\Projects\ASP.Net\TrackWalletCl\TrackWallet-master\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\TrackWallet.Utility.csproj.CoreCompileInputs.cache
+D:\Projects\ASP.Net\TrackWalletCl\TrackWallet-master\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\TrackWallet.Utility.dll
+D:\Projects\ASP.Net\TrackWalletCl\TrackWallet-master\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\refint\TrackWallet.Utility.dll
+D:\Projects\ASP.Net\TrackWalletCl\TrackWallet-master\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\TrackWallet.Utility.pdb
+D:\Projects\ASP.Net\TrackWalletCl\TrackWallet-master\TrackWallet\TrackWallet.Utility\obj\Debug\net8.0\ref\TrackWallet.Utility.dll

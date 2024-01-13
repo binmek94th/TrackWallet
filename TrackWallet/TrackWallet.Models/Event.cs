@@ -16,4 +16,5 @@ public class Event
     public string EventType { get; set; }
     public DateTime datetime { get; set; }
     
+    public ICollection<SharedWallet> SharedWallets { get; set; }
 }

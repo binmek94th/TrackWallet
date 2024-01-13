@@ -116,6 +116,18 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(bar => bar.WalletId)
             .OnDelete(DeleteBehavior.Restrict);
         
+        modelBuilder.Entity<SharedWallet>()
+            .HasOne(g => g.Event)
+            .WithMany(w => w.SharedWallets)
+            .HasForeignKey(g => g.EventId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
+        modelBuilder.Entity<Event>()
+            .HasMany(w => w.SharedWallets)
+            .WithOne(bar => bar.Event)
+            .HasForeignKey(bar => bar.EventId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
         modelBuilder.Entity<Category>().HasData(
             new Category
             {

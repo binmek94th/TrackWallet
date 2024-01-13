@@ -15,4 +15,8 @@ public class SharedWallet
     [ForeignKey("Wallet")]
     public int WalletId { get; set; }
     public Wallet Wallet { get; set; }
+    
+    [ForeignKey("Event")]
+    public int EventId { get; set; }
+    public Event Event { get; set; }
 }

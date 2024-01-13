@@ -529,6 +529,9 @@ namespace TrackWallet.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -537,6 +540,8 @@ namespace TrackWallet.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EventId");
 
                     b.HasIndex("UserId");
 
@@ -801,6 +806,12 @@ namespace TrackWallet.DataAccess.Migrations
 
             modelBuilder.Entity("TrackWallet.Models.SharedWallet", b =>
                 {
+                    b.HasOne("TrackWallet.Models.Event", "Event")
+                        .WithMany("SharedWallets")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -814,6 +825,8 @@ namespace TrackWallet.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
+
+                    b.Navigation("Event");
 
                     b.Navigation("Wallet");
                 });
@@ -851,6 +864,11 @@ namespace TrackWallet.DataAccess.Migrations
             modelBuilder.Entity("TrackWallet.Models.Budget", b =>
                 {
                     b.Navigation("Occasions");
+                });
+
+            modelBuilder.Entity("TrackWallet.Models.Event", b =>
+                {
+                    b.Navigation("SharedWallets");
                 });
 
             modelBuilder.Entity("TrackWallet.Models.Occasion", b =>
