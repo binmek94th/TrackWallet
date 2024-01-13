@@ -456,6 +456,9 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Property<string>("BorrowerName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("EventId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PaymentOption")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -472,6 +475,8 @@ namespace TrackWallet.DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EventId");
 
                     b.HasIndex("UserId");
 
@@ -829,6 +834,11 @@ namespace TrackWallet.DataAccess.Migrations
 
             modelBuilder.Entity("TrackWallet.Models.LoanAndDebt", b =>
                 {
+                    b.HasOne("TrackWallet.Models.Event", "Event")
+                        .WithMany("LoanAndDebts")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -836,6 +846,8 @@ namespace TrackWallet.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
+
+                    b.Navigation("Event");
                 });
 
             modelBuilder.Entity("TrackWallet.Models.Occasion", b =>
@@ -956,6 +968,8 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("BillAndReminders");
 
                     b.Navigation("Budgets");
+
+                    b.Navigation("LoanAndDebts");
 
                     b.Navigation("RecurringTransactions");
 
