@@ -229,6 +229,42 @@ namespace TrackWallet.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.BillAndReminder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("USCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<double>("amount")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("USCategoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BillAndReminder");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.Budget", b =>
                 {
                     b.Property<int>("Id")
@@ -529,7 +565,7 @@ namespace TrackWallet.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("EventId")
+                    b.Property<int?>("EventId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
@@ -690,6 +726,32 @@ namespace TrackWallet.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TrackWallet.Models.BillAndReminder", b =>
+                {
+                    b.HasOne("TrackWallet.Models.Event", "Event")
+                        .WithMany("BillAndReminders")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TrackWallet.Models.UserSelectedCategory", "UserSelectedCategory")
+                        .WithMany("BillAndReminders")
+                        .HasForeignKey("USCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Event");
+
+                    b.Navigation("UserSelectedCategory");
+                });
+
             modelBuilder.Entity("TrackWallet.Models.Budget", b =>
                 {
                     b.HasOne("TrackWallet.Models.Occasion", null)
@@ -809,8 +871,7 @@ namespace TrackWallet.DataAccess.Migrations
                     b.HasOne("TrackWallet.Models.Event", "Event")
                         .WithMany("SharedWallets")
                         .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
@@ -868,6 +929,8 @@ namespace TrackWallet.DataAccess.Migrations
 
             modelBuilder.Entity("TrackWallet.Models.Event", b =>
                 {
+                    b.Navigation("BillAndReminders");
+
                     b.Navigation("SharedWallets");
                 });
 
@@ -878,6 +941,8 @@ namespace TrackWallet.DataAccess.Migrations
 
             modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>
                 {
+                    b.Navigation("BillAndReminders");
+
                     b.Navigation("Budgets");
 
                     b.Navigation("RecurringTransactions");
