@@ -153,6 +153,18 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(bar => bar.USCategoryId)
             .OnDelete(DeleteBehavior.Restrict);
         
+        modelBuilder.Entity<RecurringTransaction>()
+            .HasOne(g => g.Event)
+            .WithMany(w => w.RecurringTransactions)
+            .HasForeignKey(g => g.EventId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
+        modelBuilder.Entity<Event>()
+            .HasMany(w => w.SharedWallets)
+            .WithOne(bar => bar.Event)
+            .HasForeignKey(bar => bar.EventId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
         modelBuilder.Entity<Category>().HasData(
             new Category
             {
