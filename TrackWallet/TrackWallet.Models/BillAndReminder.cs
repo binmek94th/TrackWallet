@@ -18,5 +18,9 @@ public class BillAndReminder
     [ForeignKey("UserSelectedCategory")] 
     public int USCategoryId { get; set; }
     public UserSelectedCategory UserSelectedCategory { get; set; }
+    
+    [ForeignKey("Event")]
+    public int? EventId { get; set; }
+    public Event Event { get; set; }
 
 }

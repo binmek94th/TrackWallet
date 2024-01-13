@@ -17,4 +17,5 @@ public class Event
     public DateTime datetime { get; set; }
     
     public ICollection<SharedWallet> SharedWallets { get; set; }
+    public ICollection<BillAndReminder> BillAndReminders { get; set; }
 }
