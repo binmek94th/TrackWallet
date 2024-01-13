@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrackWallet.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using TrackWallet.DataAccess.Data;
 namespace TrackWallet.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240113173249_recurringTransactionEvent")]
+    partial class recurringTransactionEvent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -280,9 +283,6 @@ namespace TrackWallet.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EventId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -301,8 +301,6 @@ namespace TrackWallet.DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EventId");
 
                     b.HasIndex("OccasionId");
 
@@ -764,11 +762,6 @@ namespace TrackWallet.DataAccess.Migrations
 
             modelBuilder.Entity("TrackWallet.Models.Budget", b =>
                 {
-                    b.HasOne("TrackWallet.Models.Event", "Event")
-                        .WithMany("Budgets")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("TrackWallet.Models.Occasion", null)
                         .WithMany("Budgets")
                         .HasForeignKey("OccasionId");
@@ -785,8 +778,6 @@ namespace TrackWallet.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("ApplicationUser");
-
-                    b.Navigation("Event");
 
                     b.Navigation("UserSelectedCategory");
                 });
@@ -954,8 +945,6 @@ namespace TrackWallet.DataAccess.Migrations
             modelBuilder.Entity("TrackWallet.Models.Event", b =>
                 {
                     b.Navigation("BillAndReminders");
-
-                    b.Navigation("Budgets");
 
                     b.Navigation("RecurringTransactions");
 
