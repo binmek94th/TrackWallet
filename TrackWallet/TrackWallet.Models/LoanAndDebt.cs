@@ -20,4 +20,8 @@ public class LoanAndDebt
     [ForeignKey("ApplicationUser")]
     public string UserId { get; set; }
     public ApplicationUser ApplicationUser { get; set; }
+    
+    [ForeignKey("Event")]
+    public int? EventId { get; set; }
+    public Event Event { get; set; }
 }

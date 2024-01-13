@@ -177,6 +177,18 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(bar => bar.EventId)
             .OnDelete(DeleteBehavior.Restrict);
         
+        modelBuilder.Entity<LoanAndDebt>()
+            .HasOne(g => g.Event)
+            .WithMany(w => w.LoanAndDebts)
+            .HasForeignKey(g => g.EventId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
+        modelBuilder.Entity<Event>()
+            .HasMany(w => w.LoanAndDebts)
+            .WithOne(bar => bar.Event)
+            .HasForeignKey(bar => bar.EventId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
         modelBuilder.Entity<Category>().HasData(
             new Category
             {
