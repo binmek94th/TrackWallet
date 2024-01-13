@@ -160,7 +160,19 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .OnDelete(DeleteBehavior.Restrict); 
 
         modelBuilder.Entity<Event>()
-            .HasMany(w => w.SharedWallets)
+            .HasMany(w => w.RecurringTransactions)
+            .WithOne(bar => bar.Event)
+            .HasForeignKey(bar => bar.EventId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<Budget>()
+            .HasOne(g => g.Event)
+            .WithMany(w => w.Budgets)
+            .HasForeignKey(g => g.EventId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
+        modelBuilder.Entity<Event>()
+            .HasMany(w => w.Budgets)
             .WithOne(bar => bar.Event)
             .HasForeignKey(bar => bar.EventId)
             .OnDelete(DeleteBehavior.Restrict);

@@ -19,4 +19,5 @@ public class Event
     public ICollection<SharedWallet> SharedWallets { get; set; }
     public ICollection<BillAndReminder> BillAndReminders { get; set; }
     public ICollection<RecurringTransaction> RecurringTransactions { get; set; }
+    public ICollection<Budget> Budgets { get; set; }
 }
