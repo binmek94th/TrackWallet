@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrackWallet.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using TrackWallet.DataAccess.Data;
 namespace TrackWallet.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240113185741_walletLoanAndDebtEdit")]
+    partial class walletLoanAndDebtEdit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -466,9 +469,6 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Property<DateTime>("StartingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TransactionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -477,18 +477,11 @@ namespace TrackWallet.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("WalletId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
 
-                    b.HasIndex("TransactionId");
-
                     b.HasIndex("UserId");
-
-                    b.HasIndex("WalletId");
 
                     b.ToTable("LoanAndDebts");
                 });
@@ -919,31 +912,15 @@ namespace TrackWallet.DataAccess.Migrations
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("TrackWallet.Models.Transaction", "Transaction")
-                        .WithMany("LoanAndDebts")
-                        .HasForeignKey("TransactionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TrackWallet.Models.Wallet", "Wallet")
-                        .WithMany("LoanAndDebts")
-                        .HasForeignKey("WalletId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Event");
-
-                    b.Navigation("Transaction");
-
-                    b.Navigation("Wallet");
                 });
 
             modelBuilder.Entity("TrackWallet.Models.Notification", b =>
@@ -1128,11 +1105,6 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("Budgets");
                 });
 
-            modelBuilder.Entity("TrackWallet.Models.Transaction", b =>
-                {
-                    b.Navigation("LoanAndDebts");
-                });
-
             modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>
                 {
                     b.Navigation("BillAndReminders");
@@ -1145,8 +1117,6 @@ namespace TrackWallet.DataAccess.Migrations
             modelBuilder.Entity("TrackWallet.Models.Wallet", b =>
                 {
                     b.Navigation("Goals");
-
-                    b.Navigation("LoanAndDebts");
 
                     b.Navigation("RecurringTransactions");
 

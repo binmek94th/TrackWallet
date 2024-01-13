@@ -25,11 +25,12 @@ public class LoanAndDebt
     public int? EventId { get; set; }
     public Event Event { get; set; }
     
-    [ForeignKey("Wallet")]
-    public int WalletId { get; set; }
-    public Wallet Wallet { get; set; }
-    
     [ForeignKey("Transaction")]
     public int TransactionId { get; set; }
     public Transaction Transaction { get; set; }
+
+    [ForeignKey("Wallet")] 
+    public int WalletId { get; set; }
+    public Wallet Wallet { get; set; }
+    
 }

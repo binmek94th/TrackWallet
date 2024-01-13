@@ -33,7 +33,6 @@ public class Wallet
     public ICollection<Transaction> Transactions { get; set; }
     public ICollection<LoanAndDebt> LoanAndDebts { get; set; }
 
-
     
 
 }
