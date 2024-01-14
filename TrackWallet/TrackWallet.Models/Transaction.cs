@@ -26,8 +26,11 @@ public class Transaction
     public int UserSelectedCategoryId { get; set; }
     public UserSelectedCategory UserSelectedCategory { get; set; }
     
-
     [ForeignKey("LoanAndDebt")]
     public int? LoanAndDebtId { get; set; }
     public LoanAndDebt LoanAndDebt { get; set; }
+    
+    [ForeignKey("RecurringTransaction")]
+    public int? RecurringTransactionId { get; set; }
+    public RecurringTransaction RecurringTransaction { get; set; }
 }

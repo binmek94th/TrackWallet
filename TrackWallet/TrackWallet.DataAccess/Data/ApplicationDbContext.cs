@@ -224,6 +224,18 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .WithOne(bar => bar.UserSelectedCategory)
             .HasForeignKey(bar => bar.UserSelectedCategoryId)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<Transaction>()
+            .HasOne(g => g.RecurringTransaction)
+            .WithMany(w => w.Transactions)
+            .HasForeignKey(g => g.RecurringTransactionId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
+        modelBuilder.Entity<RecurringTransaction>()
+            .HasMany(w => w.Transactions)
+            .WithOne(bar => bar.RecurringTransaction)
+            .HasForeignKey(bar => bar.RecurringTransactionId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Category>().HasData(
             new Category

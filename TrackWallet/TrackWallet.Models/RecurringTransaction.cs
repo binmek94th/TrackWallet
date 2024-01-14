@@ -12,6 +12,8 @@ public class RecurringTransaction
     [Required (ErrorMessage = "Select a date")]
     public DateTime nextDate { get; set; }
 
+    public ICollection<Transaction> Transactions { get; set; }
+
     public string RecurringType { get; set; }
     [Required]
     public double Amount { get; set; }

@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TrackWallet.Areas.Admin.Controllers.Budget">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAgAAAAAAAIEAAEACAAEAAgAAAAA=</HashCode>
+      <FileName>Areas\Customer\Controllers\BudgetController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrackWallet.Areas.Admin.Controllers.Goal">
+    <Position X="27.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAgAAAAAAAIEAAEACAAEAAgAAAAA=</HashCode>
+      <FileName>Areas\Customer\Controllers\GoalController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrackWallet.Areas.Admin.Controllers.LoanAndDebt">
+    <Position X="2.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAgAAAAAAAIEAAEACAAEAAgAAAAA=</HashCode>
+      <FileName>Areas\Customer\Controllers\LoanAndDebtController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrackWallet.Areas.Admin.Controllers.Occasion">
+    <Position X="31.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAgAAAAAAAIEAAEACAAEAAgAAAAA=</HashCode>
+      <FileName>Areas\Customer\Controllers\OccasionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrackWallet.Areas.Admin.Controllers.RecurringTransaction">
+    <Position X="18.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAgAAAAAAAIEAAEACAAEAAgAAAAA=</HashCode>
+      <FileName>Areas\Customer\Controllers\RecurringTransactionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrackWallet.Areas.Admin.Controllers.Transaction">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAgAAAAAAAIEAAEACAAEAAgAAAAA=</HashCode>
+      <FileName>Areas\Customer\Controllers\TransactionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrackWallet.Areas.Admin.Controllers.UserSelectedCategory">
+    <Position X="34.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAgAAAAAAAAAAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Customer\Controllers\UserSelectedCategoryController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrackWallet.Controllers.HomeController">
+    <Position X="15.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAQAAAgAAAAAAIAAAAUACAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Customer\Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrackWallet.Models.ApplicationUser">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Models.Budget">
+    <Position X="29.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Models.Category">
+    <Position X="17" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Models.Event">
+    <Position X="5.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Models.Goal">
+    <Position X="33" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Models.LoanAndDebt">
+    <Position X="20.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Models.Notification">
+    <Position X="22.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Models.Occasion">
+    <Position X="9.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Models.RecurringTransaction">
+    <Position X="36.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Models.SharedWallet">
+    <Position X="24" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Models.Transaction">
+    <Position X="25.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Models.UserSelectedCategory">
+    <Position X="11.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Models.Wallet">
+    <Position X="38.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.Areas.Admin.Controllers.CategoryController">
+    <Position X="13.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAgAAAAAAAAAAAgAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Admin\Controllers\CategoryController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Data.ApplicationDbContext">
+    <Position X="40" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.BudgetRepository">
+    <Position X="9" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.CategoryRepository">
+    <Position X="15.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.EventRepository">
+    <Position X="18" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.GoalRepository">
+    <Position X="22.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.LoanAndDebtRepository">
+    <Position X="27" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.OccasionRepository">
+    <Position X="4.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.RecurringTransactionRepository">
+    <Position X="11.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.Repository&lt;T&gt;" Collapsed="true">
+    <Position X="15.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.SharedWalletRepository">
+    <Position X="20.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.TransactionRepository">
+    <Position X="24.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.UnitOfWork">
+    <Position X="31.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.UserSelectedCategoryRepository">
+    <Position X="6.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TrackWallet.DataAccess.Repository.WalletRepository">
+    <Position X="13.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.IBudgetRepository">
+    <Position X="0.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.ICategoryRepository">
+    <Position X="7.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.IEventRepository">
+    <Position X="9.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.IGoalRepository">
+    <Position X="14" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.ILoanAndDebtRepository">
+    <Position X="18.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.IOccasionRepository">
+    <Position X="20.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.IRecurringTransactionRepository">
+    <Position X="2.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.IRepository&lt;T&gt;">
+    <Position X="11.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.ISharedWalletRepository">
+    <Position X="11.75" Y="15" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.ITransactionRepository">
+    <Position X="16.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.IUnitOfWork">
+    <Position X="29.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.IUserSelectedCategoryRepository">
+    <Position X="23" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TrackWallet.DataAccess.Repository.IRepository.IWalletRepository">
+    <Position X="5" Y="12.5" Width="1.5" />
+    <InheritanceLine Type="TrackWallet.DataAccess.Repository.IRepository.IRepository&lt;T&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="12.5" Y="14.315" />
+        <Point X="12.5" Y="14.69" />
+        <Point X="5.75" Y="14.69" />
+        <Point X="5.75" Y="13.733" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
