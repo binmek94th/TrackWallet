@@ -630,6 +630,9 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Property<int?>("LoanAndDebtId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RecurringTransactionId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -646,6 +649,8 @@ namespace TrackWallet.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LoanAndDebtId");
+
+                    b.HasIndex("RecurringTransactionId");
 
                     b.HasIndex("UserId");
 
@@ -990,6 +995,11 @@ namespace TrackWallet.DataAccess.Migrations
                         .HasForeignKey("LoanAndDebtId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("TrackWallet.Models.RecurringTransaction", "RecurringTransaction")
+                        .WithMany("Transactions")
+                        .HasForeignKey("RecurringTransactionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("TrackWallet.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -1011,6 +1021,8 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("LoanAndDebt");
+
+                    b.Navigation("RecurringTransaction");
 
                     b.Navigation("UserSelectedCategory");
 
@@ -1073,6 +1085,11 @@ namespace TrackWallet.DataAccess.Migrations
             modelBuilder.Entity("TrackWallet.Models.Occasion", b =>
                 {
                     b.Navigation("Budgets");
+                });
+
+            modelBuilder.Entity("TrackWallet.Models.RecurringTransaction", b =>
+                {
+                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("TrackWallet.Models.UserSelectedCategory", b =>
