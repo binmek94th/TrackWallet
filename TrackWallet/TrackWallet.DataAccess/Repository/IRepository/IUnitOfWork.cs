@@ -12,5 +12,6 @@ public interface IUnitOfWork
     IOccasionRepository Occasion { get; }
     ILoanAndDebtRepository LoanAndDebt { get; }
     ISharedWalletRepository SharedWallet { get; }
+    ITransactionRepository Transaction { get; }
     void Save();
 }

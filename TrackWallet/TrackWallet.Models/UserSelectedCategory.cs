@@ -20,9 +20,8 @@ public class UserSelectedCategory
     public int CategoryId { get; set; }
     public Category Category { get; set; }
     public ICollection<Budget> Budgets { get; set; }
+    public ICollection<Transaction> Transactions { get; set; }
     public ICollection<RecurringTransaction> RecurringTransactions { get; set; }
-    public ICollection<BillAndReminder> BillAndReminders { get; set; }
-
 
 
     

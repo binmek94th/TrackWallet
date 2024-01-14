@@ -41,18 +41,43 @@ public class LoanAndDebt : Controller
 
     public IActionResult Create()
     {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        IEnumerable<Wallet> wallets = _unitOfWork.Wallet.GetAll().Where(item => item.UserId == userId);
 
-        return View();
+        IEnumerable<SelectListItem> WalletList = wallets.Select(u => new SelectListItem
+        {
+            Text = u.Name,
+            Value = u.WalletId.ToString()
+        });
+        LoanAndDebtVM loanAndDebt = new LoanAndDebtVM
+        {
+            LoanAndDebt = new Models.LoanAndDebt(),
+            WalletList = WalletList
+        };
+        return View(loanAndDebt);
     }
 
 
     [HttpPost]
-    public IActionResult CreatePost(Models.LoanAndDebt obj)
+    public IActionResult CreatePost(LoanAndDebtVM obj)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        
-        obj.UserId = userId;
-        _unitOfWork.LoanAndDebt.Add(obj);
+        var wallet = _unitOfWork.Wallet.Get(u => u.WalletId == obj.LoanAndDebt.WalletId);
+
+        if (obj.LoanAndDebt.Type == "Loan")
+        {
+            if (wallet.Balance > obj.LoanAndDebt.Amount)
+            {
+                wallet.Balance -= obj.LoanAndDebt.Amount;
+            }
+        }
+        else if (obj.LoanAndDebt.Type == "Debt")
+        {
+            wallet.Balance += obj.LoanAndDebt.Amount;
+        }
+        _unitOfWork.Wallet.Update(wallet);
+        obj.LoanAndDebt.UserId = userId;
+        _unitOfWork.LoanAndDebt.Add(obj.LoanAndDebt);
         _unitOfWork.Save();
 
         return RedirectToAction("Index");

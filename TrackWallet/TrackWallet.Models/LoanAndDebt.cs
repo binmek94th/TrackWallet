@@ -11,7 +11,7 @@ public class LoanAndDebt
     public string Type { get; set; }
     [Required]
     [Range(1,10000000, ErrorMessage = "Must be Greater Than 0")]
-    public string Amount { get; set; }
+    public double Amount { get; set; }
     [Required]
     public string PaymentOption { get; set; }
     public string? BorrowerName { get; set; }

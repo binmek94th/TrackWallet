@@ -128,30 +128,6 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(bar => bar.EventId)
             .OnDelete(DeleteBehavior.Restrict);
         
-        modelBuilder.Entity<BillAndReminder>()
-            .HasOne(g => g.Event)
-            .WithMany(w => w.BillAndReminders)
-            .HasForeignKey(g => g.EventId)
-            .OnDelete(DeleteBehavior.Restrict); 
-
-        modelBuilder.Entity<Event>()
-            .HasMany(w => w.SharedWallets)
-            .WithOne(bar => bar.Event)
-            .HasForeignKey(bar => bar.EventId)
-            .OnDelete(DeleteBehavior.Restrict);
-        
-        modelBuilder.Entity<BillAndReminder>()
-            .HasOne(bar => bar.UserSelectedCategory)
-            .WithMany(usc => usc.BillAndReminders)
-            .HasForeignKey(bar => bar.USCategoryId)
-            .OnDelete(DeleteBehavior.Restrict);
-        
-        // Configure the relationship between UserSelectedCategory and RecurringTransaction
-        modelBuilder.Entity<UserSelectedCategory>()
-            .HasMany(usc => usc.BillAndReminders)
-            .WithOne(bar => bar.UserSelectedCategory)
-            .HasForeignKey(bar => bar.USCategoryId)
-            .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<RecurringTransaction>()
             .HasOne(g => g.Event)
@@ -214,18 +190,6 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<Transaction>()
-            .HasOne(g => g.BillAndReminder)
-            .WithMany(w => w.Transactions)
-            .HasForeignKey(g => g.BillAndReminderId)
-            .OnDelete(DeleteBehavior.Restrict); 
-
-        modelBuilder.Entity<BillAndReminder>()
-            .HasMany(w => w.Transactions)
-            .WithOne(bar => bar.BillAndReminder)
-            .HasForeignKey(bar => bar.BillAndReminderId)
-            .OnDelete(DeleteBehavior.Restrict);
-        
-        modelBuilder.Entity<Transaction>()
             .HasOne(g => g.LoanAndDebt)
             .WithMany(w => w.Transactions)
             .HasForeignKey(g => g.LoanAndDebtId)
@@ -249,6 +213,18 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(bar => bar.WalletId)
             .OnDelete(DeleteBehavior.Restrict);
         
+        modelBuilder.Entity<Transaction>()
+            .HasOne(g => g.UserSelectedCategory)
+            .WithMany(w => w.Transactions)
+            .HasForeignKey(g => g.UserSelectedCategoryId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
+        modelBuilder.Entity<UserSelectedCategory>()
+            .HasMany(w => w.Transactions)
+            .WithOne(bar => bar.UserSelectedCategory)
+            .HasForeignKey(bar => bar.UserSelectedCategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
+
         modelBuilder.Entity<Category>().HasData(
             new Category
             {

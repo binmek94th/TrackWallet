@@ -33,4 +33,5 @@ public class RecurringTransaction
     [ForeignKey("Event")]
     public int? EventId { get; set; }
     public Event Event { get; set; }
+
 }

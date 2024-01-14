@@ -10,6 +10,8 @@ public class Transaction
     public int Id { get; set; }
     public string Direction { get; set; }
     public double Amount { get; set; }
+    public string? Description { get; set; }
+    public DateTime date { get; set; }
     
     [ForeignKey("ApplicationUser")]
     public string UserId { get; set; }
@@ -19,9 +21,10 @@ public class Transaction
     public int WalletId { get; set; }
     public Wallet Wallet { get; set; }
     
-    [ForeignKey("BillAndReminder")]
-    public int? BillAndReminderId { get; set; }
-    public BillAndReminder BillAndReminder { get; set; }
+    [ForeignKey("UserSelectedCategory")]
+    public int UserSelectedCategoryId { get; set; }
+    public UserSelectedCategory UserSelectedCategory { get; set; }
+    
 
     [ForeignKey("LoanAndDebt")]
     public int? LoanAndDebtId { get; set; }

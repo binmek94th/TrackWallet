@@ -1,4 +1,4 @@
-﻿@model LoanAndDebt
+﻿@model LoanAndDebtVM
 
 
 <!DOCTYPE html>
@@ -125,6 +125,37 @@
             .form-section {
                 display: none;
             }
+            .IE {
+                width: 130px;
+                height: 35px;
+                margin-left: 13px;
+                background-color: #9FE870;
+                border: none;
+                border-radius: 10px;
+                text-align: center;
+                font-size: 18px;
+        
+            }
+            .Bcontainer {
+                background-color: #9FE870;
+                width: 300px;
+                height: 45px;
+                border-radius: 15px;
+                display: flex;
+                margin-left: 100px;
+                margin-bottom: 20px;
+                align-items: center;
+                text-align: center;
+            }
+            button:active {
+                background-color: #B9EE97;
+            }
+        
+            /* Change color when the button is focused (tabbed into) */
+            button:focus {
+                outline: none;
+                background-color: #B9EE97;
+            }
            
         </style>
 </head>
@@ -133,38 +164,46 @@
     <div class="Back-arrow">
         <a asp-action="Index" asp-controller="LoanAndDebt"><img width="30px" src="@Url.Content("~/Image/Icons/Back.png")"/> </a>
     </div>
+    <div class="Bcontainer">
+        <button class="IE" onclick="showForm('loanForm')">Loan</button>
+        <button class="IE" onclick="showForm('debtForm')">Debt</button>
+    </div>
 <div class="content">
-    <button onclick="showForm('loanForm')">Loan</button>
-    <button onclick="showForm('debtForm')">Debt</button>
-    
     <form method="post" id="loanForm" class="form-section">
-        <input asp-for="@Model.Id" hidden/>
-        <input asp-for="Type" value="Loan" hidden/>
+        <input asp-for="@Model.LoanAndDebt.Id" hidden/>
+        <input asp-for="LoanAndDebt.Type" value="Loan" hidden/>
         <div class="form">
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.BorrowerName">Borrower Name</label>
-                <input asp-for="@Model.BorrowerName" type="text" class="input-element"/>
-                <span asp-validation-for="@Model.BorrowerName" class="input-validation"></span>
+                <label class="input-label" asp-for="@Model.LoanAndDebt.BorrowerName">Borrower Name</label>
+                <input asp-for="@Model.LoanAndDebt.BorrowerName" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.LoanAndDebt.BorrowerName" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.Amount">Amount</label>
-                <input asp-for="@Model.Amount" type="text" class="input-element"/>
-                <span asp-validation-for="@Model.Amount" class="input-validation"></span>
+                <label class="input-label" asp-for="@Model.LoanAndDebt.Amount">Amount</label>
+                <input asp-for="@Model.LoanAndDebt.Amount" type="text" class="input-element"/>
+                <span asp-validation-for="@Model.LoanAndDebt.Amount" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.StartingDate">Starting date</label>
-                <input asp-for="@Model.StartingDate" type="date" class="input-element"></input>
-                <span asp-validation-for="@Model.StartingDate" class="input-validation"></span>
+                <label class="input-label" asp-for="@Model.LoanAndDebt.StartingDate">Borrowed date</label>
+                <input asp-for="@Model.LoanAndDebt.StartingDate" type="date" class="input-element"></input>
+                <span asp-validation-for="@Model.LoanAndDebt.StartingDate" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="@Model.PaymentOption">Budget type</label>
-                <select asp-for="@Model.PaymentOption" class="dropdown-element">
+                <label class="input-label" asp-for="@Model.LoanAndDebt.WalletId">Budget type</label>
+                <select asp-for="@Model.LoanAndDebt.WalletId" class="dropdown-element" asp-items="@Model.WalletList">
+                    <option disabled selected>Select wallet</option>
+                </select>
+                <span asp-validation-for="@Model.LoanAndDebt.WalletId" class="input-validation"></span>
+            </div>
+            <div class="form-element">
+                <label class="input-label" asp-for="@Model.LoanAndDebt.PaymentOption">Budget type</label>
+                <select asp-for="@Model.LoanAndDebt.PaymentOption" class="dropdown-element">
                     <option disabled selected>Select Payment Option</option>
                     <option>Weekly</option>
                     <option>Monthly</option>
                     <option>yearly</option>
                 </select>
-                <span asp-validation-for="@Model.PaymentOption" class="input-validation"></span>
+                <span asp-validation-for="@Model.LoanAndDebt.PaymentOption" class="input-validation"></span>
             </div>
             <div class="button">
                 <div class="submit-button">
@@ -175,33 +214,40 @@
     </form>
     
     <form method="post" id="debtForm" class="form-section">
-        <input asp-for="@Model.Id" hidden/>
-        <input asp-for="Type" value="Debt" hidden/>
+        <input asp-for="@Model.LoanAndDebt.Id" hidden/>
+        <input asp-for="LoanAndDebt.Type" value="Debt" hidden/>
             <div class="form">
                 <div class="form-element">
-                    <label class="input-label" asp-for="@Model.BorrowerName"> Borrowed From</label>
-                    <input asp-for="@Model.BorrowerName" type="text" class="input-element"/>
-                    <span asp-validation-for="@Model.BorrowerName" class="input-validation"></span>
+                    <label class="input-label" asp-for="@Model.LoanAndDebt.BorrowerName"> Borrowed From</label>
+                    <input asp-for="@Model.LoanAndDebt.BorrowerName" type="text" class="input-element"/>
+                    <span asp-validation-for="@Model.LoanAndDebt.BorrowerName" class="input-validation"></span>
                 </div>
                 <div class="form-element">
-                    <label class="input-label" asp-for="@Model.Amount">Amount</label>
-                    <input asp-for="@Model.Amount" type="text" class="input-element"/>
-                    <span asp-validation-for="@Model.Amount" class="input-validation"></span>
+                    <label class="input-label" asp-for="@Model.LoanAndDebt.Amount">Amount</label>
+                    <input asp-for="@Model.LoanAndDebt.Amount" type="text" class="input-element"/>
+                    <span asp-validation-for="@Model.LoanAndDebt.Amount" class="input-validation"></span>
                 </div>
                 <div class="form-element">
-                    <label class="input-label" asp-for="@Model.StartingDate">Starting date</label>
-                    <input asp-for="@Model.StartingDate" type="date" class="input-element"></input>
-                    <span asp-validation-for="@Model.StartingDate" class="input-validation"></span>
+                    <label class="input-label" asp-for="@Model.LoanAndDebt.StartingDate">Starting date</label>
+                    <input asp-for="@Model.LoanAndDebt.StartingDate" type="date" class="input-element"></input>
+                    <span asp-validation-for="@Model.LoanAndDebt.StartingDate" class="input-validation"></span>
                 </div>
                 <div class="form-element">
-                    <label class="input-label" asp-for="@Model.PaymentOption">Budget type</label>
-                    <select asp-for="@Model.PaymentOption" class="dropdown-element">
+                    <label class="input-label" asp-for="@Model.LoanAndDebt.WalletId">Budget type</label>
+                    <select asp-for="@Model.LoanAndDebt.WalletId" class="dropdown-element" asp-items="@Model.WalletList">
+                        <option disabled selected>Select wallet</option>
+                    </select>
+                    <span asp-validation-for="@Model.LoanAndDebt.WalletId" class="input-validation"></span>
+                </div>
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.LoanAndDebt.PaymentOption">Budget type</label>
+                    <select asp-for="@Model.LoanAndDebt.PaymentOption" class="dropdown-element">
                         <option disabled selected>Select Payment Option</option>
                         <option>Weekly</option>
                         <option>Monthly</option>
                         <option>yearly</option>
                     </select>
-                    <span asp-validation-for="@Model.PaymentOption" class="input-validation"></span>
+                    <span asp-validation-for="@Model.LoanAndDebt.PaymentOption" class="input-validation"></span>
                 </div>
                 <div class="button">
                     <div class="submit-button">

@@ -44,6 +44,9 @@
       <AdditionalFiles Include="Areas\Customer\Views\RecurringTransaction\Create.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\RecurringTransaction\Delete.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\RecurringTransaction\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Customer\Views\Transaction\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Customer\Views\Transaction\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Customer\Views\Transaction\Index.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\UserSelectedCategory\Create.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\UserSelectedCategory\Index.cshtml" />
     </ItemGroup>
