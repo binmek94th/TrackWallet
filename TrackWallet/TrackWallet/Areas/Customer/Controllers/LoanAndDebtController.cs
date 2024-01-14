@@ -70,6 +70,11 @@ public class LoanAndDebt : Controller
             {
                 wallet.Balance -= obj.LoanAndDebt.Amount;
             }
+            else
+            {
+                TempData["ErrorMessage"] = "Insufficient balance to fund this loan";
+                return RedirectToAction("Create");
+            }
         }
         else if (obj.LoanAndDebt.Type == "Debt")
         {

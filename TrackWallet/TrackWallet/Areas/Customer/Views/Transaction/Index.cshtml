@@ -1,4 +1,4 @@
-﻿@model BudgetIndexVM
+﻿@model List<Transaction>
 
 
 <div class="MainBoard">
@@ -7,30 +7,16 @@
     <div class="displaySpace">
         <hr/>
         <div class="MainCat">
-            @foreach (var obj in Model.Budgets)
+            @foreach (var obj in Model)
             {
                         <div class="elements">
-                            @foreach (var ele in Model.Category)
-                            {
-                                try
-                                {
-                                    if (obj.UserSelectedCategory.CategoryId == ele.Id)
-                                    {
-                                        <img src="@ele.ImageUrl" width="35px"/>
-                                        <p>@ele.Name</p>
-                                    }
-                                }
-                                catch(NullReferenceException e)
-                                {
-                                    
-                                }
-                            }
-                            <p>@obj.Name</p>
+                            <p>@obj.Direction</p>
                             <p>@obj.Amount ETB</p>
+                            <p>@obj.Wallet.Name</p>
                             <div class="modify-link">
-                                <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id">
+                                <a asp-controller="Transaction" asp-action="Edit" asp-route-id="@obj.Id">
                                     <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
-                                    <a asp-controller="Budget" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
+                                    <a asp-controller="Transaction" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
                                         <img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
                                     </a>
                                 </a>

@@ -157,6 +157,12 @@
                 outline: none;
                 background-color: #B9EE97;
             } 
+            #IncomeForm{
+                width: 87%;
+            }
+            .form p{
+                width: 500px;
+                }
         </style>
 </head>
 <body>
@@ -166,14 +172,14 @@
     </div>
 <div class="content">
     <div class="Bcontainer">
-        <button class="IE" onclick="showForm('IncomeForm')" id="income">Income</button>
-        <button class="IE" onclick="showForm('ExpenseForm')" id="expense">Expenses</button>
+        <button class="IE" onclick="showForm('IncomeForm', 'income')" id="income">Income</button>
+        <button class="IE" onclick="showForm('ExpenseForm', 'expense')" id="expense">Expenses</button>
     </div>
     <div class="form-section" id="IncomeForm">
         <form method="post" enctype="multipart/form-data">
             <h4>Income</h4>
-            <input asp-for="@Model.Transaction.Direction" value="Income" hidden/>
-            <input asp-for="@Model.Transaction.Id" hidden/>
+            <input asp-for="Transaction.Direction" value="Income" hidden/>
+            <input asp-for="Transaction.Id" hidden/>
             <div class="form">
                 <div class="form-element">
                     <label class="input-label" asp-for="@Model.Transaction.UserSelectedCategoryId">Category</label>
@@ -204,6 +210,7 @@
                     <input asp-for="@Model.Transaction.Description" type="text" class="input-element"/>
                     <span asp-validation-for="@Model.Transaction.Description" class="input-validation"></span>
                 </div>
+                <p>If the transaction is loan repayment select a loan you gave others</p>
                 <div class="form-element">
                     <label class="input-label" asp-for="@Model.Transaction.LoanAndDebtId">Loan repayment</label>
                     <select asp-for="@Model.Transaction.LoanAndDebtId" class="dropdown-element" asp-items="@Model.loanList">
@@ -213,7 +220,7 @@
                 </div>
                 <div class="button">
                     <div class="submit-button">
-                        <button asp-action="CreatePost" asp-controller="Budget" type="submit">Create</button>
+                        <button asp-action="CreatePost" asp-controller="Transaction" type="submit">Create</button>
                     </div>
                 </div>
             </div>
@@ -221,9 +228,9 @@
     </div>
     <div class="form-section" id="ExpenseForm">
         <h4>Expense</h4>
-        <input asp-for="@Model.Transaction.Id" hidden/>
-        <input asp-for="@Model.Transaction.Direction" hidden value="Expense"/>
         <form method="post" enctype="multipart/form-data">
+        <input asp-for="@Model.Transaction.Id" hidden/>
+        <input asp-for="Transaction.Direction" value="Expense" hidden/>
             <input asp-for="@Model.Transaction.Id" hidden/>
             <div class="form">
                 <div class="form-element">
@@ -255,6 +262,7 @@
                     <input asp-for="@Model.Transaction.Description" type="text" class="input-element"/>
                     <span asp-validation-for="@Model.Transaction.Description" class="input-validation"></span>
                 </div>
+                <label>If the transaction is Debt payment select a debt</label>
                 <div class="form-element">
                     <label class="input-label" asp-for="@Model.Transaction.LoanAndDebtId">Debt payment</label>
                     <select asp-for="@Model.Transaction.LoanAndDebtId" class="dropdown-element" asp-items="@Model.DebtList">
@@ -265,7 +273,7 @@
                 
                 <div class="button">
                     <div class="submit-button">
-                        <button asp-action="CreatePost" asp-controller="Budget" type="submit">Create</button>
+                        <button asp-action="CreatePost" asp-controller="Transaction" type="submit">Create</button>
                     </div>
                 </div>
             </div>
@@ -289,30 +297,30 @@
         }
     };
 
-    function showForm(formId, buttonId) {
-        // Hide all form sections
-        var formSections = document.querySelectorAll('.form-section');
-        formSections.forEach(function (section) {
-            section.style.display = 'none';
-        });
-
-        // Show the selected form section
-        var selectedForm = document.getElementById(formId);
-        if (selectedForm) {
-            selectedForm.style.display = 'block';
-        }
-
-        // Remove the active class from all buttons
-        var allButtons = document.querySelectorAll('.IE');
-        allButtons.forEach(function (button) {
-            button.classList.remove('active-button');
-        });
-
-        // Add the active class to the clicked button
-        var clickedButton = document.getElementById(buttonId);
-        if (clickedButton) {
-            clickedButton.classList.add('active-button');
-        }
+   function showForm(formId, buttonId) {
+       // Hide all form sections
+       var formSections = document.querySelectorAll('.form-section');
+       formSections.forEach(function (section) {
+           section.style.display = 'none';
+       });
+   
+       // Show the selected form section
+       var selectedForm = document.getElementById(formId);
+       if (selectedForm) {
+           selectedForm.style.display = 'block';
+       }
+   
+       // Remove the active class from all buttons
+       var allButtons = document.querySelectorAll('.IE');
+       allButtons.forEach(function (button) {
+           button.classList.remove('active-button');
+       });
+   
+       // Add the active class to the clicked button
+       var clickedButton = document.getElementById(buttonId);
+       if (clickedButton) {
+           clickedButton.classList.add('active-button');
+       }
     }
 </script>
 

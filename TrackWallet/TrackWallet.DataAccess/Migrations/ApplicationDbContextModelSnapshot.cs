@@ -422,6 +422,9 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Property<int?>("EventId")
                         .HasColumnType("int");
 
+                    b.Property<double>("PaidAmount")
+                        .HasColumnType("float");
+
                     b.Property<string>("PaymentOption")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -612,6 +615,9 @@ namespace TrackWallet.DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("AmountEdit")
                         .HasColumnType("float");
 
                     b.Property<string>("Description")

@@ -31,25 +31,11 @@ public class Transaction : Controller
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        List<Models.Budget> objbudgetList =
-            _unitOfWork.Budget.GetAll(includeProperties:"UserSelectedCategory").ToList();
-
-        List<Models.Budget> selectedBudget = new List<Models.Budget>();
-
-        foreach (var elements in objbudgetList)
-        {
-            if (userId == elements.UserId)
-            {
-                selectedBudget.Add(elements);
-            }
-        }
-        BudgetIndexVM budgetIndexVm = new()
-        {
-            Budgets =  selectedBudget,
-            Category = _unitOfWork.Category.GetAll().ToList()
-        };
+        List<Models.Transaction> objTransactionList =
+            _unitOfWork.Transaction.GetAll(includeProperties:"Wallet").Where(u=>u.UserId == userId).ToList();
         
-        return View(budgetIndexVm);
+        
+        return View(objTransactionList);
     }
 
 
@@ -139,12 +125,33 @@ public class Transaction : Controller
 
 
     [HttpPost]
-    public IActionResult CreatePost(BudgetVM obj)
+    public IActionResult CreatePost(TransactionVM obj)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var wallet = _unitOfWork.Wallet.Get(u => u.WalletId == obj.Transaction.WalletId);
+        if (obj.Transaction.Direction == "Expense")
+        {
+            if (wallet.Balance < obj.Transaction.Amount)
+            {
+                TempData["ErrorMessage"] = "No sufficient balance to fund this transaction";
+                return RedirectToAction("Create");
+            }
+            wallet.Balance -= obj.Transaction.Amount;
+        }
+        else if (obj.Transaction.Direction == "Income")
+        {
+            wallet.Balance += obj.Transaction.Amount;
+            if (obj.Transaction.LoanAndDebtId != null)
+            {
+                var loanDebt = _unitOfWork.LoanAndDebt.Get(u => u.Id == obj.Transaction.LoanAndDebtId);
+                loanDebt.PaidAmount += obj.Transaction.Amount;
+                _unitOfWork.LoanAndDebt.Update(loanDebt);
+            }
+        }
         
-        obj.Budget.UserId = userId;
-        _unitOfWork.Budget.Add(obj.Budget);
+        _unitOfWork.Wallet.Update(wallet);
+        obj.Transaction.UserId = userId;
+        _unitOfWork.Transaction.Add(obj.Transaction);
         _unitOfWork.Save();
 
         return RedirectToAction("Index");
@@ -157,48 +164,117 @@ public class Transaction : Controller
             return NotFound();
         }
 
-        Models.Budget BudgetFromDb = _unitOfWork.Budget.Get(u=> u.Id == id);
-        if (BudgetFromDb == null)
+        Models.Transaction transactionFromDb = _unitOfWork.Transaction.Get(u=> u.Id == id);
+        transactionFromDb.AmountEdit = transactionFromDb.Amount;
+        if (transactionFromDb == null)
         {
             return NotFound();
         }
-        IEnumerable<Models.Category> categoriesFiltered = _unitOfWork.Category.GetAll().Where(item => item.CategoryType == "Expense");
-        List<Models.UserSelectedCategory> userSelectedCategories = new List<Models.UserSelectedCategory>();;
+        IEnumerable<Models.Category> IcategoriesFiltered = _unitOfWork.Category.GetAll().Where(u=> u.CategoryType == "Income");
+        IEnumerable<Models.Category> EcategoriesFiltered = _unitOfWork.Category.GetAll().Where(u=> u.CategoryType == "Expense");
+        List<Models.UserSelectedCategory> IuserSelectedCategories = new List<Models.UserSelectedCategory>();
+        List<Models.UserSelectedCategory> EuserSelectedCategories = new List<Models.UserSelectedCategory>();;
+
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
 
-        foreach (var ele in categoriesFiltered)
+        foreach (var ele in IcategoriesFiltered)
         {
             var b = _unitOfWork.UserSelectedCategory.Get(item => item.CategoryId == ele.Id && item.IsActive);
             if (b != null)
             {
                 if (b.UserId == userId)
                 {
-                    userSelectedCategories.Add(b);
+                    IuserSelectedCategories.Add(b);
                 }
             }
 
         }
-        IEnumerable<SelectListItem> Category = userSelectedCategories.Select(u => new SelectListItem
+        foreach (var ele in EcategoriesFiltered)
+        {
+            var b = _unitOfWork.UserSelectedCategory.Get(item => item.CategoryId == ele.Id && item.IsActive);
+            if (b != null)
+            {
+                if (b.UserId == userId)
+                {
+                    EuserSelectedCategories.Add(b);
+                }
+            }
+
+        }
+
+        IEnumerable<Wallet> wallets = _unitOfWork.Wallet.GetAll().Where(item => item.UserId == userId);
+        IEnumerable<Models.LoanAndDebt> Debts = _unitOfWork.LoanAndDebt.GetAll().Where(item => item.UserId == userId && item.Type == "Debt");
+        IEnumerable<Models.LoanAndDebt> Loans = _unitOfWork.LoanAndDebt.GetAll().Where(item => item.UserId == userId && item.Type == "Loan");
+        IEnumerable<Models.RecurringTransaction> recurringTransactions = _unitOfWork.RecurringTransaction.GetAll().Where(item => item.UserId == userId);
+        IEnumerable<SelectListItem> ECategory = EuserSelectedCategories.Select(u => new SelectListItem
         {
             Text =u.Category.Name,
             Value = u.Id.ToString()
         });
-        
-        BudgetVM budget = new()
+        IEnumerable<SelectListItem> ICategory = IuserSelectedCategories.Select(u => new SelectListItem
         {
-            CategoryList = Category,
-            Budget = new Models.Budget()
+            Text =u.Category.Name,
+            Value = u.Id.ToString()
+        });
+        IEnumerable<SelectListItem> WalletList = wallets.Select(u => new SelectListItem
+        {
+            Text = u.Name,
+            Value = u.WalletId.ToString()
+        });
+        IEnumerable<SelectListItem> Debt = Debts.Select(u => new SelectListItem
+        {
+            Text = u.BorrowerName,
+            Value = u.WalletId.ToString()
+        });
+        IEnumerable<SelectListItem> Loan = Loans.Select(u => new SelectListItem
+        {
+            Text = u.BorrowerName,
+            Value = u.WalletId.ToString()
+        });
+        IEnumerable<SelectListItem> recurringList = recurringTransactions.Select(u => new SelectListItem
+        {
+            Text = u.Name,
+            Value = u.WalletId.ToString()
+        });
+
+        TransactionVM transaction = new TransactionVM
+        {
+            Transaction = transactionFromDb,
+            WalletList = WalletList,
+            recurringList = recurringList,
+            DebtList = Debt,
+            loanList = Loan,
+            IncomeCatergoryList = ICategory,
+            ExpenseCategoryList = ECategory
         };
-        return View(budget);
+    
+        return View(transaction);
     }
 
     [HttpPost]
-    public IActionResult Edit(BudgetVM obj)
+    public IActionResult Edit(TransactionVM obj)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        obj.Budget.UserId = userId;
-        _unitOfWork.Budget.Update(obj.Budget);
+        obj.Transaction.UserId = userId;
+        var wallet = _unitOfWork.Wallet.Get(u => u.WalletId == obj.Transaction.WalletId);
+        if (obj.Transaction.Amount > obj.Transaction.AmountEdit)
+        {
+            var change = obj.Transaction.Amount - obj.Transaction.AmountEdit;
+            obj.Transaction.Amount += change;
+            wallet.Balance += change;
+        }
+        else if (obj.Transaction.Amount < obj.Transaction.AmountEdit)
+        {
+            var change = obj.Transaction.AmountEdit - obj.Transaction.Amount;
+            if (change <= 0)
+            {
+                RedirectToAction("Edit");
+            }
+            obj.Transaction.Amount -= change;
+            wallet.Balance -= change;
+        }
+        _unitOfWork.Transaction.Update(obj.Transaction);
         _unitOfWork.Save();
         return RedirectToAction("Index");
     }
@@ -209,37 +285,112 @@ public class Transaction : Controller
             return NotFound();
         }
 
-        Models.Budget BudgetFromDb = _unitOfWork.Budget.Get(u=> u.Id == id);
-        if (BudgetFromDb == null)
+        Models.Transaction transactionFromDb = _unitOfWork.Transaction.Get(u=> u.Id == id);
+        transactionFromDb.AmountEdit = transactionFromDb.Amount;
+        if (transactionFromDb == null)
         {
             return NotFound();
         }
-        IEnumerable<SelectListItem> CategoryList = _unitOfWork.UserSelectedCategory.GetAll(includeProperties: "Category").Select(u => new SelectListItem
+        IEnumerable<Models.Category> IcategoriesFiltered = _unitOfWork.Category.GetAll().Where(u=> u.CategoryType == "Income");
+        IEnumerable<Models.Category> EcategoriesFiltered = _unitOfWork.Category.GetAll().Where(u=> u.CategoryType == "Expense");
+        List<Models.UserSelectedCategory> IuserSelectedCategories = new List<Models.UserSelectedCategory>();
+        List<Models.UserSelectedCategory> EuserSelectedCategories = new List<Models.UserSelectedCategory>();;
+
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+
+        foreach (var ele in IcategoriesFiltered)
         {
-            Text = u.Category.Name,
-            Value = u.Id .ToString()
+            var b = _unitOfWork.UserSelectedCategory.Get(item => item.CategoryId == ele.Id && item.IsActive);
+            if (b != null)
+            {
+                if (b.UserId == userId)
+                {
+                    IuserSelectedCategories.Add(b);
+                }
+            }
+
+        }
+        foreach (var ele in EcategoriesFiltered)
+        {
+            var b = _unitOfWork.UserSelectedCategory.Get(item => item.CategoryId == ele.Id && item.IsActive);
+            if (b != null)
+            {
+                if (b.UserId == userId)
+                {
+                    EuserSelectedCategories.Add(b);
+                }
+            }
+
+        }
+
+        IEnumerable<Wallet> wallets = _unitOfWork.Wallet.GetAll().Where(item => item.UserId == userId);
+        IEnumerable<Models.LoanAndDebt> Debts = _unitOfWork.LoanAndDebt.GetAll().Where(item => item.UserId == userId && item.Type == "Debt");
+        IEnumerable<Models.LoanAndDebt> Loans = _unitOfWork.LoanAndDebt.GetAll().Where(item => item.UserId == userId && item.Type == "Loan");
+        IEnumerable<Models.RecurringTransaction> recurringTransactions = _unitOfWork.RecurringTransaction.GetAll().Where(item => item.UserId == userId);
+        IEnumerable<SelectListItem> ECategory = EuserSelectedCategories.Select(u => new SelectListItem
+        {
+            Text =u.Category.Name,
+            Value = u.Id.ToString()
         });
-        BudgetVM budget = new()
+        IEnumerable<SelectListItem> ICategory = IuserSelectedCategories.Select(u => new SelectListItem
         {
-            CategoryList = CategoryList,
-            Budget = BudgetFromDb
+            Text =u.Category.Name,
+            Value = u.Id.ToString()
+        });
+        IEnumerable<SelectListItem> WalletList = wallets.Select(u => new SelectListItem
+        {
+            Text = u.Name,
+            Value = u.WalletId.ToString()
+        });
+        IEnumerable<SelectListItem> Debt = Debts.Select(u => new SelectListItem
+        {
+            Text = u.BorrowerName,
+            Value = u.WalletId.ToString()
+        });
+        IEnumerable<SelectListItem> Loan = Loans.Select(u => new SelectListItem
+        {
+            Text = u.BorrowerName,
+            Value = u.WalletId.ToString()
+        });
+        IEnumerable<SelectListItem> recurringList = recurringTransactions.Select(u => new SelectListItem
+        {
+            Text = u.Name,
+            Value = u.WalletId.ToString()
+        });
+
+        TransactionVM transaction = new TransactionVM
+        {
+            Transaction = transactionFromDb,
+            WalletList = WalletList,
+            recurringList = recurringList,
+            DebtList = Debt,
+            loanList = Loan,
+            IncomeCatergoryList = ICategory,
+            ExpenseCategoryList = ECategory
         };
-        return View(budget);
+    
+        return View(transaction);
     }
+    
 
     [HttpPost]
     public IActionResult DeletePost(int? id)
     {
-        var BudgetToDeleted = _unitOfWork.Budget.Get(u => u.Id == id);
-
-        if (BudgetToDeleted == null)
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var obj = _unitOfWork.Transaction.Get(u => u.Id == id);
+        var wallet = _unitOfWork.Wallet.Get(u => u.WalletId == obj.WalletId);
+        if (obj.Direction == "Income")
         {
-            RedirectToAction("Index", "Budget");
+            wallet.Balance -= obj.Amount;
         }
-
-        _unitOfWork.Budget.Remove(BudgetToDeleted);
+        else if (obj.Direction == "Expense")
+        {
+            wallet.Balance += obj.Amount;
+        }
+        _unitOfWork.Wallet.Update(wallet);
+        _unitOfWork.Transaction.Remove(obj);
         _unitOfWork.Save();
-
         return RedirectToAction("Index");
     }
     

@@ -11,6 +11,7 @@ public class Transaction
     public string Direction { get; set; }
     public double Amount { get; set; }
     public string? Description { get; set; }
+    public double AmountEdit { get; set; }
     public DateTime date { get; set; }
     
     [ForeignKey("ApplicationUser")]

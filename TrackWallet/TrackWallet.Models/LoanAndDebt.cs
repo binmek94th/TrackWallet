@@ -14,6 +14,8 @@ public class LoanAndDebt
     public double Amount { get; set; }
     [Required]
     public string PaymentOption { get; set; }
+
+    public double PaidAmount { get; set; }
     public string? BorrowerName { get; set; }
     public DateTime StartingDate { get; set; }
     
