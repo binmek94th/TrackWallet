@@ -8,10 +8,11 @@ public class TransactionVM
 {
     public Transaction Transaction { get; set; }
     
-    [ValidateNever] 
-    public IEnumerable<SelectListItem> CategoryList { get; set; }
+    public IEnumerable<SelectListItem> IncomeCatergoryList { get; set; }
+    public IEnumerable<SelectListItem> ExpenseCategoryList { get; set; }
 
     public IEnumerable<SelectListItem> WalletList { get; set; }
     public IEnumerable<SelectListItem> recurringList { get; set; }
     public IEnumerable<SelectListItem> loanList { get; set; }
+    public IEnumerable<SelectListItem> DebtList { get; set; }
 }

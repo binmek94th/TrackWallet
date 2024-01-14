@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Create Budget</title>
+    <title>Create Transaction</title>
     <style>
             body {
                 font-family: 'Arial', sans-serif;
@@ -87,6 +87,7 @@
                 color: #fff; /* White text color for the button */
                 padding: 10px 20px;
                 margin-top: 40px;
+                margin-bottom: 80px;
                 font-size: 18px;
                 border: none;
                 border-radius: 25px;
@@ -132,11 +133,13 @@
                 border-radius: 10px;
                 text-align: center;
                 font-size: 18px;
-        
             }
+              .IE.active-button {
+                    background-color: #B9EE97;
+                }
             .Bcontainer {
                 background-color: #9FE870;
-                width: 450px;
+                width: 300px;
                 height: 45px;
                 border-radius: 15px;
                 display: flex;
@@ -163,52 +166,153 @@
     </div>
 <div class="content">
     <div class="Bcontainer">
-        <button class="IE" id="incomeButton">Income</button>
-        <button class="IE" id="expenseButton">Expenses</button>
-        <button class="IE" id="expenseButton">Other</button>
+        <button class="IE" onclick="showForm('IncomeForm')" id="income">Income</button>
+        <button class="IE" onclick="showForm('ExpenseForm')" id="expense">Expenses</button>
     </div>
-    <form method="post" enctype="multipart/form-data">
-        <input asp-for="@Model.Transaction.Id" hidden/>
-        <div class="form">
-            <div class="form-element">
-                <label class="input-label" asp-for="@Model.Transaction.UserSelectedCategoryId">Category</label>
-                <select asp-for="@Model.Transaction.UserSelectedCategoryId" class="dropdown-element" asp-items="@Model.CategoryList">
-                    <option disabled selected>Select Category</option>
-                </select>
-                <span asp-validation-for="@Model.Transaction.UserSelectedCategoryId" class="input-validation"></span>
+    <div class="form-section" id="IncomeForm">
+        <form method="post" enctype="multipart/form-data">
+            <h4>Income</h4>
+            <input asp-for="@Model.Transaction.Direction" value="Income" hidden/>
+            <input asp-for="@Model.Transaction.Id" hidden/>
+            <div class="form">
                 <div class="form-element">
-                    <label class="input-label" asp-for="@Model.Transaction.Amount">Amount</label>
-                    <input asp-for="@Model.Transaction.Amount" type="text" class="input-element"/>
-                    <span asp-validation-for="@Model.Transaction.Amount" class="input-validation"></span>
+                    <label class="input-label" asp-for="@Model.Transaction.UserSelectedCategoryId">Category</label>
+                    <select asp-for="@Model.Transaction.UserSelectedCategoryId" class="dropdown-element" asp-items="@Model.IncomeCatergoryList">
+                        <option disabled selected>Select Category</option>
+                    </select>
+                    <span asp-validation-for="@Model.Transaction.UserSelectedCategoryId" class="input-validation"></span>
+                    <div class="form-element">
+                        <label class="input-label" asp-for="@Model.Transaction.Amount">Amount</label>
+                        <input asp-for="@Model.Transaction.Amount" type="text" class="input-element"/>
+                        <span asp-validation-for="@Model.Transaction.Amount" class="input-validation"></span>
+                    </div>
+                </div>
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.Transaction.WalletId">Wallet</label>
+                    <select asp-for="@Model.Transaction.WalletId" class="dropdown-element" asp-items="@Model.WalletList">
+                        <option disabled selected>Select funding Wallet</option>
+                    </select>
+                    <span asp-validation-for="@Model.Transaction.WalletId" class="input-validation"></span>
+                </div>
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.Transaction.date">Date</label>
+                    <input type="date" asp-for="@Model.Transaction.date" class="dropdown-element"></input>
+                    <span asp-validation-for="@Model.Transaction.date" class="input-validation"></span>
+                </div>
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.Transaction.Description">Description</label>
+                    <input asp-for="@Model.Transaction.Description" type="text" class="input-element"/>
+                    <span asp-validation-for="@Model.Transaction.Description" class="input-validation"></span>
+                </div>
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.Transaction.LoanAndDebtId">Loan repayment</label>
+                    <select asp-for="@Model.Transaction.LoanAndDebtId" class="dropdown-element" asp-items="@Model.loanList">
+                        <option disabled selected>Select Loan</option>
+                    </select>
+                    <span asp-validation-for="@Model.Transaction.LoanAndDebtId" class="input-validation"></span>
+                </div>
+                <div class="button">
+                    <div class="submit-button">
+                        <button asp-action="CreatePost" asp-controller="Budget" type="submit">Create</button>
+                    </div>
                 </div>
             </div>
-            <div class="form-element">
-                <label class="input-label" asp-for="@Model.Transaction.WalletId">Wallet</label>
-                <select asp-for="@Model.Transaction.WalletId" class="dropdown-element" asp-items="@Model.WalletList">
-                    <option disabled selected>Select funding Wallet</option>
-                </select>
-                <span asp-validation-for="@Model.Transaction.WalletId" class="input-validation"></span>
-            </div>
-            <div class="form-element">
-                <label class="input-label" asp-for="@Model.Transaction.date">Date</label>
-                <input type="date" asp-for="@Model.Transaction.date" class="dropdown-element"></input>
-                <span asp-validation-for="@Model.Transaction.date" class="input-validation"></span>
-            </div>
-            <div class="form-element">
-                <label class="input-label" asp-for="@Model.Transaction.Description">Description</label>
-                <input asp-for="@Model.Transaction.Description" type="text" class="input-element"/>
-                <span asp-validation-for="@Model.Transaction.Description" class="input-validation"></span>
-            </div>
-            <div class="button">
-                <div class="submit-button">
-                    <button asp-action="CreatePost" asp-controller="Budget" type="submit">Create</button>
+        </form>
+    </div>
+    <div class="form-section" id="ExpenseForm">
+        <h4>Expense</h4>
+        <input asp-for="@Model.Transaction.Id" hidden/>
+        <input asp-for="@Model.Transaction.Direction" hidden value="Expense"/>
+        <form method="post" enctype="multipart/form-data">
+            <input asp-for="@Model.Transaction.Id" hidden/>
+            <div class="form">
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.Transaction.UserSelectedCategoryId">Category</label>
+                    <select asp-for="@Model.Transaction.UserSelectedCategoryId" class="dropdown-element" asp-items="@Model.ExpenseCategoryList">
+                        <option disabled selected>Select Category</option>
+                    </select>
+                    <span asp-validation-for="@Model.Transaction.UserSelectedCategoryId" class="input-validation"></span>
+                    <div class="form-element">
+                        <label class="input-label" asp-for="@Model.Transaction.Amount">Amount</label>
+                        <input asp-for="@Model.Transaction.Amount" type="text" class="input-element"/>
+                        <span asp-validation-for="@Model.Transaction.Amount" class="input-validation"></span>
+                    </div>
+                </div>
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.Transaction.WalletId">Wallet</label>
+                    <select asp-for="@Model.Transaction.WalletId" class="dropdown-element" asp-items="@Model.WalletList">
+                        <option disabled selected>Select funding Wallet</option>
+                    </select>
+                    <span asp-validation-for="@Model.Transaction.WalletId" class="input-validation"></span>
+                </div>
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.Transaction.date">Date</label>
+                    <input type="date" asp-for="@Model.Transaction.date" class="dropdown-element"></input>
+                    <span asp-validation-for="@Model.Transaction.date" class="input-validation"></span>
+                </div>
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.Transaction.Description">Description</label>
+                    <input asp-for="@Model.Transaction.Description" type="text" class="input-element"/>
+                    <span asp-validation-for="@Model.Transaction.Description" class="input-validation"></span>
+                </div>
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.Transaction.LoanAndDebtId">Debt payment</label>
+                    <select asp-for="@Model.Transaction.LoanAndDebtId" class="dropdown-element" asp-items="@Model.DebtList">
+                        <option disabled selected>Select Debt</option>
+                    </select>
+                    <span asp-validation-for="@Model.Transaction.LoanAndDebtId" class="input-validation"></span>
+                </div>
+                
+                <div class="button">
+                    <div class="submit-button">
+                        <button asp-action="CreatePost" asp-controller="Budget" type="submit">Create</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 </body>
 </html>
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
 }
+<script>
+    window.onload = function () {
+        // Show the ExpenseForm section
+        showForm('ExpenseForm');
+
+        // Add a specific class to style the Expense button
+        var expenseButton = document.getElementById('expense');
+        if (expenseButton) {
+            expenseButton.classList.add('active-button');
+        }
+    };
+
+    function showForm(formId, buttonId) {
+        // Hide all form sections
+        var formSections = document.querySelectorAll('.form-section');
+        formSections.forEach(function (section) {
+            section.style.display = 'none';
+        });
+
+        // Show the selected form section
+        var selectedForm = document.getElementById(formId);
+        if (selectedForm) {
+            selectedForm.style.display = 'block';
+        }
+
+        // Remove the active class from all buttons
+        var allButtons = document.querySelectorAll('.IE');
+        allButtons.forEach(function (button) {
+            button.classList.remove('active-button');
+        });
+
+        // Add the active class to the clicked button
+        var clickedButton = document.getElementById(buttonId);
+        if (clickedButton) {
+            clickedButton.classList.add('active-button');
+        }
+    }
+</script>
+

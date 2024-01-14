@@ -55,28 +55,49 @@ public class Transaction : Controller
 
     public IActionResult Create()
     {
-        IEnumerable<Models.Category> categoriesFiltered = _unitOfWork.Category.GetAll();
-        List<Models.UserSelectedCategory> userSelectedCategories = new List<Models.UserSelectedCategory>();;
+        IEnumerable<Models.Category> IcategoriesFiltered = _unitOfWork.Category.GetAll().Where(u=> u.CategoryType == "Income");
+        IEnumerable<Models.Category> EcategoriesFiltered = _unitOfWork.Category.GetAll().Where(u=> u.CategoryType == "Expense");
+        List<Models.UserSelectedCategory> IuserSelectedCategories = new List<Models.UserSelectedCategory>();
+        List<Models.UserSelectedCategory> EuserSelectedCategories = new List<Models.UserSelectedCategory>();;
+
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
 
-        foreach (var ele in categoriesFiltered)
+        foreach (var ele in IcategoriesFiltered)
         {
             var b = _unitOfWork.UserSelectedCategory.Get(item => item.CategoryId == ele.Id && item.IsActive);
             if (b != null)
             {
                 if (b.UserId == userId)
                 {
-                    userSelectedCategories.Add(b);
+                    IuserSelectedCategories.Add(b);
+                }
+            }
+
+        }
+        foreach (var ele in EcategoriesFiltered)
+        {
+            var b = _unitOfWork.UserSelectedCategory.Get(item => item.CategoryId == ele.Id && item.IsActive);
+            if (b != null)
+            {
+                if (b.UserId == userId)
+                {
+                    EuserSelectedCategories.Add(b);
                 }
             }
 
         }
 
         IEnumerable<Wallet> wallets = _unitOfWork.Wallet.GetAll().Where(item => item.UserId == userId);
-        IEnumerable<Models.LoanAndDebt> loanAndDebts = _unitOfWork.LoanAndDebt.GetAll().Where(item => item.UserId == userId);
+        IEnumerable<Models.LoanAndDebt> Debts = _unitOfWork.LoanAndDebt.GetAll().Where(item => item.UserId == userId && item.Type == "Debt");
+        IEnumerable<Models.LoanAndDebt> Loans = _unitOfWork.LoanAndDebt.GetAll().Where(item => item.UserId == userId && item.Type == "Loan");
         IEnumerable<Models.RecurringTransaction> recurringTransactions = _unitOfWork.RecurringTransaction.GetAll().Where(item => item.UserId == userId);
-        IEnumerable<SelectListItem> Category = userSelectedCategories.Select(u => new SelectListItem
+        IEnumerable<SelectListItem> ECategory = EuserSelectedCategories.Select(u => new SelectListItem
+        {
+            Text =u.Category.Name,
+            Value = u.Id.ToString()
+        });
+        IEnumerable<SelectListItem> ICategory = IuserSelectedCategories.Select(u => new SelectListItem
         {
             Text =u.Category.Name,
             Value = u.Id.ToString()
@@ -86,7 +107,12 @@ public class Transaction : Controller
             Text = u.Name,
             Value = u.WalletId.ToString()
         });
-        IEnumerable<SelectListItem> loanList = loanAndDebts.Select(u => new SelectListItem
+        IEnumerable<SelectListItem> Debt = Debts.Select(u => new SelectListItem
+        {
+            Text = u.BorrowerName,
+            Value = u.WalletId.ToString()
+        });
+        IEnumerable<SelectListItem> Loan = Loans.Select(u => new SelectListItem
         {
             Text = u.BorrowerName,
             Value = u.WalletId.ToString()
@@ -102,8 +128,10 @@ public class Transaction : Controller
             Transaction = new Models.Transaction(),
             WalletList = WalletList,
             recurringList = recurringList,
-            loanList = loanList,
-            CategoryList = Category
+            DebtList = Debt,
+            loanList = Loan,
+            IncomeCatergoryList = ICategory,
+            ExpenseCategoryList = ECategory
         };
         
         return View(transaction);
