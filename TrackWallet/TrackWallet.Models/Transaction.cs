@@ -23,5 +23,7 @@ public class Transaction
     public int? BillAndReminderId { get; set; }
     public BillAndReminder BillAndReminder { get; set; }
 
-    public ICollection<LoanAndDebt> LoanAndDebts { get; set; }
+    [ForeignKey("LoanAndDebt")]
+    public int? LoanAndDebtId { get; set; }
+    public LoanAndDebt LoanAndDebt { get; set; }
 }

@@ -225,16 +225,16 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .HasForeignKey(bar => bar.BillAndReminderId)
             .OnDelete(DeleteBehavior.Restrict);
         
-        modelBuilder.Entity<LoanAndDebt>()
-            .HasOne(g => g.Transaction)
-            .WithMany(w => w.LoanAndDebts)
-            .HasForeignKey(g => g.TransactionId)
+        modelBuilder.Entity<Transaction>()
+            .HasOne(g => g.LoanAndDebt)
+            .WithMany(w => w.Transactions)
+            .HasForeignKey(g => g.LoanAndDebtId)
             .OnDelete(DeleteBehavior.Restrict); 
 
-        modelBuilder.Entity<Transaction>()
-            .HasMany(w => w.LoanAndDebts)
-            .WithOne(bar => bar.Transaction)
-            .HasForeignKey(bar => bar.TransactionId)
+        modelBuilder.Entity<LoanAndDebt>()
+            .HasMany(w => w.Transactions)
+            .WithOne(bar => bar.LoanAndDebt)
+            .HasForeignKey(bar => bar.LoanAndDebtId)
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<LoanAndDebt>()
