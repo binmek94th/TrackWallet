@@ -33,4 +33,8 @@ public class Transaction
     [ForeignKey("RecurringTransaction")]
     public int? RecurringTransactionId { get; set; }
     public RecurringTransaction RecurringTransaction { get; set; }
+    
+    [ForeignKey("Occasion")]
+    public int? OccasionId { get; set; }
+    public Occasion Occasion { get; set; }
 }

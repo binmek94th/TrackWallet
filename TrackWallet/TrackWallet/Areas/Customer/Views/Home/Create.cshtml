@@ -1,4 +1,4 @@
-﻿@model Wallet
+﻿@model WalletVM
 
 
 <!DOCTYPE html>
@@ -133,35 +133,41 @@
     <form method="post" enctype="multipart/form-data">
         <div class="form">
             <div class="form-element">
-                <label class="input-label" asp-for="Name">Wallet Name</label>
-                <input asp-for="Name" type="text" class="input-element"/>
-                <span asp-validation-for="Name" class="input-validation"></span>
+                <label class="input-label" asp-for="Wallet.Name">Wallet Name</label>
+                <input asp-for="Wallet.Name" type="text" class="input-element"/>
+                <span asp-validation-for="Wallet.Name" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="Balance">Starting Balance</label>
-                <input asp-for="Balance" type="text" class="input-element"/>
-                <span asp-validation-for="Balance" class="input-validation"></span>
+                <label class="input-label" asp-for="Wallet.Balance">Starting Wallet Balance</label>
+                <input asp-for="Wallet.Balance" type="text" class="input-element"/>
+                <span asp-validation-for="Wallet.Balance" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="Currency">Default Currency</label>
-                <select asp-for="Currency" class="dropdown-element">
+                <label class="input-label" asp-for="Wallet.Currency">Default Wallet Currency</label>
+                <select asp-for="Wallet.Currency" class="dropdown-element">
                     <option disabled selected>Select Currency</option>
                     <option>ETB</option>
                     <option>USD</option>
                     <option>EURO</option>
                     <option>POUND</option>
                 </select>
-                <span asp-validation-for="Currency" class="input-validation"></span>
+                <span asp-validation-for="Wallet.Currency" class="input-validation"></span>
             </div>
             <div class="form-element">
-                <label class="input-label" asp-for="WalletType">Wallet type</label>
-                <select asp-for="WalletType" class="dropdown-element">
-                    <option disabled selected>Select Currency</option>
+                <label class="input-label" asp-for="Wallet.WalletType">Wallet type</label>
+                <select asp-for="Wallet.WalletType" class="dropdown-element">
+                    <option disabled selected>Select Wallet Type</option>
                     <option>Cash</option>
                     <option>Card</option>
                     <option>Saving</option>
                 </select>
-                <span asp-validation-for="WalletType" class="input-validation"></span>
+                <span asp-validation-for="Wallet.WalletType" class="input-validation"></span>
+            </div>
+            <div class="form-element">
+                <p>if you want to share the wallet enter the email of the other user.</p>
+                <label class="input-label" asp-for="Email">Email</label>
+                <input asp-for="Email" type="email" class="input-element"/>
+                <span asp-validation-for="Email" class="input-validation"></span>
             </div>
             <div class="button">
                 <div class="submit-button">

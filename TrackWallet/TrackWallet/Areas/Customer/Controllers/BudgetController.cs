@@ -70,7 +70,6 @@ public class Budget : Controller
                     userSelectedCategories.Add(b);
                 }
             }
-
         }
         IEnumerable<SelectListItem> Category = userSelectedCategories.Select(u => new SelectListItem
         {
@@ -85,7 +84,6 @@ public class Budget : Controller
         };
         return View(budget);
     }
-
 
     [HttpPost]
     public IActionResult CreatePost(BudgetVM obj)
@@ -114,8 +112,7 @@ public class Budget : Controller
         IEnumerable<Models.Category> categoriesFiltered = _unitOfWork.Category.GetAll().Where(item => item.CategoryType == "Expense");
         List<Models.UserSelectedCategory> userSelectedCategories = new List<Models.UserSelectedCategory>();;
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-
+        
         foreach (var ele in categoriesFiltered)
         {
             var b = _unitOfWork.UserSelectedCategory.Get(item => item.CategoryId == ele.Id && item.IsActive);
@@ -126,7 +123,6 @@ public class Budget : Controller
                     userSelectedCategories.Add(b);
                 }
             }
-
         }
         IEnumerable<SelectListItem> Category = userSelectedCategories.Select(u => new SelectListItem
         {

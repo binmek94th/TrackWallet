@@ -2,9 +2,12 @@ using System.Diagnostics;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using TrackWallet.DataAccess.Data;
 using TrackWallet.DataAccess.Repository.IRepository;
 using TrackWallet.Models;
+using TrackWallet.Models.ViewModel;
 using TrackWallet.Utility;
 
 namespace TrackWallet.Controllers;
@@ -15,55 +18,62 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
+
+    public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager)
     {
         _logger = logger;
         _unitOfWork = unitOfWork;
+        _userManager = userManager;
     }
 
     public IActionResult Index()
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        List<Wallet> objWalletList = _unitOfWork.Wallet.GetAll().ToList();
-        List<Wallet> UserWalletList = new List<Wallet>();
-        foreach (var VARIABLE in objWalletList)
-        {
-            if (VARIABLE.UserId == userId)
-            {
-                UserWalletList.Add(VARIABLE);
-            }
-        }
-        return View(UserWalletList);
+        List<Wallet> objWalletList = _unitOfWork.Wallet.GetAll().Where(u=>u.UserId == userId).ToList();
+
+        return View(objWalletList);
     }
     
     public IActionResult Create()
     {
-        return View();
+        WalletVM walletVm = new WalletVM();
+        return View(walletVm);
     }
 
     [HttpPost]
-    public IActionResult Create(Wallet obj)
+    public IActionResult Create(WalletVM obj)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        if (obj.Name == null)
+        if (obj.Wallet.Name == null)
         {
             return View(obj);
         }
 
         ModelState.Remove("Id");
-        obj.UserId = userId;
+        obj.Wallet.UserId = userId;
 
-            _unitOfWork.Wallet.Add(obj);
-            _unitOfWork.Save();
-            TempData["success"] = "Category created successfully";
-            return RedirectToAction("Index", "Home");
+        _unitOfWork.Wallet.Add(obj.Wallet);
+        _unitOfWork.Save();
+        TempData["success"] = "Wallet created successfully";
+            
+        if (obj.Email != null)
+        {
+            var allUsers = _userManager.Users.Where(u=>u.Email == obj.Email).ToList();
+            foreach (var user in allUsers)
+            {
+                SharedWallet Swallet = new SharedWallet();
+                Swallet.UserId = user.Id;
+                Swallet.WalletId = obj.Wallet.WalletId;
+                _unitOfWork.SharedWallet.Add(Swallet);
+                _unitOfWork.Save();
+            }
+        }
         
-
-        return View();
+        return RedirectToAction("Index", "Home");
     }
     public IActionResult Edit(int? id)
     {
