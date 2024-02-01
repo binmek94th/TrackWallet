@@ -44,7 +44,7 @@ public class Transaction : Controller
         IEnumerable<Models.Category> IcategoriesFiltered = _unitOfWork.Category.GetAll().Where(u=> u.CategoryType == "Income");
         IEnumerable<Models.Category> EcategoriesFiltered = _unitOfWork.Category.GetAll().Where(u=> u.CategoryType == "Expense");
         List<Models.UserSelectedCategory> IuserSelectedCategories = new List<Models.UserSelectedCategory>();
-        List<Models.UserSelectedCategory> EuserSelectedCategories = new List<Models.UserSelectedCategory>();;
+        List<Models.UserSelectedCategory> EuserSelectedCategories = new List<Models.UserSelectedCategory>();
 
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "D0dCmGFtMAhH+SbZXhzKLWCcDY2sOaRas+Q4+GnRz2A=",
+  "Hash": "UMJNIHrTSisAOcKHR99+V6lH45E78rPdfes8NpjF0CE=",
   "Source": "TrackWallet",
   "BasePath": "_content/TrackWallet",
   "Mode": "Default",
@@ -1784,6 +1784,25 @@
       "OriginalItemSpec": "wwwroot\\Image\\Icons\\Insights.png"
     },
     {
+      "Identity": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Image\\Icons\\left.png",
+      "SourceId": "TrackWallet",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\",
+      "BasePath": "_content/TrackWallet",
+      "RelativePath": "Image/Icons/left.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\Icons\\left.png"
+    },
+    {
       "Identity": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Image\\Icons\\Loan and Debt.png",
       "SourceId": "TrackWallet",
       "SourceType": "Discovered",
@@ -1839,6 +1858,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Image\\Icons\\Recurring Payments.png"
+    },
+    {
+      "Identity": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Image\\Icons\\right.png",
+      "SourceId": "TrackWallet",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\",
+      "BasePath": "_content/TrackWallet",
+      "RelativePath": "Image/Icons/right.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\Icons\\right.png"
     },
     {
       "Identity": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Image\\Icons\\Saving.png",

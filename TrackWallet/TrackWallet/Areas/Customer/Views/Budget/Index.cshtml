@@ -9,46 +9,80 @@
         <div class="MainCat">
             @foreach (var obj in Model.Budgets)
             {
-                        <div class="elements">
-                            @foreach (var ele in Model.Category)
+                <div class="box">
+                    <div class="elements">
+                        @foreach (var ele in Model.Category)
+                        {
+                            try
                             {
-                                try
+                                if (obj.UserSelectedCategory.CategoryId == ele.Id)
                                 {
-                                    if (obj.UserSelectedCategory.CategoryId == ele.Id)
-                                    {
-                                        <img src="@ele.ImageUrl" width="35px"/>
-                                        <p>@ele.Name</p>
-                                    }
-                                }
-                                catch(NullReferenceException e)
-                                {
-                                    
+                                    <img class="Cat-img" src="@ele.ImageUrl" width="35px"/>
+                                    <div class="info">
+                                        <p>Name: @ele.Name</p>
+                                        <p>Category: @obj.Name</p>
+                                    </div>
                                 }
                             }
-                            <p>@obj.Name</p>
-                            <p>@obj.Amount ETB</p>
-                            <div class="modify-link">
-                                <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id">
-                                    <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
-                                    <a asp-controller="Budget" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
-                                        <img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
-                                    </a>
+                            catch(NullReferenceException e)
+                            {
+                                        
+                            }
+                        }
+                        <div class="modify-link">
+                            <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id">
+                                <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
+                                <a asp-controller="Budget" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
+                                    <img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
                                 </a>
+                            </a>
+                        </div>
+                    </div>
+                        <div class="bar">
+                            <div class="main-bar">
+                                <div class="fill-bar">
+                                    @foreach (var tran in Model.Transaction)
+                                    {
+                                    }
+                                    <p></p>
+                                </div>
                             </div>
                         </div>
-                    }
-            
+                </div>
+                        }
         </div>
-
                 <a asp-controller="Budget" asp-action="Create" class="add"><img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Add.png")"/></a>
     </div>
     
 </div>
 
 <style>
+    .main-bar{
+        margin-left: 15px;
+        height: 10px;
+        width: 140%;
+        background-color: #cbc8c8;
+        border-radius: 15px;
+    }
+    .fill-bar{
+        width: 50%;
+        background-color: orange;
+        height: 10px;
+        border-radius: 15px;
+    }
+    .Cat-img{
+         height: 35px;
+    }
+    .info{
+        margin-top: 20px;
+    }
+    .info p{
+        margin-top: -10px;
+    }
     .elements img{
         padding: 10px;
-        border-radius: 50px;;
+        border-radius: 50px;
+       
     }
 
     .MainBoard {
@@ -84,7 +118,7 @@
         font-weight: normal;
     }
     .content img{
-    border-radius: 50%;
+        border-radius: 50%;
     }
 
     .category {
@@ -122,9 +156,20 @@
     .add img{
         padding: 13px;
     }
-
+    .box{
+        margin-bottom: 40px;
+    }
+    
     .elements {
         display: flex;
+        height: 100px;
+        width: 150%;
+        background-color: #EFF5E9;
+        margin-bottom: -40px;
+        border-radius: 15px;
+    }
+   .elements p{
+        width: 200px;
     }
     .modify-link{
         display: flex;
@@ -139,16 +184,11 @@
         outline: none;
         background-color: #B9EE97;
     }
-
-    @@media (max-width: 908px) {
-        .Bcontainer {
-            margin-left: 200px;
-        }
-        .add {
-            right: 50px;
-        }
-
-        }
+    .modify-link{
+        top: 10px;
+        position: relative;
+        right: -120px;
+    }
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

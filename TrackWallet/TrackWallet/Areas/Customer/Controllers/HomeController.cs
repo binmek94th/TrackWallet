@@ -9,6 +9,7 @@ using TrackWallet.DataAccess.Repository.IRepository;
 using TrackWallet.Models;
 using TrackWallet.Models.ViewModel;
 using TrackWallet.Utility;
+using Transaction = TrackWallet.Areas.Admin.Controllers.Transaction;
 
 namespace TrackWallet.Controllers;
 
@@ -33,8 +34,15 @@ public class HomeController : Controller
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
         List<Wallet> objWalletList = _unitOfWork.Wallet.GetAll().Where(u=>u.UserId == userId).ToList();
+        List<Models.Transaction> objTransaction = _unitOfWork.Transaction.GetAll().Where(u => u.UserId == userId).ToList();
 
-        return View(objWalletList);
+        HomeVM obj = new HomeVM
+        {
+            Wallet = objWalletList,
+            Transaction = objTransaction
+        };
+        
+        return View(obj);
     }
     
     public IActionResult Create()

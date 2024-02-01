@@ -133,6 +133,14 @@
       "PackagePath": "staticwebassets\\Image\\Icons\\Search.png"
     },
     {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Image\\Icons\\left.png",
+      "PackagePath": "staticwebassets\\Image\\Icons\\left.png"
+    },
+    {
+      "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Image\\Icons\\right.png",
+      "PackagePath": "staticwebassets\\Image\\Icons\\right.png"
+    },
+    {
       "Id": "D:\\Projects\\ASP.Net\\TrackWallet\\TrackWallet\\TrackWallet\\TrackWallet\\wwwroot\\Image\\money_6811816.png",
       "PackagePath": "staticwebassets\\Image\\money_6811816.png"
     },

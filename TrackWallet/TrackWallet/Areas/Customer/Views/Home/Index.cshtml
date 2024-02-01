@@ -1,4 +1,4 @@
-﻿@model List<Wallet>
+﻿@model HomeVM
 <style>
     .add {
         width: 50px;
@@ -11,12 +11,11 @@
         justify-content: center;
     }
 
-        .add img {
-
-            padding: 10px;
-            border-radius: 50%;
-            background-color: gray;
-        }
+    .add img {
+        padding: 10px;
+        border-radius: 50%;
+        background-color: gray;
+    }
 
     /* Style for the text inside the box */
     .Content {
@@ -75,13 +74,57 @@
     .add-btn img{
         padding: 13px;
     }
+    .t-box{
+        height: 20px;   
+        width: 20px;
+        padding: 5px;
+        background-color: rgba(204,202,202,0.82);
+        border-radius: 50%;
+    }
+    .transaction{
+        width: 900px;
+        margin-top: 20px;
+        }
+    .transaction-elements{
+        display: flex;
+        background-color: #EFF5E9;
+        height: 40px;
+        border-radius: 15px;
+        width: 90%;
+        margin-bottom: 10px;
+        padding: 10px;
+    }   
+    .transaction-elements P{
+        margin-right: 5%;
+        width: 150px;
+    }
+    .t-box{
+        margin-right: 5%;
+        margin-top: 5px;
+    }
+    .modify-link1 a :hover {
+        background-color: #c6dcb4;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        
+    }
+    .modify-link1{
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+    
+    .delete img:hover {
+        background-color: #e34242;
+    }
+           
 </style>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <div class="container">
         <div class="card-container">
-            @foreach (var element in Model)
+            @foreach (var element in Model.Wallet)
             {
                 <div class="Content">
                     @if (element.WalletType == "Cash")
@@ -110,7 +153,46 @@
                     <img id="img_logo" alt="Logo" width="30px" src="@Url.Content("~/Image/Icons/Add.png")" />
                 </a>
             </div>
-                <a asp-controller="Transaction" asp-action="Create" class="add-btn"><img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Add.png")"/></a>
         </div>
+        </div>
+    <div class="transaction">
+        @foreach (var tran in Model.Transaction)
+        {
+            <div class="transaction-elements">
+                <div class="t-box">
+                    @if (tran.Direction == "Income")
+                    {
+                        <div class="direction">
+                            <img width="20px" height="20px" src="@Url.Content(("~/Image/Icons/right.png"))"/>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="direction">
+                            <img width="20px" height="20px" src="@Url.Content(("~/Image/Icons/left.png"))"/>
+                        </div>
+                    }
+                </div>
+                <p>Amount: @tran.Amount</p>
+                <p>Wallet: @tran.Wallet.Name</p>
+                @if (tran.Occasion == null) ;
+                else
+                {
+                    <p>Occasion: @tran.Occasion.Name</p>
+                }
+                @if (tran.RecurringTransaction == null) ;
+                else
+                {
+                    <p>Occasion: @tran.RecurringTransaction.Name</p>
+                }
+                <p>Date: @tran.date.ToShortDateString()</p>
+                <div class="modify-link1">
+                    <a asp-controller="Transaction" asp-action="Edit" asp-route-id="@tran.Id"><img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/></a>
+                    <a asp-controller="Transaction" class="delete" asp-action="Delete" asp-route-id="@tran.Id"><img width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/></a>
+                </div>
+            </div>
+        }
     </div>
+                <a asp-controller="Transaction" asp-action="Create" class="add-btn"><img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Add.png")"/></a>
+    
 </div>

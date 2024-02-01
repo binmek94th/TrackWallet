@@ -218,6 +218,13 @@
                     </select>
                     <span asp-validation-for="@Model.Transaction.LoanAndDebtId" class="input-validation"></span>
                 </div>
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.Transaction.RecurringTransactionId">Recurring Transaction</label>
+                    <select asp-for="@Model.Transaction.RecurringTransactionId" class="dropdown-element" asp-items="@Model.recurringList">
+                        <option disabled selected>Select Recurring Transaction</option>
+                    </select>
+                    <span asp-validation-for="@Model.Transaction.RecurringTransactionId" class="input-validation"></span>
+                </div>
                 <div class="button">
                     <div class="submit-button">
                         <button asp-action="CreatePost" asp-controller="Transaction" type="submit">Create</button>
@@ -270,7 +277,13 @@
                     </select>
                     <span asp-validation-for="@Model.Transaction.LoanAndDebtId" class="input-validation"></span>
                 </div>
-                
+                <div class="form-element">
+                    <label class="input-label" asp-for="@Model.Transaction.RecurringTransactionId">Recurring Transaction</label>
+                    <select asp-for="@Model.Transaction.RecurringTransactionId" class="dropdown-element" asp-items="@Model.recurringList">
+                        <option disabled selected>Select Recurring Transaction</option>
+                    </select>
+                    <span asp-validation-for="@Model.Transaction.RecurringTransactionId" class="input-validation"></span>
+                </div>
                 <div class="button">
                     <div class="submit-button">
                         <button asp-action="CreatePost" asp-controller="Transaction" type="submit">Create</button>
