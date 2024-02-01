@@ -630,6 +630,9 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Property<int?>("LoanAndDebtId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("OccasionId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("RecurringTransactionId")
                         .HasColumnType("int");
 
@@ -649,6 +652,8 @@ namespace TrackWallet.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LoanAndDebtId");
+
+                    b.HasIndex("OccasionId");
 
                     b.HasIndex("RecurringTransactionId");
 
@@ -995,6 +1000,11 @@ namespace TrackWallet.DataAccess.Migrations
                         .HasForeignKey("LoanAndDebtId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("TrackWallet.Models.Occasion", "Occasion")
+                        .WithMany("Transactions")
+                        .HasForeignKey("OccasionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("TrackWallet.Models.RecurringTransaction", "RecurringTransaction")
                         .WithMany("Transactions")
                         .HasForeignKey("RecurringTransactionId")
@@ -1021,6 +1031,8 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("LoanAndDebt");
+
+                    b.Navigation("Occasion");
 
                     b.Navigation("RecurringTransaction");
 
@@ -1085,6 +1097,8 @@ namespace TrackWallet.DataAccess.Migrations
             modelBuilder.Entity("TrackWallet.Models.Occasion", b =>
                 {
                     b.Navigation("Budgets");
+
+                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("TrackWallet.Models.RecurringTransaction", b =>

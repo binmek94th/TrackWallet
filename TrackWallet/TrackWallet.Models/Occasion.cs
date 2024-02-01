@@ -22,4 +22,5 @@ public class Occasion
     public Budget Budget { get; set; }
     
     public ICollection<Budget> Budgets { get; set; }
+    public ICollection<Transaction> Transactions { get; set; }
 }
