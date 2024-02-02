@@ -19,7 +19,7 @@
                             <p style="width: 200px">Payment Plan: @obj.PaymentOption</p>
                         </div>
                         <p>Amount: @obj.Amount</p>
-                        <p style="width: 200px">Start Date: @obj.StartingDate.ToShortDateString()</p>
+                        <p style="width: 200px">Borrowed Date: @obj.StartingDate.ToShortDateString()</p>
                         <div class="modify-link">
                             <a asp-controller="LoanAndDebt" asp-action="Edit" asp-route-id="@obj.Id">
                                 <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
@@ -43,7 +43,7 @@
                             <p style="width: 200px">Payment Plan: @obj.PaymentOption</p>
                         </div>
                         <p>Amount: @obj.Amount</p>
-                        <p style="width: 200px">Start Date: @obj.StartingDate.ToShortDateString()</p>
+                        <p style="width: 200px">Borrowed Date: @obj.StartingDate.ToShortDateString()</p>
                         <div class="modify-link">
                             <a asp-controller="LoanAndDebt" asp-action="Edit" asp-route-id="@obj.Id">
                                 <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>

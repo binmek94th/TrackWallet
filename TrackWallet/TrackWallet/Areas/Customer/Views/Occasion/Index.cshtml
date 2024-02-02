@@ -9,26 +9,28 @@
         <div class="MainCat">
             @foreach (var obj in Model.Occasions)
             {
-                        <div class="elements">
-                            <p>@obj.Name</p>
-                            @foreach (var ele in Model.Budgets)
-                            {
-                                if (ele.Id == obj.BudgetId)
-                                {
-                                    <p>@ele.Name</p>
-                                    break;
-                                }
-                            }
-                            <p>@obj.EndDate</p>
-                            <div class="modify-link">
-                            <a asp-controller="Occasion" asp-action="Edit" asp-route-id="@obj.Id">
-                                <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
-                                <a asp-controller="Occasion" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
-                                    <img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
-                                </a>
+                <div class="elements">
+                    <div>
+                    <p>Name: @obj.Name</p>
+                    @foreach (var ele in Model.Budgets)
+                    {
+                        if (ele.Id == obj.BudgetId)
+                        {
+                            <p>Budget: @ele.Name</p>
+                            break;
+                        }
+                    }
+                    </div>
+                    <p>End date: @obj.EndDate</p>                    
+                    <div class="modify-link">
+                        <a asp-controller="Occasion" asp-action="Edit" asp-route-id="@obj.Id">
+                            <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
+                            <a asp-controller="Occasion" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
+                                <img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
                             </a>
-                            </div>
-                        </div>
+                        </a>
+                    </div>
+                </div>
                     }
             
         </div>
@@ -42,6 +44,18 @@
     .elements img{
         padding: 10px;
         border-radius: 50px;;
+    }
+    .elements{
+        display: flex;
+        height: 80px;
+        width: 100%;
+        background-color: #EFF5E9;
+        border-radius: 15px;
+        padding-left: 10px;
+        margin-bottom: 10px;
+    }
+    .elements p{
+        width: 200px;
     }
 
     .MainBoard {

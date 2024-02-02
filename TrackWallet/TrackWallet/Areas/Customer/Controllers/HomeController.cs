@@ -33,13 +33,20 @@ public class HomeController : Controller
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        List<Wallet> objWalletList = _unitOfWork.Wallet.GetAll().Where(u=>u.UserId == userId).ToList();
+        List<Wallet> objWalletList = _unitOfWork.Wallet.GetAll().Where(u=>u.UserId == userId ).ToList();
+        List<SharedWallet> objSharedWallets = _unitOfWork.SharedWallet.GetAll().Where(u => userId == userId).ToList();
+        foreach (var ele in objSharedWallets)
+        {
+            var wallet = _unitOfWork.Wallet.Get(w => w.WalletId == ele.WalletId);
+            objWalletList.Add(wallet);
+        }
         List<Models.Transaction> objTransaction = _unitOfWork.Transaction.GetAll().Where(u => u.UserId == userId).ToList();
 
         HomeVM obj = new HomeVM
         {
             Wallet = objWalletList,
-            Transaction = objTransaction
+            Transaction = objTransaction,
+            SharedWallets = objSharedWallets
         };
         
         return View(obj);
