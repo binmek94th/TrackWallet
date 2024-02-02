@@ -133,7 +133,7 @@ public class Budget : Controller
         BudgetVM budget = new()
         {
             CategoryList = Category,
-            Budget = new Models.Budget()
+            Budget = BudgetFromDb
         };
         return View(budget);
     }

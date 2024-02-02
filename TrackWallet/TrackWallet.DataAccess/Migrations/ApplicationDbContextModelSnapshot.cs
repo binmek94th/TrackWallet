@@ -260,6 +260,9 @@ namespace TrackWallet.DataAccess.Migrations
                     b.Property<int?>("USCategoryId")
                         .HasColumnType("int");
 
+                    b.Property<double>("Used")
+                        .HasColumnType("float");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");

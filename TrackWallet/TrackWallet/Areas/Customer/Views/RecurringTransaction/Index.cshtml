@@ -10,24 +10,30 @@
             @foreach (var obj in Model.RecurringTransactions)
             {
                 <div class="elements">
-                    <p>@obj.Name</p>
-                    <p>@obj.Wallet.Name</p>
-                    @foreach (var ele in Model.Category)
-                    {
-                        if (obj.UserSelectedCategory.CategoryId == ele.Id)
+                    <div class="box">
+                        <div class="row-first">
+                            <p>Name: @obj.Name</p>
+                            <p>Wallet: @obj.Wallet.Name</p>
+                        </div>
+                        <div class="row-second">
+                        @foreach (var ele in Model.Category)
                         {
-                            <p>@ele.Name</p>
+                            if (obj.UserSelectedCategory.CategoryId == ele.Id)
+                            {
+                                <p>Category: @ele.Name</p>
+                            }
                         }
-                    }
-                    <p>Next transaction date: @obj.nextDate.ToShortDateString()</p>
-                    <p>@obj.Amount ETB</p>
-                    <div class="modify-link">
-                        <a asp-controller="RecurringTransaction" asp-action="Edit" asp-route-id="@obj.Id">
-                            <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
-                            <a asp-controller="RecurringTransaction" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
-                                <img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
+                            <p style="width: 300px">Next transaction date: @obj.nextDate.ToShortDateString()</p>
+                        </div>
+                            <p>Amount: @obj.Amount ETB</p>
+                        <div class="modify-link">
+                            <a asp-controller="RecurringTransaction" asp-action="Edit" asp-route-id="@obj.Id">
+                                <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
+                                <a asp-controller="RecurringTransaction" asp-route-id="@obj.Id" asp-action="Delete" class="delete">
+                                    <img id="img_logo" alt="Logo" width="25px" src="@Url.Content("~/Image/Icons/Delete.png")"/>
+                                </a>
                             </a>
-                        </a>
+                        </div>
                     </div>
                 </div>
             }
@@ -40,6 +46,21 @@
 </div>
 
 <style>
+    .elements{
+        
+    }
+    .box{
+        display: flex;
+        height: 80px;
+        width: 100%;
+        background-color: #EFF5E9;
+        border-radius: 15px;
+        padding-left: 20px;
+        margin-bottom: 20px;
+    }   
+    .box p{
+        width: 200px;
+    }
     .elements img{
         padding: 10px;
         border-radius: 50px;;
@@ -81,15 +102,6 @@
     border-radius: 50%;
     }
 
-    .category {
-        margin-left: -100px;
-        margin-top: 20px;
-        border-radius: 15px;
-        font-size: 18px;
-        height: 50px;
-        width: 330px;
-        background-color: #EFF5E9;
-    }
     .category img{
         background-color: transparent;
     }

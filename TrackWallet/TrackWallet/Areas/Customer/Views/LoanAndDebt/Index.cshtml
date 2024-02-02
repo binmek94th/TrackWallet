@@ -14,10 +14,12 @@
                 @if (obj.Type == "Loan")
                 {
                     <div class="elements">
-                        <p>@obj.BorrowerName</p>
-                        <p>@obj.Amount</p>
-                        <p>@obj.StartingDate.ToShortDateString()</p>
-                        <p>@obj.PaymentOption</p>
+                        <div class="row-first">
+                            <p>Borrowed To: @obj.BorrowerName</p>
+                            <p style="width: 200px">Payment Plan: @obj.PaymentOption</p>
+                        </div>
+                        <p>Amount: @obj.Amount</p>
+                        <p style="width: 200px">Start Date: @obj.StartingDate.ToShortDateString()</p>
                         <div class="modify-link">
                             <a asp-controller="LoanAndDebt" asp-action="Edit" asp-route-id="@obj.Id">
                                 <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
@@ -30,15 +32,18 @@
                 }
             }
             <h4>Debt</h4>
+            <hr/>
             @foreach (var obj in Model)
             {
                 @if (obj.Type == "Debt")
                 {
                     <div class="elements">
-                        <p>@obj.BorrowerName</p>
-                        <p>@obj.Amount</p>
-                        <p>@obj.StartingDate.ToShortDateString()</p>
-                        <p>@obj.PaymentOption</p>
+                        <div class="row-first">
+                            <p>Borrowed From: @obj.BorrowerName</p>
+                            <p style="width: 200px">Payment Plan: @obj.PaymentOption</p>
+                        </div>
+                        <p>Amount: @obj.Amount</p>
+                        <p style="width: 200px">Start Date: @obj.StartingDate.ToShortDateString()</p>
                         <div class="modify-link">
                             <a asp-controller="LoanAndDebt" asp-action="Edit" asp-route-id="@obj.Id">
                                 <img width="25px" src="@Url.Content("~/Image/Icons/Edit.png")"/>
@@ -60,6 +65,18 @@
     .elements img{
         padding: 10px;
         border-radius: 50px;;
+    }
+    .elements{
+        display: flex;
+        height: 80px;
+        width: 100%;
+        background-color: #EFF5E9;
+        border-radius: 15px;
+        padding-left: 10px;
+        margin-bottom: 10px;
+    }
+    .elements p{
+        width: 150px;
     }
 
     .MainBoard {

@@ -38,16 +38,12 @@
                             </a>
                         </div>
                     </div>
-                        <div class="bar">
-                            <div class="main-bar">
-                                <div class="fill-bar">
-                                    @foreach (var tran in Model.Transaction)
-                                    {
-                                    }
-                                    <p></p>
-                                </div>
-                            </div>
+                    <div class="bar">
+                        <div class="main-bar">
+                            <div class="fill-bar" style="width: @(obj.Used * 100 / obj.Amount)%;"></div>
                         </div>
+                    </div>
+                    <p class="p-amount">Amount: @obj.Used/@obj.Amount ETB</p>
                 </div>
                         }
         </div>
@@ -57,6 +53,10 @@
 </div>
 
 <style>
+    .p-amount{
+        padding-left: 20px;
+        margin-top: 8px;
+    }
     .main-bar{
         margin-left: 15px;
         height: 10px;
@@ -157,7 +157,7 @@
         padding: 13px;
     }
     .box{
-        margin-bottom: 40px;
+        margin-bottom: 30px;
     }
     
     .elements {

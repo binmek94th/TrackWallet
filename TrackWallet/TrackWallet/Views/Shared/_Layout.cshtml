@@ -288,14 +288,9 @@
             @if (User.Identity.IsAuthenticated)
             {
                 <a href="#"><img class="bell" src="@Url.Content("~/Image/Icons/Bell.png")" width="50px" /></a>
-                
-                <a href="#">
-                    <div class="profile">
-                        <p>BM</p>
-                    </div>
-                </a>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" style="margin-top: -2px; margin-left: 7px">@User.Identity.Name</a>
 
-                <a class="user" href="#">Binyam Mekonnen</a>
+                <a class="user" href="#"></a>
                 <div class="dropdown">
                     <button class="dropbtn"><img src="@Url.Content("~/Image/Icons/Arrow.png")" alt="Arrow"></button>
                     <div class="dropdown-content">
