@@ -1,4 +1,6 @@
-﻿namespace TrackWallet.DataAccess.Repository.IRepository;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
+namespace TrackWallet.DataAccess.Repository.IRepository;
 
 public interface IUnitOfWork
 {
@@ -13,5 +15,6 @@ public interface IUnitOfWork
     ILoanAndDebtRepository LoanAndDebt { get; }
     ISharedWalletRepository SharedWallet { get; }
     ITransactionRepository Transaction { get; }
+    INotificationRepository Notification { get; }
     void Save();
 }

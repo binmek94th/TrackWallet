@@ -1,0 +1,36 @@
+﻿@model List<Notification>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notification</title>
+<style>
+        .element{
+            width: 130%;
+            height: 50px;
+            margin: 20px 20px 10px;
+            padding-left: 10px;
+            display: flex;
+            background: #EFF5E9;
+            border-radius: 15px;
+        }
+        .box{
+        
+                }
+</style>
+</head>
+<body>
+<h2>Notification</h2>
+<div class="box">
+    @foreach (var note in Model)
+    {
+        <div class="element">
+            <p style="margin-right: 30%; width: 200px">@note.Message</p>
+            <p>@note.CreatedAt.ToShortDateString()</p>
+        </div>
+    }
+</div>
+</body>
+</html>

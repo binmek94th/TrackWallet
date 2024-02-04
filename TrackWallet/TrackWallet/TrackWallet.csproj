@@ -52,6 +52,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Areas\Customer\Views\Insight\" />
       <Folder Include="wwwroot\Image\Category\" />
     </ItemGroup>
 

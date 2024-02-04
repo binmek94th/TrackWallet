@@ -18,6 +18,7 @@ public class UnitOfWork : IUnitOfWork
     public ILoanAndDebtRepository LoanAndDebt { get; set; }
     public ISharedWalletRepository SharedWallet { get; set; }
     public ITransactionRepository Transaction { get; }
+    public INotificationRepository Notification { get; }
 
     private ApplicationDbContext _db;
     public UnitOfWork(ApplicationDbContext db)
@@ -34,6 +35,7 @@ public class UnitOfWork : IUnitOfWork
         LoanAndDebt = new LoanAndDebtRepository(_db);
         SharedWallet = new SharedWalletRepository(_db);
         Transaction = new TransactionRepository(_db);
+        Notification = new NotificationRepository(_db);
     }
 
     public void Save()

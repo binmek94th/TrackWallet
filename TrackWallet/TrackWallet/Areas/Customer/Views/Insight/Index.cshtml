@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Insight</title>
+
+    <!-- Load Google Charts library -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <h1>Insights</h1>
+
+    <div id="myChart" style="width: 800px; height: 500px;"></div>
+
+    <script>
+        google.charts.load('current', { 'packages': ['bar'] });
+
+        // Set a callback to run when the Google Visualization API is loaded
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            // Dummy data with expenses and income for each day
+            var dailySummaries = [
+                { Date: 'Monday', Expense: 50, Income: 150 },
+                { Date: 'Tuesday', Expense: 80, Income: 200 },
+                { Date: 'Wednesday', Expense: 100, Income: 180 },
+                { Date: 'Thursday', Expense: 60, Income: 120 },
+                { Date: 'Friday', Expense: 120, Income: 250 }
+            ];
+
+            var chartData = [['Date', 'Expense', 'Income']];
+            
+            // Populate the array with data from dailySummaries
+            dailySummaries.forEach(function (summary) {
+                chartData.push([summary.Date, summary.Expense, summary.Income]);
+            });
+
+            var data = google.visualization.arrayToDataTable(chartData);
+
+            // Set chart options
+            var options = {
+                chart: {
+                    title: 'Expense and Income per Date',
+                },
+                bars: 'vertical', // Display bars vertically
+                vAxis: {
+                    title: 'Amount'
+                },
+                hAxis: {
+                    title: 'Date'
+                },
+                backgroundColor: '',
+                color: ''
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('myChart'));
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
+</body>
+</html>

@@ -488,7 +488,7 @@ namespace TrackWallet.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Notification");
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("TrackWallet.Models.Occasion", b =>

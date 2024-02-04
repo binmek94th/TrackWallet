@@ -24,6 +24,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<LoanAndDebt> LoanAndDebts { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
     public DbSet<SharedWallet> SharedWallets { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
